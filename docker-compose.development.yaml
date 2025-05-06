@@ -1,0 +1,25 @@
+networks:
+  network_app:
+    driver: bridge
+
+services:
+  node:
+    container_name: ${APP_NAME}_node
+    hostname: ${APP_NAME}_node
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: .docker/development/node/Dockerfile
+      args:
+        - UID_HOST_USER=${UID_HOST_USER}
+        - GID_HOST_USER=${GID_HOST_USER}
+    tty: true
+    networks:
+      - network_app
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    environment:
+      - UID_HOST_USER=${UID_HOST_USER}
+      - GID_HOST_USER=${GID_HOST_USER}

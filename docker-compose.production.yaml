@@ -1,0 +1,16 @@
+networks:
+  network_app:
+    driver: bridge
+
+services:
+  node:
+    container_name: ${APP_NAME}_prod_node
+    hostname: ${APP_NAME}_prod_node
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: .docker/production/node/Dockerfile
+    env_file:
+      - .env
+    networks:
+      - network_app
