@@ -3,6 +3,7 @@ import {
   courseListSchema,
   educationalOrganizationSchema,
   faqSchema,
+  toJsonLdScript,
   websiteSchema,
 } from "@/lib/structured-data";
 
@@ -30,7 +31,7 @@ export async function StructuredData({ locale }: { locale: string }) {
           // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD requires raw injection
           key={`ld-${i}`}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(node) }}
+          dangerouslySetInnerHTML={{ __html: toJsonLdScript(node) }}
         />
       ))}
     </>

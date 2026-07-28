@@ -90,3 +90,15 @@ export function faqSchema(items: Array<{ question: string; answer: string }>) {
     })),
   };
 }
+
+/**
+ * Serializes a JSON-LD node for injection into a `<script>` tag. Catalog
+ * content (testimonials, address, opening hours) is maintained by
+ * non-developers — a "<" or "</script>" in that copy would otherwise close
+ * the script tag early and break the page, so "<" is escaped to its unicode
+ * form, which is inert inside a JSON string but round-trips identically once
+ * parsed.
+ */
+export function toJsonLdScript(node: unknown): string {
+  return JSON.stringify(node).replace(/</g, "\\u003c");
+}

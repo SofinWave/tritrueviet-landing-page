@@ -4,6 +4,7 @@ import {
   courseListSchema,
   educationalOrganizationSchema,
   faqSchema,
+  toJsonLdScript,
   websiteSchema,
 } from "@/lib/structured-data";
 
@@ -49,5 +50,25 @@ describe("faqSchema", () => {
     const schema = faqSchema([{ question: "Q?", answer: "A." }]);
     expect(schema["@type"]).toBe("FAQPage");
     expect(schema.mainEntity[0].acceptedAnswer.text).toBe("A.");
+  });
+});
+
+describe("toJsonLdScript", () => {
+  it("escapes '<' so catalog content can't close the surrounding <script> tag early", () => {
+    const html = toJsonLdScript({ quote: "Con tôi </script><script>alert(1)</script> giỏi hơn" });
+    expect(html).not.toContain("<");
+    expect(html).toContain("\\u003c/script>");
+    expect(html).toContain("\\u003cscript>");
+  });
+
+  it("round-trips to the original string once parsed back out of the script tag", () => {
+    const original = { note: "a < b and a </script> tag" };
+    const parsed = JSON.parse(toJsonLdScript(original));
+    expect(parsed).toEqual(original);
+  });
+
+  it("leaves content with no '<' unchanged apart from JSON serialization", () => {
+    const node = { name: "Trí Tuệ Việt" };
+    expect(toJsonLdScript(node)).toBe(JSON.stringify(node));
   });
 });
