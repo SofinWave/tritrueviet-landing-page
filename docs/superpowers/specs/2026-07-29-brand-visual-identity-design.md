@@ -51,10 +51,11 @@ thiếu ảnh, và có thể deploy ngay.
 
 ### Giá trị
 
-Dùng thẳng giá trị OKLCH trong bảng màu mặc định của Tailwind v4. Các giá trị
-slate dưới đây đã có sẵn trong `globals.css` hiện tại nên đối chiếu được trực
-tiếp; giá trị blue và amber phải **kiểm chứng lại với bảng màu Tailwind v4 khi
-implement**, không chép từ trí nhớ.
+Dùng thẳng giá trị OKLCH trong bảng màu mặc định của Tailwind v4. Toàn bộ giá trị
+dưới đây đã đối chiếu với
+`node_modules/.pnpm/tailwindcss@4.3.3/node_modules/tailwindcss/theme.css`.
+Tailwind ghi thành phần L theo phần trăm (`oklch(48.8% 0.243 264.376)`); dạng
+thập phân trong bảng dưới đây là tương đương.
 
 | Token | Vai trò | Light | Dark |
 | --- | --- | --- | --- |
@@ -93,10 +94,19 @@ Cam `#F59E0B` trên nền sáng chỉ đạt khoảng **2.1:1**, trượt WCAG A
 
 - **Cam không bao giờ là màu chữ trên nền sáng.** Trên nền sáng, cam chỉ được
   làm nền nút, đường kẻ, chấm, viền.
-- Trên `--surface-ink`, cam đạt khoảng **7.5:1** → làm chữ thoải mái. Đây chính
-  là lý do các con số thống kê màu cam phải nằm trong dải tối, không nằm trên nền
-  trắng.
+- Trên `--surface-ink` ở **light mode** (slate-950), cam đạt khoảng **9.4:1** →
+  làm chữ thoải mái ở mọi cỡ. Đây chính là lý do các con số thống kê màu cam phải
+  nằm trong dải tối, không nằm trên nền trắng.
+- Trên `--surface-ink` ở **dark mode** (blue-800), cam chỉ đạt khoảng **4.1:1**.
+  Đủ cho *large text* (≥24px, hoặc ≥18.66px in đậm — ngưỡng AA là 3:1) nhưng
+  **không đủ cho chữ thường**. Cam trên dải ink chỉ được dùng cho con số thống kê
+  cỡ lớn và eyebrow in đậm; mô tả và chữ thân trên dải ink dùng
+  `--surface-ink-foreground`.
 - Chữ trên nền cam dùng `--highlight-foreground` (amber-950), không dùng trắng.
+- Ở dark mode, `--primary` là blue-500 — chữ trắng trên nó chỉ đạt 3.7:1, trượt
+  AA. Nên dark mode dùng `--primary-foreground` **tối** (slate-950, đạt 5.7:1),
+  ngược với light mode. Trông phản trực giác nhưng là điều kiện để nút primary
+  đọc được ở dark.
 
 ## Chữ
 
@@ -223,8 +233,16 @@ Chạy theo thứ tự, tất cả phải xanh trước khi coi là xong:
 
 Test thêm:
 
-- `tests/components/section.test.tsx` — mỗi giá trị `tone` render đúng class nền
-  tương ứng; mặc định (không truyền prop) giữ nguyên hành vi hiện tại.
+- `tests/components/section.test.tsx` — file này **đã tồn tại** với 3 test; mở
+  rộng thêm, không tạo mới. Kiểm: mỗi giá trị `tone` render đúng nền tương ứng;
+  mặc định (không truyền prop) giữ nguyên hành vi hiện tại.
+- `tests/styles/tokens.test.ts` — file mới, đọc `app/globals.css` dạng text và
+  khẳng định mỗi token mới có mặt ở **cả ba** block (`@theme inline`, `:root`,
+  `.dark`). Đây là test bắt đúng cái bẫy "quên khai báo trong `@theme inline`" —
+  lỗi này không làm build đổ, chỉ làm class không tồn tại trong im lặng.
+- `tests/styles/tokens.test.ts` cũng khẳng định rule `.reveal` nằm **bên trong**
+  block `@supports (animation-timeline: view())` — nếu nó lọt ra ngoài, Firefox
+  sẽ giữ nội dung ở trạng thái đầu của keyframe và ẩn chữ vĩnh viễn.
 
 Kiểm tra tay, không thể tự động hoá trong phạm vi này:
 
