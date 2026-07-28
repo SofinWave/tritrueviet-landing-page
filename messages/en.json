@@ -28,5 +28,66 @@
     "years": { "value": "[TODO: years]", "label": "Years of experience" },
     "passRate": { "value": "[TODO: pass rate]", "label": "First-choice admission rate" },
     "teachers": { "value": "[TODO: teacher count]", "label": "In-house teachers" }
+  },
+  "courses": {
+    "eyebrow": "Programmes",
+    "title": "Courses by subject and grade",
+    "description": "Each subject has its own path per grade, aligned with the national curriculum and real exam papers.",
+    "gradesLabel": "Grades",
+    "items": [
+      {
+        "name": "Mathematics",
+        "description": "Algebra, geometry and focused drilling on the question types that matter per grade.",
+        "grades": "Grades 6 – 12"
+      },
+      {
+        "name": "Literature",
+        "description": "Reading comprehension, social and literary essays following the current exam format.",
+        "grades": "Grades 6 – 12"
+      },
+      {
+        "name": "English",
+        "description": "Grammar foundations, topic vocabulary and exam technique.",
+        "grades": "Grades 6 – 12"
+      },
+      {
+        "name": "Physics",
+        "description": "Formula systems, applied problems and demonstrative experiments.",
+        "grades": "Grades 8 – 12"
+      },
+      {
+        "name": "Chemistry",
+        "description": "Equations, reaction chains and fully worked chemistry problems.",
+        "grades": "Grades 8 – 12"
+      },
+      {
+        "name": "Transition exam prep",
+        "description": "Accelerated paths for the grade 10 entrance exam and the high school graduation exam.",
+        "grades": "Grades 9 and 12"
+      }
+    ]
+  },
+  "formats": {
+    "eyebrow": "Learning formats",
+    "title": "Pick the format that suits your child",
+    "description": "Four formats, the same teacher quality and the same progress reporting.",
+    "items": [
+      {
+        "name": "One-on-one",
+        "description": "The teacher focuses entirely on one student and adjusts pace lesson by lesson."
+      },
+      {
+        "name": "Small group of 3 – 6",
+        "description": "More affordable, still closely supervised, with peer motivation added."
+      },
+      {
+        "name": "Online classes",
+        "description": "Live lessons with recordings, suited to distance or a busy schedule."
+      },
+      {
+        "name": "Home tutoring",
+        "description": "The teacher comes to your home on a schedule you set."
+      }
+    ]
   }
 }

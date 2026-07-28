@@ -28,5 +28,66 @@
     "years": { "value": "[TODO: số năm]", "label": "Năm kinh nghiệm" },
     "passRate": { "value": "[TODO: tỉ lệ đỗ]", "label": "Tỉ lệ đỗ nguyện vọng 1" },
     "teachers": { "value": "[TODO: số giáo viên]", "label": "Giáo viên cơ hữu" }
+  },
+  "courses": {
+    "eyebrow": "Chương trình",
+    "title": "Khoá học theo môn và cấp lớp",
+    "description": "Mỗi môn có lộ trình riêng cho từng khối, bám sát chương trình của Bộ và đề thi thực tế.",
+    "gradesLabel": "Cấp lớp",
+    "items": [
+      {
+        "name": "Toán",
+        "description": "Đại số, hình học và ôn luyện dạng bài trọng tâm theo từng khối.",
+        "grades": "Lớp 6 – 12"
+      },
+      {
+        "name": "Ngữ văn",
+        "description": "Đọc hiểu, nghị luận xã hội và nghị luận văn học theo cấu trúc đề mới.",
+        "grades": "Lớp 6 – 12"
+      },
+      {
+        "name": "Tiếng Anh",
+        "description": "Ngữ pháp nền tảng, từ vựng theo chủ đề và kỹ năng làm bài thi.",
+        "grades": "Lớp 6 – 12"
+      },
+      {
+        "name": "Vật lý",
+        "description": "Hệ thống công thức, bài tập vận dụng và thí nghiệm minh hoạ.",
+        "grades": "Lớp 8 – 12"
+      },
+      {
+        "name": "Hoá học",
+        "description": "Phương trình, chuỗi phản ứng và bài toán hoá học có lời giải chi tiết.",
+        "grades": "Lớp 8 – 12"
+      },
+      {
+        "name": "Luyện thi chuyển cấp",
+        "description": "Lộ trình tăng tốc cho kỳ thi vào lớp 10 và kỳ thi tốt nghiệp THPT.",
+        "grades": "Lớp 9 và lớp 12"
+      }
+    ]
+  },
+  "formats": {
+    "eyebrow": "Hình thức học",
+    "title": "Chọn cách học phù hợp với con",
+    "description": "Bốn hình thức, cùng một chất lượng giáo viên và cùng một hệ thống báo cáo tiến độ.",
+    "items": [
+      {
+        "name": "Kèm 1 – 1",
+        "description": "Giáo viên tập trung hoàn toàn vào một học sinh, điều chỉnh tốc độ theo từng buổi."
+      },
+      {
+        "name": "Nhóm nhỏ 3 – 6 bạn",
+        "description": "Chi phí hợp lý hơn, vẫn đủ sát sao và có thêm động lực từ bạn cùng nhóm."
+      },
+      {
+        "name": "Học online",
+        "description": "Lớp trực tuyến có ghi hình lại, phù hợp khi con ở xa hoặc lịch bận."
+      },
+      {
+        "name": "Gia sư tại nhà",
+        "description": "Giáo viên tới tận nhà theo lịch phụ huynh sắp xếp."
+      }
+    ]
   }
 }
