@@ -74,19 +74,23 @@
     "items": [
       {
         "name": "One-on-one",
-        "description": "The teacher focuses entirely on one student and adjusts pace lesson by lesson."
+        "description": "The teacher focuses entirely on one student and adjusts pace lesson by lesson.",
+        "icon": "one-on-one"
       },
       {
         "name": "Small group of 3 – 6",
-        "description": "More affordable, still closely supervised, with peer motivation added."
+        "description": "More affordable, still closely supervised, with peer motivation added.",
+        "icon": "small-group"
       },
       {
         "name": "Online classes",
-        "description": "Live lessons with recordings, suited to distance or a busy schedule."
+        "description": "Live lessons with recordings, suited to distance or a busy schedule.",
+        "icon": "online"
       },
       {
         "name": "Home tutoring",
-        "description": "The teacher comes to your home on a schedule you set."
+        "description": "The teacher comes to your home on a schedule you set.",
+        "icon": "home"
       }
     ]
   },

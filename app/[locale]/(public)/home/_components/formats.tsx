@@ -1,11 +1,16 @@
-import { Home, Monitor, User, Users } from "lucide-react";
+import { Home, Monitor, type LucideIcon, User, Users } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Section } from "@/components/section";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
-type FormatItem = { name: string; description: string };
+type FormatItem = { name: string; description: string; icon: string };
 
-const ICONS = [User, Users, Monitor, Home];
+const ICONS: Record<string, LucideIcon> = {
+  "one-on-one": User,
+  "small-group": Users,
+  online: Monitor,
+  home: Home,
+};
 
 export function Formats() {
   const t = useTranslations("formats");
@@ -20,8 +25,8 @@ export function Formats() {
       className="bg-muted/30"
     >
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {items.map((item, index) => {
-          const Icon = ICONS[index] ?? User;
+        {items.map((item) => {
+          const Icon = ICONS[item.icon] ?? User;
           return (
             <Card key={item.name} className="h-full">
               <CardHeader>

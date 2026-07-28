@@ -74,19 +74,23 @@
     "items": [
       {
         "name": "Kèm 1 – 1",
-        "description": "Giáo viên tập trung hoàn toàn vào một học sinh, điều chỉnh tốc độ theo từng buổi."
+        "description": "Giáo viên tập trung hoàn toàn vào một học sinh, điều chỉnh tốc độ theo từng buổi.",
+        "icon": "one-on-one"
       },
       {
         "name": "Nhóm nhỏ 3 – 6 bạn",
-        "description": "Chi phí hợp lý hơn, vẫn đủ sát sao và có thêm động lực từ bạn cùng nhóm."
+        "description": "Chi phí hợp lý hơn, vẫn đủ sát sao và có thêm động lực từ bạn cùng nhóm.",
+        "icon": "small-group"
       },
       {
         "name": "Học online",
-        "description": "Lớp trực tuyến có ghi hình lại, phù hợp khi con ở xa hoặc lịch bận."
+        "description": "Lớp trực tuyến có ghi hình lại, phù hợp khi con ở xa hoặc lịch bận.",
+        "icon": "online"
       },
       {
         "name": "Gia sư tại nhà",
-        "description": "Giáo viên tới tận nhà theo lịch phụ huynh sắp xếp."
+        "description": "Giáo viên tới tận nhà theo lịch phụ huynh sắp xếp.",
+        "icon": "home"
       }
     ]
   },
