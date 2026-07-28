@@ -6,18 +6,21 @@ import { SITE_URL, localeUrl } from "@/lib/site";
 import { routing } from "@/i18n/routing";
 
 describe("sitemap", () => {
-  it("lists one absolute entry per locale", () => {
+  it("lists one absolute entry per locale, pointing at the page that actually serves 200 (not the /:locale prefix, which 307s to /home)", () => {
     const entries = sitemap();
-    expect(entries.map((e) => e.url).sort()).toEqual([`${SITE_URL}/en`, `${SITE_URL}/vi`]);
+    expect(entries.map((e) => e.url).sort()).toEqual([
+      `${SITE_URL}/en/home`,
+      `${SITE_URL}/vi/home`,
+    ]);
   });
 
   it("gives the default locale top priority", () => {
-    const vi = sitemap().find((e) => e.url === `${SITE_URL}/vi`);
+    const vi = sitemap().find((e) => e.url === `${SITE_URL}/vi/home`);
     expect(vi?.priority).toBe(1);
   });
 
   it("gives non-default locales a lower priority", () => {
-    const en = sitemap().find((e) => e.url === `${SITE_URL}/en`);
+    const en = sitemap().find((e) => e.url === `${SITE_URL}/en/home`);
     expect(en?.priority).toBe(0.9);
   });
 

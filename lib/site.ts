@@ -59,9 +59,15 @@ export const SITE_KEYWORDS: Record<string, string[]> = {
   ],
 };
 
-/** Absolute URL for a locale's home page. */
+/**
+ * Absolute URL for a locale's home page. Points at `/home`, not the bare
+ * `/${locale}` prefix — the latter 307-redirects (see `app/[locale]/page.tsx`
+ * and `i18n/routing.ts`'s `localePrefix: "always"`), so using it here would
+ * make canonical, hreflang, og:url, the sitemap and JSON-LD all declare a
+ * URL that never resolves with a 200.
+ */
 export function localeUrl(locale: string): string {
-  return `${SITE_URL}/${locale}`;
+  return `${SITE_URL}/${locale}/home`;
 }
 
 /** hreflang alternates map (locale -> absolute URL). */
