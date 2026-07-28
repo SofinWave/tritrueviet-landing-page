@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Trí Tuệ Việt — Landing Page
 
-## Getting Started
+Bilingual (Vietnamese / English) marketing landing page for the Trí Tuệ Việt
+tutoring centre. Next.js 16 App Router, Tailwind v4, shadcn/ui, next-intl.
 
-First, run the development server:
+## Getting started
+
+Package manager is **pnpm 11.9.0** — do not use `npm` or `yarn`.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 — it redirects to `/vi/home`. Switch to English
+with the language switcher in the header, which moves between `/vi/home` and
+`/en/home`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm dev            # dev server (Turbopack)
+pnpm build          # production build
+pnpm start          # serve production build
+pnpm test           # run the test suite once (vitest)
+pnpm test:watch     # vitest watch mode
+pnpm lint           # eslint
+pnpm lint:fix       # eslint --fix
+pnpm format         # biome format --write
+pnpm format:check   # biome format check (what CI runs)
+```
 
-## Learn More
+## Docker
 
-To learn more about Next.js, take a look at the following resources:
+Docker workflows are wrapped as [mise](https://mise.jdx.dev) file tasks,
+namespaced `local:*` (development) and `prod:*` (production):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+mise tasks ls           # list every local:* and prod:* task
+mise run local:up       # start the local dev containers
+mise run local:dev      # run the Next.js dev server inside the container
+mise run local:connect  # open a bash shell inside the container
+mise run prod:up        # start the production containers
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Copy `.env.example` to `.env` first and set `UID_HOST_USER` / `GID_HOST_USER`
+to your own `id -u` / `id -g` so bind-mounted files keep the right ownership.
 
-## Deploy on Vercel
+## Before launch
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The centre's real details are still placeholders written as `[TODO: ...]` in
+`lib/site.ts` and `messages/{vi,en}.json`. See the "Unfilled content" section
+of `CLAUDE.md` for the exact list — it includes the phone number and Zalo
+link, so the `tel:` links (header, hero, footer, contact section) and the
+Zalo links (hero, contact section) will not work until those are filled in.
+`tests/messages/placeholders.test.ts` guards against silently overwriting a
+placeholder with an invented figure.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Two more values are placeholders too but are **not** `[TODO: ...]` strings, so
+the test above cannot catch them — check them manually:
+
+- `NEXT_PUBLIC_SITE_URL` (`lib/site.ts`'s `SITE_URL`) defaults to the
+  placeholder domain `https://tritueviet.example.com`. It is baked into the
+  production image at `docker build` time (see `.docker/production/node/Dockerfile`),
+  not read at container runtime — set it before building, not after.
+- `SITE_SAME_AS` (`lib/site.ts`) is `[]` until the centre's social/canonical
+  profile URLs are added; until then the JSON-LD `EducationalOrganization`
+  node emits `"sameAs":[]`.

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#MISE description="Stop the local dev containers without removing them"
+set -euo pipefail
+docker compose stop

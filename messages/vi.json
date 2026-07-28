@@ -1,0 +1,294 @@
+{
+  "metadata": {
+    "title": "Trung tâm Gia sư Trí Tuệ Việt — Kèm 1-1, nhóm nhỏ và online",
+    "description": "Trí Tuệ Việt đồng hành cùng học sinh từ lớp 6 đến lớp 12 với lộ trình cá nhân hoá, giáo viên tận tâm và cam kết tiến bộ rõ ràng."
+  },
+  "nav": {
+    "courses": "Khoá học",
+    "formats": "Hình thức học",
+    "teachers": "Giáo viên",
+    "pricing": "Học phí",
+    "register": "Đăng ký tư vấn",
+    "callHotline": "Gọi hotline",
+    "openMenu": "Mở menu",
+    "switchLanguage": "Đổi ngôn ngữ",
+    "toggleTheme": "Đổi giao diện sáng/tối"
+  },
+  "hero": {
+    "eyebrow": "Trung tâm gia sư uy tín",
+    "title": "Học đúng lộ trình, tiến bộ thấy rõ từng tháng",
+    "subtitle": "Trí Tuệ Việt xây lộ trình riêng cho từng học sinh — kiểm tra đầu vào, xếp lớp phù hợp, báo cáo tiến độ đều đặn cho phụ huynh.",
+    "ctaPrimary": "Đăng ký học thử miễn phí",
+    "ctaSecondary": "Xem khoá học",
+    "callNow": "Gọi ngay",
+    "chatZalo": "Nhắn Zalo"
+  },
+  "stats": {
+    "students": { "value": "[TODO: số học viên]", "label": "Học viên đã đồng hành" },
+    "years": { "value": "[TODO: số năm]", "label": "Năm kinh nghiệm" },
+    "passRate": { "value": "[TODO: tỉ lệ đỗ]", "label": "Tỉ lệ đỗ nguyện vọng 1" },
+    "teachers": { "value": "[TODO: số giáo viên]", "label": "Giáo viên cơ hữu" }
+  },
+  "courses": {
+    "eyebrow": "Chương trình",
+    "title": "Khoá học theo môn và cấp lớp",
+    "description": "Mỗi môn có lộ trình riêng cho từng khối, bám sát chương trình của Bộ và đề thi thực tế.",
+    "gradesLabel": "Cấp lớp",
+    "items": [
+      {
+        "name": "Toán",
+        "description": "Đại số, hình học và ôn luyện dạng bài trọng tâm theo từng khối.",
+        "grades": "Lớp 6 – 12"
+      },
+      {
+        "name": "Ngữ văn",
+        "description": "Đọc hiểu, nghị luận xã hội và nghị luận văn học theo cấu trúc đề mới.",
+        "grades": "Lớp 6 – 12"
+      },
+      {
+        "name": "Tiếng Anh",
+        "description": "Ngữ pháp nền tảng, từ vựng theo chủ đề và kỹ năng làm bài thi.",
+        "grades": "Lớp 6 – 12"
+      },
+      {
+        "name": "Vật lý",
+        "description": "Hệ thống công thức, bài tập vận dụng và thí nghiệm minh hoạ.",
+        "grades": "Lớp 8 – 12"
+      },
+      {
+        "name": "Hoá học",
+        "description": "Phương trình, chuỗi phản ứng và bài toán hoá học có lời giải chi tiết.",
+        "grades": "Lớp 8 – 12"
+      },
+      {
+        "name": "Luyện thi chuyển cấp",
+        "description": "Lộ trình tăng tốc cho kỳ thi vào lớp 10 và kỳ thi tốt nghiệp THPT.",
+        "grades": "Lớp 9 và lớp 12"
+      }
+    ]
+  },
+  "formats": {
+    "eyebrow": "Hình thức học",
+    "title": "Chọn cách học phù hợp với con",
+    "description": "Bốn hình thức, cùng một chất lượng giáo viên và cùng một hệ thống báo cáo tiến độ.",
+    "items": [
+      {
+        "name": "Kèm 1 – 1",
+        "description": "Giáo viên tập trung hoàn toàn vào một học sinh, điều chỉnh tốc độ theo từng buổi.",
+        "icon": "one-on-one"
+      },
+      {
+        "name": "Nhóm nhỏ 3 – 6 bạn",
+        "description": "Chi phí hợp lý hơn, vẫn đủ sát sao và có thêm động lực từ bạn cùng nhóm.",
+        "icon": "small-group"
+      },
+      {
+        "name": "Học online",
+        "description": "Lớp trực tuyến có ghi hình lại, phù hợp khi con ở xa hoặc lịch bận.",
+        "icon": "online"
+      },
+      {
+        "name": "Gia sư tại nhà",
+        "description": "Giáo viên tới tận nhà theo lịch phụ huynh sắp xếp.",
+        "icon": "home"
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "Quy trình",
+    "title": "Bốn bước để con bắt đầu học",
+    "description": "Không mất phí cho tới khi phụ huynh hài lòng với buổi học thử.",
+    "steps": [
+      {
+        "title": "Tư vấn miễn phí",
+        "description": "Phụ huynh để lại thông tin, chúng tôi gọi lại trong vòng 24 giờ để nghe về mục tiêu của con."
+      },
+      {
+        "title": "Kiểm tra đầu vào",
+        "description": "Bài test ngắn xác định đúng lỗ hổng kiến thức, không xếp lớp theo cảm tính."
+      },
+      {
+        "title": "Xếp lớp và chọn giáo viên",
+        "description": "Ghép con với giáo viên và hình thức học phù hợp nhất với kết quả kiểm tra."
+      },
+      {
+        "title": "Học thử và theo dõi",
+        "description": "Buổi học thử miễn phí, sau đó là báo cáo tiến độ định kỳ gửi phụ huynh."
+      }
+    ]
+  },
+  "teachers": {
+    "eyebrow": "Đội ngũ",
+    "title": "Giáo viên đồng hành cùng con",
+    "description": "Mỗi giáo viên đều qua vòng phỏng vấn chuyên môn và dạy thử trước khi đứng lớp.",
+    "items": [
+      {
+        "name": "[TODO: tên giáo viên 1]",
+        "subject": "[TODO: môn phụ trách]",
+        "credential": "[TODO: bằng cấp, số năm kinh nghiệm]"
+      },
+      {
+        "name": "[TODO: tên giáo viên 2]",
+        "subject": "[TODO: môn phụ trách]",
+        "credential": "[TODO: bằng cấp, số năm kinh nghiệm]"
+      },
+      {
+        "name": "[TODO: tên giáo viên 3]",
+        "subject": "[TODO: môn phụ trách]",
+        "credential": "[TODO: bằng cấp, số năm kinh nghiệm]"
+      },
+      {
+        "name": "[TODO: tên giáo viên 4]",
+        "subject": "[TODO: môn phụ trách]",
+        "credential": "[TODO: bằng cấp, số năm kinh nghiệm]"
+      }
+    ]
+  },
+  "achievements": {
+    "eyebrow": "Kết quả",
+    "title": "Thành tích học viên",
+    "description": "Những con số dưới đây sẽ được cập nhật theo từng năm học.",
+    "items": [
+      {
+        "title": "[TODO: thành tích 1]",
+        "detail": "[TODO: mô tả kết quả, năm học]"
+      },
+      {
+        "title": "[TODO: thành tích 2]",
+        "detail": "[TODO: mô tả kết quả, năm học]"
+      },
+      {
+        "title": "[TODO: thành tích 3]",
+        "detail": "[TODO: mô tả kết quả, năm học]"
+      }
+    ]
+  },
+  "pricing": {
+    "eyebrow": "Học phí",
+    "title": "Học phí minh bạch, không phát sinh",
+    "description": "Học phí tính theo buổi và theo hình thức học. Buổi học thử đầu tiên miễn phí.",
+    "perSession": "mỗi buổi",
+    "cta": "Nhận báo giá chi tiết",
+    "note": "Học phí có thể thay đổi theo cấp lớp và số buổi đăng ký. Liên hệ để nhận báo giá chính xác.",
+    "plans": [
+      {
+        "name": "Kèm 1 – 1",
+        "price": "[TODO: học phí 1 kèm 1]",
+        "features": [
+          "Giáo viên riêng theo môn",
+          "Lộ trình cá nhân hoá",
+          "Báo cáo tiến độ hàng tuần"
+        ]
+      },
+      {
+        "name": "Nhóm nhỏ 3 – 6 bạn",
+        "price": "[TODO: học phí nhóm nhỏ]",
+        "features": [
+          "Sĩ số tối đa 6 học sinh",
+          "Chữa bài chi tiết từng buổi",
+          "Báo cáo tiến độ hàng tháng"
+        ]
+      },
+      {
+        "name": "Học online",
+        "price": "[TODO: học phí online]",
+        "features": ["Lớp trực tuyến có ghi hình", "Tài liệu số đi kèm", "Linh hoạt lịch học"]
+      }
+    ]
+  },
+  "testimonials": {
+    "eyebrow": "Phụ huynh nói gì",
+    "title": "Cảm nhận từ phụ huynh và học viên",
+    "items": [
+      {
+        "quote": "[TODO: trích cảm nhận phụ huynh 1]",
+        "author": "[TODO: tên phụ huynh 1]",
+        "role": "[TODO: phụ huynh em ..., lớp ...]"
+      },
+      {
+        "quote": "[TODO: trích cảm nhận phụ huynh 2]",
+        "author": "[TODO: tên phụ huynh 2]",
+        "role": "[TODO: phụ huynh em ..., lớp ...]"
+      },
+      {
+        "quote": "[TODO: trích cảm nhận học viên]",
+        "author": "[TODO: tên học viên]",
+        "role": "[TODO: học viên lớp ...]"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Giải đáp",
+    "title": "Câu hỏi thường gặp",
+    "items": [
+      {
+        "question": "Buổi học thử có mất phí không?",
+        "answer": "Không. Buổi học thử đầu tiên hoàn toàn miễn phí, phụ huynh chỉ đóng học phí khi quyết định cho con theo học."
+      },
+      {
+        "question": "Con học yếu có theo kịp lớp nhóm không?",
+        "answer": "Bài kiểm tra đầu vào giúp chúng tôi xếp con vào nhóm đúng trình độ. Nếu khoảng cách còn lớn, chúng tôi sẽ đề xuất kèm 1 kèm 1 trong giai đoạn đầu."
+      },
+      {
+        "question": "Trung tâm báo cáo tiến độ như thế nào?",
+        "answer": "Phụ huynh nhận báo cáo định kỳ gồm mức độ hoàn thành bài tập, điểm kiểm tra và nhận xét của giáo viên phụ trách."
+      },
+      {
+        "question": "Có thể đổi giáo viên nếu con chưa hợp không?",
+        "answer": "Có. Phụ huynh báo với trung tâm và chúng tôi sắp xếp giáo viên khác, không phát sinh chi phí."
+      },
+      {
+        "question": "Lớp online học trên nền tảng nào?",
+        "answer": "Lớp trực tuyến diễn ra theo thời gian thực và được ghi hình lại để con xem lại trong tuần."
+      },
+      {
+        "question": "Học phí đóng theo tháng hay theo khoá?",
+        "answer": "Phụ huynh có thể đóng theo tháng hoặc theo khoá. Đóng theo khoá thường có mức ưu đãi tốt hơn."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Đăng ký",
+    "title": "Đăng ký tư vấn và học thử miễn phí",
+    "description": "Để lại thông tin, chúng tôi gọi lại trong vòng 24 giờ làm việc.",
+    "phoneLabel": "Hotline",
+    "zaloLabel": "Zalo",
+    "emailLabel": "Email",
+    "addressLabel": "Địa chỉ",
+    "form": {
+      "parentName": "Họ tên phụ huynh",
+      "phone": "Số điện thoại",
+      "grade": "Lớp",
+      "gradePlaceholder": "Ví dụ: lớp 9",
+      "subject": "Môn quan tâm",
+      "subjectPlaceholder": "Ví dụ: Toán",
+      "format": "Hình thức học",
+      "formatPlaceholder": "Ví dụ: kèm 1 kèm 1",
+      "note": "Ghi chú",
+      "notePlaceholder": "Mục tiêu của con, lịch rảnh, yêu cầu khác…",
+      "submit": "Gửi đăng ký",
+      "submitting": "Đang gửi…",
+      "success": "Đã nhận thông tin. Trung tâm sẽ liên hệ lại trong vòng 24 giờ làm việc.",
+      "error": "Gửi chưa thành công. Vui lòng kiểm tra lại thông tin.",
+      "errors": {
+        "parentName_required": "Vui lòng nhập họ tên phụ huynh",
+        "parentName_too_long": "Họ tên phụ huynh quá dài",
+        "phone_invalid": "Số điện thoại không hợp lệ",
+        "grade_required": "Vui lòng chọn lớp",
+        "grade_too_long": "Tên lớp quá dài",
+        "subject_required": "Vui lòng chọn môn học",
+        "subject_too_long": "Tên môn học quá dài",
+        "format_required": "Vui lòng chọn hình thức học",
+        "format_too_long": "Hình thức học quá dài",
+        "note_too_long": "Ghi chú quá dài",
+        "invalid_input": "Dữ liệu không hợp lệ"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Trung tâm gia sư đồng hành cùng học sinh THCS và THPT.",
+    "quickLinks": "Liên kết nhanh",
+    "contact": "Liên hệ",
+    "rights": "Bảo lưu mọi quyền."
+  }
+}

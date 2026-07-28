@@ -1,0 +1,20 @@
+name: ${APP_NAME}
+
+networks:
+  network_app:
+    driver: bridge
+
+services:
+  node:
+    container_name: ${APP_NAME}_node
+    hostname: ${APP_NAME}_node
+    restart: unless-stopped
+    build:
+      context: .
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - network_app

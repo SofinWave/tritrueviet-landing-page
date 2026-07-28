@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#MISE description="Run the Next.js dev server inside the local node container"
+set -euo pipefail
+docker compose exec -it node pnpm dev

@@ -1,0 +1,277 @@
+{
+  "metadata": {
+    "title": "Tri Tue Viet Tutoring Centre — 1-on-1, small group and online",
+    "description": "Tri Tue Viet supports students from grade 6 to 12 with personalised learning paths, dedicated teachers and clear progress commitments."
+  },
+  "nav": {
+    "courses": "Courses",
+    "formats": "Formats",
+    "teachers": "Teachers",
+    "pricing": "Tuition",
+    "register": "Book a consultation",
+    "callHotline": "Call the hotline",
+    "openMenu": "Open menu",
+    "switchLanguage": "Switch language",
+    "toggleTheme": "Toggle light/dark theme"
+  },
+  "hero": {
+    "eyebrow": "A tutoring centre parents trust",
+    "title": "A learning path that fits, with progress you can see",
+    "subtitle": "Tri Tue Viet builds an individual plan for every student — entry assessment, the right class, and regular progress reports for parents.",
+    "ctaPrimary": "Book a free trial lesson",
+    "ctaSecondary": "Browse courses",
+    "callNow": "Call now",
+    "chatZalo": "Chat on Zalo"
+  },
+  "stats": {
+    "students": { "value": "[TODO: student count]", "label": "Students taught" },
+    "years": { "value": "[TODO: years]", "label": "Years of experience" },
+    "passRate": { "value": "[TODO: pass rate]", "label": "First-choice admission rate" },
+    "teachers": { "value": "[TODO: teacher count]", "label": "In-house teachers" }
+  },
+  "courses": {
+    "eyebrow": "Programmes",
+    "title": "Courses by subject and grade",
+    "description": "Each subject has its own path per grade, aligned with the national curriculum and real exam papers.",
+    "gradesLabel": "Grades",
+    "items": [
+      {
+        "name": "Mathematics",
+        "description": "Algebra, geometry and focused drilling on the question types that matter per grade.",
+        "grades": "Grades 6 – 12"
+      },
+      {
+        "name": "Literature",
+        "description": "Reading comprehension, social and literary essays following the current exam format.",
+        "grades": "Grades 6 – 12"
+      },
+      {
+        "name": "English",
+        "description": "Grammar foundations, topic vocabulary and exam technique.",
+        "grades": "Grades 6 – 12"
+      },
+      {
+        "name": "Physics",
+        "description": "Formula systems, applied problems and demonstrative experiments.",
+        "grades": "Grades 8 – 12"
+      },
+      {
+        "name": "Chemistry",
+        "description": "Equations, reaction chains and fully worked chemistry problems.",
+        "grades": "Grades 8 – 12"
+      },
+      {
+        "name": "Transition exam prep",
+        "description": "Accelerated paths for the grade 10 entrance exam and the high school graduation exam.",
+        "grades": "Grades 9 and 12"
+      }
+    ]
+  },
+  "formats": {
+    "eyebrow": "Learning formats",
+    "title": "Pick the format that suits your child",
+    "description": "Four formats, the same teacher quality and the same progress reporting.",
+    "items": [
+      {
+        "name": "One-on-one",
+        "description": "The teacher focuses entirely on one student and adjusts pace lesson by lesson.",
+        "icon": "one-on-one"
+      },
+      {
+        "name": "Small group of 3 – 6",
+        "description": "More affordable, still closely supervised, with peer motivation added.",
+        "icon": "small-group"
+      },
+      {
+        "name": "Online classes",
+        "description": "Live lessons with recordings, suited to distance or a busy schedule.",
+        "icon": "online"
+      },
+      {
+        "name": "Home tutoring",
+        "description": "The teacher comes to your home on a schedule you set.",
+        "icon": "home"
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "How it works",
+    "title": "Four steps to your child's first lesson",
+    "description": "Nothing is charged until you are happy with the trial lesson.",
+    "steps": [
+      {
+        "title": "Free consultation",
+        "description": "Leave your details and we call back within 24 hours to hear about your child's goals."
+      },
+      {
+        "title": "Entry assessment",
+        "description": "A short test pinpoints the actual knowledge gaps — no placement by guesswork."
+      },
+      {
+        "title": "Class and teacher matching",
+        "description": "We match your child to the teacher and format that fit the assessment result."
+      },
+      {
+        "title": "Trial lesson and tracking",
+        "description": "A free trial lesson, then regular progress reports sent to parents."
+      }
+    ]
+  },
+  "teachers": {
+    "eyebrow": "Our team",
+    "title": "The teachers your child will work with",
+    "description": "Every teacher passes a subject interview and a trial lesson before taking a class.",
+    "items": [
+      {
+        "name": "[TODO: teacher 1 name]",
+        "subject": "[TODO: subject]",
+        "credential": "[TODO: qualification, years of experience]"
+      },
+      {
+        "name": "[TODO: teacher 2 name]",
+        "subject": "[TODO: subject]",
+        "credential": "[TODO: qualification, years of experience]"
+      },
+      {
+        "name": "[TODO: teacher 3 name]",
+        "subject": "[TODO: subject]",
+        "credential": "[TODO: qualification, years of experience]"
+      },
+      {
+        "name": "[TODO: teacher 4 name]",
+        "subject": "[TODO: subject]",
+        "credential": "[TODO: qualification, years of experience]"
+      }
+    ]
+  },
+  "achievements": {
+    "eyebrow": "Results",
+    "title": "Student achievements",
+    "description": "These figures are updated each academic year.",
+    "items": [
+      { "title": "[TODO: achievement 1]", "detail": "[TODO: result description, school year]" },
+      { "title": "[TODO: achievement 2]", "detail": "[TODO: result description, school year]" },
+      { "title": "[TODO: achievement 3]", "detail": "[TODO: result description, school year]" }
+    ]
+  },
+  "pricing": {
+    "eyebrow": "Tuition",
+    "title": "Transparent tuition, no hidden extras",
+    "description": "Tuition is charged per session and per format. The first trial lesson is free.",
+    "perSession": "per session",
+    "cta": "Request a detailed quote",
+    "note": "Tuition varies by grade and by the number of sessions booked. Contact us for an exact quote.",
+    "plans": [
+      {
+        "name": "One-on-one",
+        "price": "[TODO: one-on-one tuition]",
+        "features": ["A dedicated subject teacher", "Personalised path", "Weekly progress report"]
+      },
+      {
+        "name": "Small group of 3 – 6",
+        "price": "[TODO: small group tuition]",
+        "features": ["Maximum 6 students", "Detailed per-session review", "Monthly progress report"]
+      },
+      {
+        "name": "Online classes",
+        "price": "[TODO: online tuition]",
+        "features": ["Recorded live lessons", "Digital materials included", "Flexible scheduling"]
+      }
+    ]
+  },
+  "testimonials": {
+    "eyebrow": "What parents say",
+    "title": "Feedback from parents and students",
+    "items": [
+      {
+        "quote": "[TODO: parent testimonial 1]",
+        "author": "[TODO: parent 1 name]",
+        "role": "[TODO: parent of ..., grade ...]"
+      },
+      {
+        "quote": "[TODO: parent testimonial 2]",
+        "author": "[TODO: parent 2 name]",
+        "role": "[TODO: parent of ..., grade ...]"
+      },
+      {
+        "quote": "[TODO: student testimonial]",
+        "author": "[TODO: student name]",
+        "role": "[TODO: grade ... student]"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Answers",
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "question": "Is the trial lesson charged?",
+        "answer": "No. The first trial lesson is free; you only pay once you decide to enrol."
+      },
+      {
+        "question": "Can a struggling student keep up in a group class?",
+        "answer": "The entry assessment places your child at the right level. If the gap is still large we recommend one-on-one lessons for the first stage."
+      },
+      {
+        "question": "How is progress reported?",
+        "answer": "Parents receive regular reports covering homework completion, test scores and the teacher's comments."
+      },
+      {
+        "question": "Can we change teacher if it is not a good fit?",
+        "answer": "Yes. Tell us and we will arrange a different teacher at no extra cost."
+      },
+      {
+        "question": "Which platform do online classes use?",
+        "answer": "Online classes run live and are recorded so your child can review them during the week."
+      },
+      {
+        "question": "Is tuition paid monthly or per course?",
+        "answer": "Either. Paying per course usually comes with a better rate."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Register",
+    "title": "Book a free consultation and trial lesson",
+    "description": "Leave your details and we will call back within 24 working hours.",
+    "phoneLabel": "Hotline",
+    "zaloLabel": "Zalo",
+    "emailLabel": "Email",
+    "addressLabel": "Address",
+    "form": {
+      "parentName": "Parent's full name",
+      "phone": "Phone number",
+      "grade": "Grade",
+      "gradePlaceholder": "e.g. grade 9",
+      "subject": "Subject of interest",
+      "subjectPlaceholder": "e.g. Mathematics",
+      "format": "Learning format",
+      "formatPlaceholder": "e.g. one-on-one",
+      "note": "Notes",
+      "notePlaceholder": "Your child's goals, available times, anything else…",
+      "submit": "Send registration",
+      "submitting": "Sending…",
+      "success": "We have your details and will be in touch within 24 working hours.",
+      "error": "Could not send. Please check the details and try again.",
+      "errors": {
+        "parentName_required": "Please enter the parent's full name",
+        "parentName_too_long": "Parent's full name is too long",
+        "phone_invalid": "Phone number is not valid",
+        "grade_required": "Please enter the grade",
+        "grade_too_long": "Grade is too long",
+        "subject_required": "Please enter the subject",
+        "subject_too_long": "Subject is too long",
+        "format_required": "Please enter the learning format",
+        "format_too_long": "Learning format is too long",
+        "note_too_long": "Notes are too long",
+        "invalid_input": "Invalid submission"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "A tutoring centre supporting secondary and high school students.",
+    "quickLinks": "Quick links",
+    "contact": "Contact",
+    "rights": "All rights reserved."
+  }
+}

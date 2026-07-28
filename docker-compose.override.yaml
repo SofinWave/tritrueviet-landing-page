@@ -1,0 +1,15 @@
+services:
+  node:
+    build:
+      dockerfile: .docker/development/node/Dockerfile
+      args:
+        - UID_HOST_USER=${UID_HOST_USER}
+        - GID_HOST_USER=${GID_HOST_USER}
+    tty: true
+    ports:
+      - ${APP_PORT:-3000}:3000
+    volumes:
+      - .:/app
+    environment:
+      - UID_HOST_USER=${UID_HOST_USER}
+      - GID_HOST_USER=${GID_HOST_USER}

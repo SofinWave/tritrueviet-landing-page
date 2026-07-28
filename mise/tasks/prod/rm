@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#MISE description="Remove production containers, local images and volumes"
+set -euo pipefail
+docker compose -f docker-compose.yaml -f docker-compose.production.yaml down --rmi local -v
