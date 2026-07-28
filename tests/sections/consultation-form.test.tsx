@@ -25,7 +25,7 @@ async function fillValidForm(user: ReturnType<typeof userEvent.setup>) {
 }
 
 describe("ConsultationForm", () => {
-  beforeEach(() => submitConsultation.mockReset());
+  beforeEach(() => vi.clearAllMocks());
 
   it("labels every required field", () => {
     renderForm();
@@ -47,9 +47,14 @@ describe("ConsultationForm", () => {
     await fillValidForm(user);
     await user.click(screen.getByRole("button", { name: "Gửi đăng ký" }));
 
-    expect(submitConsultation).toHaveBeenCalledWith(
-      expect.objectContaining({ parentName: "Nguyễn Văn A", phone: "0912345678", grade: "9" }),
-    );
+    expect(submitConsultation).toHaveBeenCalledWith({
+      parentName: "Nguyễn Văn A",
+      phone: "0912345678",
+      grade: "9",
+      subject: "Toán",
+      format: "1 kèm 1",
+      note: "",
+    });
   });
 
   it("shows the success message after a successful submission", async () => {
@@ -62,13 +67,35 @@ describe("ConsultationForm", () => {
     expect(await screen.findByRole("status")).toHaveTextContent("Đã nhận thông tin");
   });
 
-  it("surfaces the error returned by the action", async () => {
-    submitConsultation.mockResolvedValue({ ok: false, error: "Số điện thoại không hợp lệ" });
+  it("translates the error identifier returned by the action", async () => {
+    submitConsultation.mockResolvedValue({ ok: false, error: "phone_invalid" });
     const user = userEvent.setup();
     renderForm();
     await fillValidForm(user);
     await user.click(screen.getByRole("button", { name: "Gửi đăng ký" }));
 
     expect(await screen.findByRole("alert")).toHaveTextContent("Số điện thoại không hợp lệ");
+  });
+
+  it("falls back to the generic error message for an unrecognized identifier", async () => {
+    submitConsultation.mockResolvedValue({ ok: false, error: "some_unmapped_id" });
+    const user = userEvent.setup();
+    renderForm();
+    await fillValidForm(user);
+    await user.click(screen.getByRole("button", { name: "Gửi đăng ký" }));
+
+    expect(await screen.findByRole("alert")).toHaveTextContent("Gửi chưa thành công");
+  });
+
+  it("recovers when the server action rejects instead of resolving", async () => {
+    submitConsultation.mockRejectedValue(new Error("network error"));
+    const user = userEvent.setup();
+    renderForm();
+    await fillValidForm(user);
+    const submitButton = screen.getByRole("button", { name: "Gửi đăng ký" });
+    await user.click(submitButton);
+
+    expect(await screen.findByRole("alert")).toHaveTextContent("Gửi chưa thành công");
+    expect(screen.getByRole("button", { name: "Gửi đăng ký" })).not.toBeDisabled();
   });
 });

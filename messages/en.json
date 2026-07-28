@@ -248,7 +248,16 @@
       "submit": "Send registration",
       "submitting": "Sending…",
       "success": "We have your details and will be in touch within 24 working hours.",
-      "error": "Could not send. Please check the details and try again."
+      "error": "Could not send. Please check the details and try again.",
+      "errors": {
+        "parentName_required": "Please enter the parent's full name",
+        "phone_invalid": "Phone number is not valid",
+        "grade_required": "Please enter the grade",
+        "subject_required": "Please enter the subject",
+        "format_required": "Please enter the learning format",
+        "note_too_long": "Notes are too long",
+        "invalid_input": "Invalid submission"
+      }
     }
   }
 }

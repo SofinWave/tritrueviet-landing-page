@@ -18,21 +18,32 @@ export function ConsultationForm() {
   const t = useTranslations("contact.form");
   const [status, setStatus] = useState<Status>({ kind: "idle" });
 
+  function translateError(errorId: string): string {
+    const key = `errors.${errorId}`;
+    return t.has(key) ? t(key) : t("error");
+  }
+
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
     setStatus({ kind: "sending" });
 
-    const result = await submitConsultation({
-      parentName: String(form.get("parentName") ?? ""),
-      phone: String(form.get("phone") ?? ""),
-      grade: String(form.get("grade") ?? ""),
-      subject: String(form.get("subject") ?? ""),
-      format: String(form.get("format") ?? ""),
-      note: String(form.get("note") ?? ""),
-    });
+    try {
+      const result = await submitConsultation({
+        parentName: String(form.get("parentName") ?? ""),
+        phone: String(form.get("phone") ?? ""),
+        grade: String(form.get("grade") ?? ""),
+        subject: String(form.get("subject") ?? ""),
+        format: String(form.get("format") ?? ""),
+        note: String(form.get("note") ?? ""),
+      });
 
-    setStatus(result.ok ? { kind: "sent" } : { kind: "failed", error: result.error });
+      setStatus(
+        result.ok ? { kind: "sent" } : { kind: "failed", error: translateError(result.error) },
+      );
+    } catch {
+      setStatus({ kind: "failed", error: t("error") });
+    }
   }
 
   return (

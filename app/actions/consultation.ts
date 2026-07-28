@@ -7,7 +7,7 @@ export async function submitConsultation(
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   const parsed = consultationSchema.safeParse(data);
   if (!parsed.success) {
-    return { ok: false, error: parsed.error.issues[0]?.message ?? "Dữ liệu không hợp lệ" };
+    return { ok: false, error: parsed.error.issues[0]?.message ?? "invalid_input" };
   }
   // Deliberately unintegrated — see the design spec. Wire a webhook, Google
   // Sheet or email provider here when the centre picks one.

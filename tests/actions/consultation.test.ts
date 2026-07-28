@@ -25,6 +25,14 @@ describe("consultationSchema", () => {
     expect(result.success).toBe(false);
   });
 
+  it("reports validation failures as stable identifiers, not translated sentences", () => {
+    const result = consultationSchema.safeParse({ ...valid, phone: "12345" });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues[0]?.message).toBe("phone_invalid");
+    }
+  });
+
   it("rejects a landline-style number starting with 02", () => {
     expect(consultationSchema.safeParse({ ...valid, phone: "0212345678" }).success).toBe(false);
   });
@@ -44,7 +52,7 @@ describe("submitConsultation", () => {
 
   it("returns the first validation message for an invalid submission", async () => {
     const result = await submitConsultation({ ...valid, phone: "nope" });
-    expect(result).toEqual({ ok: false, error: expect.any(String) });
+    expect(result).toEqual({ ok: false, error: "phone_invalid" });
   });
 
   it("does not log anything when validation fails", async () => {

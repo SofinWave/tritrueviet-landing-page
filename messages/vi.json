@@ -265,7 +265,16 @@
       "submit": "Gửi đăng ký",
       "submitting": "Đang gửi…",
       "success": "Đã nhận thông tin. Trung tâm sẽ liên hệ lại trong vòng 24 giờ làm việc.",
-      "error": "Gửi chưa thành công. Vui lòng kiểm tra lại thông tin."
+      "error": "Gửi chưa thành công. Vui lòng kiểm tra lại thông tin.",
+      "errors": {
+        "parentName_required": "Vui lòng nhập họ tên phụ huynh",
+        "phone_invalid": "Số điện thoại không hợp lệ",
+        "grade_required": "Vui lòng chọn lớp",
+        "subject_required": "Vui lòng chọn môn học",
+        "format_required": "Vui lòng chọn hình thức học",
+        "note_too_long": "Ghi chú quá dài",
+        "invalid_input": "Dữ liệu không hợp lệ"
+      }
     }
   }
 }
