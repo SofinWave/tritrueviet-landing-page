@@ -174,5 +174,56 @@
         "features": ["Recorded live lessons", "Digital materials included", "Flexible scheduling"]
       }
     ]
+  },
+  "testimonials": {
+    "eyebrow": "What parents say",
+    "title": "Feedback from parents and students",
+    "items": [
+      {
+        "quote": "[TODO: parent testimonial 1]",
+        "author": "[TODO: parent 1 name]",
+        "role": "[TODO: parent of ..., grade ...]"
+      },
+      {
+        "quote": "[TODO: parent testimonial 2]",
+        "author": "[TODO: parent 2 name]",
+        "role": "[TODO: parent of ..., grade ...]"
+      },
+      {
+        "quote": "[TODO: student testimonial]",
+        "author": "[TODO: student name]",
+        "role": "[TODO: grade ... student]"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Answers",
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "question": "Is the trial lesson charged?",
+        "answer": "No. The first trial lesson is free; you only pay once you decide to enrol."
+      },
+      {
+        "question": "Can a struggling student keep up in a group class?",
+        "answer": "The entry assessment places your child at the right level. If the gap is still large we recommend one-on-one lessons for the first stage."
+      },
+      {
+        "question": "How is progress reported?",
+        "answer": "Parents receive regular reports covering homework completion, test scores and the teacher's comments."
+      },
+      {
+        "question": "Can we change teacher if it is not a good fit?",
+        "answer": "Yes. Tell us and we will arrange a different teacher at no extra cost."
+      },
+      {
+        "question": "Which platform do online classes use?",
+        "answer": "Online classes run live and are recorded so your child can review them during the week."
+      },
+      {
+        "question": "Is tuition paid monthly or per course?",
+        "answer": "Either. Paying per course usually comes with a better rate."
+      }
+    ]
   }
 }

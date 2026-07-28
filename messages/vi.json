@@ -191,5 +191,56 @@
         "features": ["Lớp trực tuyến có ghi hình", "Tài liệu số đi kèm", "Linh hoạt lịch học"]
       }
     ]
+  },
+  "testimonials": {
+    "eyebrow": "Phụ huynh nói gì",
+    "title": "Cảm nhận từ phụ huynh và học viên",
+    "items": [
+      {
+        "quote": "[TODO: trích cảm nhận phụ huynh 1]",
+        "author": "[TODO: tên phụ huynh 1]",
+        "role": "[TODO: phụ huynh em ..., lớp ...]"
+      },
+      {
+        "quote": "[TODO: trích cảm nhận phụ huynh 2]",
+        "author": "[TODO: tên phụ huynh 2]",
+        "role": "[TODO: phụ huynh em ..., lớp ...]"
+      },
+      {
+        "quote": "[TODO: trích cảm nhận học viên]",
+        "author": "[TODO: tên học viên]",
+        "role": "[TODO: học viên lớp ...]"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Giải đáp",
+    "title": "Câu hỏi thường gặp",
+    "items": [
+      {
+        "question": "Buổi học thử có mất phí không?",
+        "answer": "Không. Buổi học thử đầu tiên hoàn toàn miễn phí, phụ huynh chỉ đóng học phí khi quyết định cho con theo học."
+      },
+      {
+        "question": "Con học yếu có theo kịp lớp nhóm không?",
+        "answer": "Bài kiểm tra đầu vào giúp chúng tôi xếp con vào nhóm đúng trình độ. Nếu khoảng cách còn lớn, chúng tôi sẽ đề xuất kèm 1 kèm 1 trong giai đoạn đầu."
+      },
+      {
+        "question": "Trung tâm báo cáo tiến độ như thế nào?",
+        "answer": "Phụ huynh nhận báo cáo định kỳ gồm mức độ hoàn thành bài tập, điểm kiểm tra và nhận xét của giáo viên phụ trách."
+      },
+      {
+        "question": "Có thể đổi giáo viên nếu con chưa hợp không?",
+        "answer": "Có. Phụ huynh báo với trung tâm và chúng tôi sắp xếp giáo viên khác, không phát sinh chi phí."
+      },
+      {
+        "question": "Lớp online học trên nền tảng nào?",
+        "answer": "Lớp trực tuyến diễn ra theo thời gian thực và được ghi hình lại để con xem lại trong tuần."
+      },
+      {
+        "question": "Học phí đóng theo tháng hay theo khoá?",
+        "answer": "Phụ huynh có thể đóng theo tháng hoặc theo khoá. Đóng theo khoá thường có mức ưu đãi tốt hơn."
+      }
+    ]
   }
 }
