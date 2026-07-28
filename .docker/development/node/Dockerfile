@@ -10,22 +10,22 @@ ARG NAME_CONTAINER_USER=user_container
 RUN apt update
 
 RUN userdel -r node
-RUN echo UID_HOST_USER = ${UID_HOST_USER} - GID_HOST_USER = ${GID_HOST_USER}
 RUN addgroup --system --gid ${GID_HOST_USER} ${NAME_CONTAINER_GROUP}
 RUN adduser --system -uid ${UID_HOST_USER} --home /home/${NAME_CONTAINER_USER} --disabled-password ${NAME_CONTAINER_USER}
 RUN adduser ${NAME_CONTAINER_USER} ${NAME_CONTAINER_GROUP}
 RUN usermod --gid sudo ${NAME_CONTAINER_USER}
 
-ENV NPM_CONFIG_PREFIX=/home/${NAME_CONTAINER_USER}/.npm-global
-ENV PATH=$PATH:/home/${NAME_CONTAINER_USER}/.npm-global/bin
+RUN corepack enable && corepack prepare pnpm@11.9.0 --activate
+
+ENV PNPM_HOME=/home/${NAME_CONTAINER_USER}/.local/share/pnpm
+ENV PATH=$PNPM_HOME:$PATH
 
 USER ${NAME_CONTAINER_USER}
 
 WORKDIR /app
 
-ADD package.json .
-ADD yarn.lock .
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-RUN yarn install
+RUN pnpm install --frozen-lockfile
 
 EXPOSE 3000

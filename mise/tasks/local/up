@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#MISE description="Start the local dev containers"
+set -euo pipefail
+docker compose up -d

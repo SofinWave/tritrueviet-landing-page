@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#MISE description="Open a bash shell inside the local node container"
+set -euo pipefail
+docker compose exec -it node bash

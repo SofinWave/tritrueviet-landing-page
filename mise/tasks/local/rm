@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#MISE description="Remove local dev containers, local images and volumes"
+set -euo pipefail
+docker compose down --rmi local -v
