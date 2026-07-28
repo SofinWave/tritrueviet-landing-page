@@ -67,6 +67,32 @@ describe("ConsultationForm", () => {
     expect(await screen.findByRole("status")).toHaveTextContent("Đã nhận thông tin");
   });
 
+  it("clears the fields after a successful submission so a second click can't duplicate the lead", async () => {
+    submitConsultation.mockResolvedValue({ ok: true });
+    const user = userEvent.setup();
+    renderForm();
+    await fillValidForm(user);
+    await user.click(screen.getByRole("button", { name: "Gửi đăng ký" }));
+    await screen.findByRole("status");
+
+    expect(screen.getByLabelText("Họ tên phụ huynh")).toHaveValue("");
+    expect(screen.getByLabelText("Số điện thoại")).toHaveValue("");
+    expect(screen.getByLabelText("Lớp")).toHaveValue("");
+    expect(screen.getByLabelText("Môn quan tâm")).toHaveValue("");
+    expect(screen.getByLabelText("Hình thức học")).toHaveValue("");
+  });
+
+  it("does not clear the fields after a failed submission, so the parent doesn't retype everything", async () => {
+    submitConsultation.mockResolvedValue({ ok: false, error: "phone_invalid" });
+    const user = userEvent.setup();
+    renderForm();
+    await fillValidForm(user);
+    await user.click(screen.getByRole("button", { name: "Gửi đăng ký" }));
+    await screen.findByRole("alert");
+
+    expect(screen.getByLabelText("Họ tên phụ huynh")).toHaveValue("Nguyễn Văn A");
+  });
+
   it("translates the error identifier returned by the action", async () => {
     submitConsultation.mockResolvedValue({ ok: false, error: "phone_invalid" });
     const user = userEvent.setup();

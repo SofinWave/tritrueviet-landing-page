@@ -25,7 +25,11 @@ export function ConsultationForm() {
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    // Captured before the `await` — `event.currentTarget` is nulled out by
+    // React once the synthetic event is done dispatching, so it cannot be
+    // read after an async gap.
+    const formEl = event.currentTarget;
+    const form = new FormData(formEl);
     setStatus({ kind: "sending" });
 
     try {
@@ -38,9 +42,14 @@ export function ConsultationForm() {
         note: String(form.get("note") ?? ""),
       });
 
-      setStatus(
-        result.ok ? { kind: "sent" } : { kind: "failed", error: translateError(result.error) },
-      );
+      if (result.ok) {
+        // Clear the submitted values so the live submit button under the
+        // success message can't be clicked again to create a duplicate lead.
+        formEl.reset();
+        setStatus({ kind: "sent" });
+      } else {
+        setStatus({ kind: "failed", error: translateError(result.error) });
+      }
     } catch {
       setStatus({ kind: "failed", error: t("error") });
     }
