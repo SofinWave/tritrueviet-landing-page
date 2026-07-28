@@ -13,5 +13,20 @@
     "openMenu": "Mở menu",
     "switchLanguage": "Đổi ngôn ngữ",
     "toggleTheme": "Đổi giao diện sáng/tối"
+  },
+  "hero": {
+    "eyebrow": "Trung tâm gia sư uy tín",
+    "title": "Học đúng lộ trình, tiến bộ thấy rõ từng tháng",
+    "subtitle": "Trí Tuệ Việt xây lộ trình riêng cho từng học sinh — kiểm tra đầu vào, xếp lớp phù hợp, báo cáo tiến độ đều đặn cho phụ huynh.",
+    "ctaPrimary": "Đăng ký học thử miễn phí",
+    "ctaSecondary": "Xem khoá học",
+    "callNow": "Gọi ngay",
+    "chatZalo": "Nhắn Zalo"
+  },
+  "stats": {
+    "students": { "value": "[TODO: số học viên]", "label": "Học viên đã đồng hành" },
+    "years": { "value": "[TODO: số năm]", "label": "Năm kinh nghiệm" },
+    "passRate": { "value": "[TODO: tỉ lệ đỗ]", "label": "Tỉ lệ đỗ nguyện vọng 1" },
+    "teachers": { "value": "[TODO: số giáo viên]", "label": "Giáo viên cơ hữu" }
   }
 }

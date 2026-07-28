@@ -13,5 +13,20 @@
     "openMenu": "Open menu",
     "switchLanguage": "Switch language",
     "toggleTheme": "Toggle light/dark theme"
+  },
+  "hero": {
+    "eyebrow": "A tutoring centre parents trust",
+    "title": "A learning path that fits, with progress you can see",
+    "subtitle": "Tri Tue Viet builds an individual plan for every student — entry assessment, the right class, and regular progress reports for parents.",
+    "ctaPrimary": "Book a free trial lesson",
+    "ctaSecondary": "Browse courses",
+    "callNow": "Call now",
+    "chatZalo": "Chat on Zalo"
+  },
+  "stats": {
+    "students": { "value": "[TODO: student count]", "label": "Students taught" },
+    "years": { "value": "[TODO: years]", "label": "Years of experience" },
+    "passRate": { "value": "[TODO: pass rate]", "label": "First-choice admission rate" },
+    "teachers": { "value": "[TODO: teacher count]", "label": "In-house teachers" }
   }
 }
