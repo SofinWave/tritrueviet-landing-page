@@ -6,5 +6,7 @@ services:
     hostname: ${APP_NAME}_prod_node
     build:
       dockerfile: .docker/production/node/Dockerfile
+      args:
+        - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
     env_file:
       - .env

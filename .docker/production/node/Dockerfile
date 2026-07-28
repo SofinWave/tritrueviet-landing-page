@@ -10,6 +10,11 @@ RUN corepack enable && corepack prepare pnpm@11.9.0 --activate
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# Next.js inlines NEXT_PUBLIC_* vars into the prerendered output at build
+# time — it is never read again at container start, so it must be supplied
+# here rather than via docker-compose's runtime env_file.
+ARG NEXT_PUBLIC_SITE_URL
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 RUN pnpm build
 
 FROM node:22.15.0-alpine AS production
