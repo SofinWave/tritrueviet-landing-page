@@ -34,6 +34,15 @@ const MESSAGE_PLACEHOLDER_PATHS = [
   "teachers.items.3.name",
   "teachers.items.3.subject",
   "teachers.items.3.credential",
+  "achievements.items.0.title",
+  "achievements.items.0.detail",
+  "achievements.items.1.title",
+  "achievements.items.1.detail",
+  "achievements.items.2.title",
+  "achievements.items.2.detail",
+  "pricing.plans.0.price",
+  "pricing.plans.1.price",
+  "pricing.plans.2.price",
 ] as const;
 
 /**

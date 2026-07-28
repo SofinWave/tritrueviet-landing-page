@@ -139,5 +139,57 @@
         "credential": "[TODO: bằng cấp, số năm kinh nghiệm]"
       }
     ]
+  },
+  "achievements": {
+    "eyebrow": "Kết quả",
+    "title": "Thành tích học viên",
+    "description": "Những con số dưới đây sẽ được cập nhật theo từng năm học.",
+    "items": [
+      {
+        "title": "[TODO: thành tích 1]",
+        "detail": "[TODO: mô tả kết quả, năm học]"
+      },
+      {
+        "title": "[TODO: thành tích 2]",
+        "detail": "[TODO: mô tả kết quả, năm học]"
+      },
+      {
+        "title": "[TODO: thành tích 3]",
+        "detail": "[TODO: mô tả kết quả, năm học]"
+      }
+    ]
+  },
+  "pricing": {
+    "eyebrow": "Học phí",
+    "title": "Học phí minh bạch, không phát sinh",
+    "description": "Học phí tính theo buổi và theo hình thức học. Buổi học thử đầu tiên miễn phí.",
+    "perSession": "mỗi buổi",
+    "cta": "Nhận báo giá chi tiết",
+    "note": "Học phí có thể thay đổi theo cấp lớp và số buổi đăng ký. Liên hệ để nhận báo giá chính xác.",
+    "plans": [
+      {
+        "name": "Kèm 1 – 1",
+        "price": "[TODO: học phí 1 kèm 1]",
+        "features": [
+          "Giáo viên riêng theo môn",
+          "Lộ trình cá nhân hoá",
+          "Báo cáo tiến độ hàng tuần"
+        ]
+      },
+      {
+        "name": "Nhóm nhỏ 3 – 6 bạn",
+        "price": "[TODO: học phí nhóm nhỏ]",
+        "features": [
+          "Sĩ số tối đa 6 học sinh",
+          "Chữa bài chi tiết từng buổi",
+          "Báo cáo tiến độ hàng tháng"
+        ]
+      },
+      {
+        "name": "Học online",
+        "price": "[TODO: học phí online]",
+        "features": ["Lớp trực tuyến có ghi hình", "Tài liệu số đi kèm", "Linh hoạt lịch học"]
+      }
+    ]
   }
 }

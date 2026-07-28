@@ -139,5 +139,40 @@
         "credential": "[TODO: qualification, years of experience]"
       }
     ]
+  },
+  "achievements": {
+    "eyebrow": "Results",
+    "title": "Student achievements",
+    "description": "These figures are updated each academic year.",
+    "items": [
+      { "title": "[TODO: achievement 1]", "detail": "[TODO: result description, school year]" },
+      { "title": "[TODO: achievement 2]", "detail": "[TODO: result description, school year]" },
+      { "title": "[TODO: achievement 3]", "detail": "[TODO: result description, school year]" }
+    ]
+  },
+  "pricing": {
+    "eyebrow": "Tuition",
+    "title": "Transparent tuition, no hidden extras",
+    "description": "Tuition is charged per session and per format. The first trial lesson is free.",
+    "perSession": "per session",
+    "cta": "Request a detailed quote",
+    "note": "Tuition varies by grade and by the number of sessions booked. Contact us for an exact quote.",
+    "plans": [
+      {
+        "name": "One-on-one",
+        "price": "[TODO: one-on-one tuition]",
+        "features": ["A dedicated subject teacher", "Personalised path", "Weekly progress report"]
+      },
+      {
+        "name": "Small group of 3 – 6",
+        "price": "[TODO: small group tuition]",
+        "features": ["Maximum 6 students", "Detailed per-session review", "Monthly progress report"]
+      },
+      {
+        "name": "Online classes",
+        "price": "[TODO: online tuition]",
+        "features": ["Recorded live lessons", "Digital materials included", "Flexible scheduling"]
+      }
+    ]
   }
 }
