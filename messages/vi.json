@@ -242,5 +242,30 @@
         "answer": "Phụ huynh có thể đóng theo tháng hoặc theo khoá. Đóng theo khoá thường có mức ưu đãi tốt hơn."
       }
     ]
+  },
+  "contact": {
+    "eyebrow": "Đăng ký",
+    "title": "Đăng ký tư vấn và học thử miễn phí",
+    "description": "Để lại thông tin, chúng tôi gọi lại trong vòng 24 giờ làm việc.",
+    "phoneLabel": "Hotline",
+    "zaloLabel": "Zalo",
+    "emailLabel": "Email",
+    "addressLabel": "Địa chỉ",
+    "form": {
+      "parentName": "Họ tên phụ huynh",
+      "phone": "Số điện thoại",
+      "grade": "Lớp",
+      "gradePlaceholder": "Ví dụ: lớp 9",
+      "subject": "Môn quan tâm",
+      "subjectPlaceholder": "Ví dụ: Toán",
+      "format": "Hình thức học",
+      "formatPlaceholder": "Ví dụ: kèm 1 kèm 1",
+      "note": "Ghi chú",
+      "notePlaceholder": "Mục tiêu của con, lịch rảnh, yêu cầu khác…",
+      "submit": "Gửi đăng ký",
+      "submitting": "Đang gửi…",
+      "success": "Đã nhận thông tin. Trung tâm sẽ liên hệ lại trong vòng 24 giờ làm việc.",
+      "error": "Gửi chưa thành công. Vui lòng kiểm tra lại thông tin."
+    }
   }
 }

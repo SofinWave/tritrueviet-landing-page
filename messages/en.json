@@ -225,5 +225,30 @@
         "answer": "Either. Paying per course usually comes with a better rate."
       }
     ]
+  },
+  "contact": {
+    "eyebrow": "Register",
+    "title": "Book a free consultation and trial lesson",
+    "description": "Leave your details and we will call back within 24 working hours.",
+    "phoneLabel": "Hotline",
+    "zaloLabel": "Zalo",
+    "emailLabel": "Email",
+    "addressLabel": "Address",
+    "form": {
+      "parentName": "Parent's full name",
+      "phone": "Phone number",
+      "grade": "Grade",
+      "gradePlaceholder": "e.g. grade 9",
+      "subject": "Subject of interest",
+      "subjectPlaceholder": "e.g. Mathematics",
+      "format": "Learning format",
+      "formatPlaceholder": "e.g. one-on-one",
+      "note": "Notes",
+      "notePlaceholder": "Your child's goals, available times, anything else…",
+      "submit": "Send registration",
+      "submitting": "Sending…",
+      "success": "We have your details and will be in touch within 24 working hours.",
+      "error": "Could not send. Please check the details and try again."
+    }
   }
 }
