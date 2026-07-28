@@ -89,5 +89,55 @@
         "description": "Giáo viên tới tận nhà theo lịch phụ huynh sắp xếp."
       }
     ]
+  },
+  "process": {
+    "eyebrow": "Quy trình",
+    "title": "Bốn bước để con bắt đầu học",
+    "description": "Không mất phí cho tới khi phụ huynh hài lòng với buổi học thử.",
+    "steps": [
+      {
+        "title": "Tư vấn miễn phí",
+        "description": "Phụ huynh để lại thông tin, chúng tôi gọi lại trong vòng 24 giờ để nghe về mục tiêu của con."
+      },
+      {
+        "title": "Kiểm tra đầu vào",
+        "description": "Bài test ngắn xác định đúng lỗ hổng kiến thức, không xếp lớp theo cảm tính."
+      },
+      {
+        "title": "Xếp lớp và chọn giáo viên",
+        "description": "Ghép con với giáo viên và hình thức học phù hợp nhất với kết quả kiểm tra."
+      },
+      {
+        "title": "Học thử và theo dõi",
+        "description": "Buổi học thử miễn phí, sau đó là báo cáo tiến độ định kỳ gửi phụ huynh."
+      }
+    ]
+  },
+  "teachers": {
+    "eyebrow": "Đội ngũ",
+    "title": "Giáo viên đồng hành cùng con",
+    "description": "Mỗi giáo viên đều qua vòng phỏng vấn chuyên môn và dạy thử trước khi đứng lớp.",
+    "items": [
+      {
+        "name": "[TODO: tên giáo viên 1]",
+        "subject": "[TODO: môn phụ trách]",
+        "credential": "[TODO: bằng cấp, số năm kinh nghiệm]"
+      },
+      {
+        "name": "[TODO: tên giáo viên 2]",
+        "subject": "[TODO: môn phụ trách]",
+        "credential": "[TODO: bằng cấp, số năm kinh nghiệm]"
+      },
+      {
+        "name": "[TODO: tên giáo viên 3]",
+        "subject": "[TODO: môn phụ trách]",
+        "credential": "[TODO: bằng cấp, số năm kinh nghiệm]"
+      },
+      {
+        "name": "[TODO: tên giáo viên 4]",
+        "subject": "[TODO: môn phụ trách]",
+        "credential": "[TODO: bằng cấp, số năm kinh nghiệm]"
+      }
+    ]
   }
 }

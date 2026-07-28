@@ -22,6 +22,18 @@ const MESSAGE_PLACEHOLDER_PATHS = [
   "stats.years.value",
   "stats.passRate.value",
   "stats.teachers.value",
+  "teachers.items.0.name",
+  "teachers.items.0.subject",
+  "teachers.items.0.credential",
+  "teachers.items.1.name",
+  "teachers.items.1.subject",
+  "teachers.items.1.credential",
+  "teachers.items.2.name",
+  "teachers.items.2.subject",
+  "teachers.items.2.credential",
+  "teachers.items.3.name",
+  "teachers.items.3.subject",
+  "teachers.items.3.credential",
 ] as const;
 
 /**

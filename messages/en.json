@@ -89,5 +89,55 @@
         "description": "The teacher comes to your home on a schedule you set."
       }
     ]
+  },
+  "process": {
+    "eyebrow": "How it works",
+    "title": "Four steps to your child's first lesson",
+    "description": "Nothing is charged until you are happy with the trial lesson.",
+    "steps": [
+      {
+        "title": "Free consultation",
+        "description": "Leave your details and we call back within 24 hours to hear about your child's goals."
+      },
+      {
+        "title": "Entry assessment",
+        "description": "A short test pinpoints the actual knowledge gaps — no placement by guesswork."
+      },
+      {
+        "title": "Class and teacher matching",
+        "description": "We match your child to the teacher and format that fit the assessment result."
+      },
+      {
+        "title": "Trial lesson and tracking",
+        "description": "A free trial lesson, then regular progress reports sent to parents."
+      }
+    ]
+  },
+  "teachers": {
+    "eyebrow": "Our team",
+    "title": "The teachers your child will work with",
+    "description": "Every teacher passes a subject interview and a trial lesson before taking a class.",
+    "items": [
+      {
+        "name": "[TODO: teacher 1 name]",
+        "subject": "[TODO: subject]",
+        "credential": "[TODO: qualification, years of experience]"
+      },
+      {
+        "name": "[TODO: teacher 2 name]",
+        "subject": "[TODO: subject]",
+        "credential": "[TODO: qualification, years of experience]"
+      },
+      {
+        "name": "[TODO: teacher 3 name]",
+        "subject": "[TODO: subject]",
+        "credential": "[TODO: qualification, years of experience]"
+      },
+      {
+        "name": "[TODO: teacher 4 name]",
+        "subject": "[TODO: subject]",
+        "credential": "[TODO: qualification, years of experience]"
+      }
+    ]
   }
 }
