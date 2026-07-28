@@ -1,9 +1,15 @@
-import { Phone } from "lucide-react";
+import { Menu, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Logo } from "@/components/logo";
 import { ModeToggle } from "@/components/mode-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { SITE_PHONE } from "@/lib/site";
 
 const NAV_ITEMS = [
@@ -34,9 +40,23 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="flex items-center gap-1">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" aria-label={t("openMenu")} className="md:hidden">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {NAV_ITEMS.map((item) => (
+                <DropdownMenuItem key={item.href} asChild>
+                  <a href={item.href}>{t(item.key)}</a>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
           <LanguageSwitcher />
           <ModeToggle />
-          <Button asChild variant="ghost" size="icon" aria-label={SITE_PHONE}>
+          <Button asChild variant="ghost" size="icon" aria-label={t("callHotline")}>
             <a href={`tel:${SITE_PHONE}`}>
               <Phone className="h-5 w-5" />
             </a>
