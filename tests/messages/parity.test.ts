@@ -3,7 +3,11 @@ import en from "@/messages/en.json";
 import vi from "@/messages/vi.json";
 
 function keyPaths(obj: unknown, prefix = ""): string[] {
-  if (obj && typeof obj === "object" && !Array.isArray(obj)) {
+  if (Array.isArray(obj)) {
+    if (obj.length === 0) return [prefix];
+    return obj.flatMap((v, i) => keyPaths(v, prefix ? `${prefix}.${i}` : `${i}`));
+  }
+  if (obj && typeof obj === "object") {
     return Object.entries(obj as Record<string, unknown>).flatMap(([k, v]) =>
       keyPaths(v, prefix ? `${prefix}.${k}` : k),
     );
