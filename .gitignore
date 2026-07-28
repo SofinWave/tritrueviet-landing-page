@@ -38,6 +38,9 @@ mise.local.toml
 # vercel
 .vercel
 
+# tooling scratch
+.serena/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

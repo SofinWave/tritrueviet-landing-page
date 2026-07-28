@@ -57,7 +57,8 @@ Replaces the Next 15 / yarn scaffold with the Next 16 / pnpm toolchain. Nothing 
 - Modify: `package.json` (full rewrite)
 - Create: `biome.json`, `vitest.config.mts`, `vitest.setup.ts`
 - Modify: `eslint.config.mjs`, `tsconfig.json`, `.lintstagedrc.json`
-- Delete: `yarn.lock`, `package-lock.json`
+- Delete: `yarn.lock`, `package-lock.json`, `src/` (the old Next 15 scaffold)
+- Create: `lib/utils.ts`
 - Test: `tests/smoke.test.ts`
 
 **Interfaces:**
@@ -309,24 +310,39 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
-- [ ] **Step 11: Drop the old lockfiles and install**
+- [ ] **Step 11: Remove the old `src/` scaffold**
+
+The repo currently keeps the app in `src/app/`. It must go **now**, before Task 3
+runs `shadcn init` — shadcn auto-detects a `src/` directory and would scaffold
+into `src/app/` and `src/components/`, while every task in this plan expects
+`app/` and `components/` at the repo root. Task 1 already repoints `@/*` at the
+root, so the old files under `src/` are unreachable anyway.
+
+```bash
+rm -rf src
+```
+
+Nothing renders until Task 4 recreates `app/[locale]/layout.tsx`. That is
+expected — Task 1's deliverable is the toolchain, not a running page.
+
+- [ ] **Step 12: Drop the old lockfiles and install**
 
 ```bash
 rm -f yarn.lock package-lock.json
 pnpm install
 ```
 
-- [ ] **Step 12: Run the test suite**
+- [ ] **Step 13: Run the test suite**
 
 Run: `pnpm test`
 Expected: PASS — 1 test in `tests/smoke.test.ts`.
 
-- [ ] **Step 13: Verify format and lint**
+- [ ] **Step 14: Verify format and lint**
 
 Run: `pnpm format:check && pnpm lint`
 Expected: both exit 0. If `format:check` reports diffs, run `pnpm format` and re-check.
 
-- [ ] **Step 14: Commit**
+- [ ] **Step 15: Commit**
 
 ```bash
 git add -A
@@ -682,7 +698,6 @@ Brand chrome plus the locale layout. After this task `pnpm dev` serves `/vi` wit
 
 **Files:**
 - Create: `lib/site.ts`, `components/theme-provider.tsx`, `components/mode-toggle.tsx`, `components/logo.tsx`, `components/language-switcher.tsx`, `components/site-header.tsx`, `app/[locale]/layout.tsx`, `app/[locale]/page.tsx`, `app/icon.tsx`
-- Delete: `src/` (the old Next 15 scaffold), `app/layout.tsx` and `app/page.tsx` if the scaffold left them
 - Test: `tests/components/logo.test.tsx`, `tests/components/site-header.test.tsx`, `tests/components/language-switcher.test.tsx`
 
 **Interfaces:**
@@ -1196,13 +1211,16 @@ export default function Icon() {
 }
 ```
 
-- [ ] **Step 10: Remove the old scaffold**
+- [ ] **Step 10: Remove any leftover root scaffold**
+
+`src/` is already gone (Task 1). Remove the root-level scaffold pages only if
+`shadcn init` created them:
 
 ```bash
-rm -rf src app/layout.tsx app/page.tsx
+rm -f app/layout.tsx app/page.tsx
 ```
 
-If `app/globals.css` lived under `src/app/`, move it to `app/globals.css` before deleting `src/`.
+`app/globals.css` must stay — the locale layout imports it.
 
 - [ ] **Step 11: Run tests to verify they pass**
 
