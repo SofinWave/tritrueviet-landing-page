@@ -1,8 +1,9 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { NextIntlClientProvider } from "next-intl";
+import en from "@/messages/en.json";
 import vi from "@/messages/vi.json";
-import { Formats } from "@/app/[locale]/(public)/home/_components/formats";
+import { Formats, ICONS } from "@/app/[locale]/(public)/home/_components/formats";
 
 const ICON_CLASS: Record<string, string> = {
   "one-on-one": "lucide-user",
@@ -45,5 +46,16 @@ describe("Formats", () => {
       expect(card?.querySelector("h3")).toHaveTextContent(item.name);
       expect(card?.querySelector("svg")?.getAttribute("class")).toContain(ICON_CLASS[item.icon]);
     });
+  });
+
+  it.each([
+    ["vi", vi],
+    ["en", en],
+  ])("pins every formats.items[].icon value in %s.json to a real ICONS key, so a typo can't silently fall back to the default icon", (_locale, messages) => {
+    const items = messages.formats.items as Array<{ icon: string }>;
+    expect(items.length).toBeGreaterThan(0);
+    for (const item of items) {
+      expect(Object.keys(ICONS)).toContain(item.icon);
+    }
   });
 });

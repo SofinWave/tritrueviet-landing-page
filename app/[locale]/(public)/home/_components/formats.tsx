@@ -5,7 +5,10 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 type FormatItem = { name: string; description: string; icon: string };
 
-const ICONS: Record<string, LucideIcon> = {
+// Exported so tests can assert every `formats.items[].icon` value in both
+// message catalogs is a key here — otherwise a typo (or a rename in one
+// locale only) falls through to the `?? User` fallback below silently.
+export const ICONS: Record<string, LucideIcon> = {
   "one-on-one": User,
   "small-group": Users,
   online: Monitor,
