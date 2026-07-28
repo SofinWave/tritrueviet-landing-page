@@ -280,5 +280,11 @@
         "invalid_input": "Dữ liệu không hợp lệ"
       }
     }
+  },
+  "footer": {
+    "tagline": "Trung tâm gia sư đồng hành cùng học sinh THCS và THPT.",
+    "quickLinks": "Liên kết nhanh",
+    "contact": "Liên hệ",
+    "rights": "Bảo lưu mọi quyền."
   }
 }

@@ -263,5 +263,11 @@
         "invalid_input": "Invalid submission"
       }
     }
+  },
+  "footer": {
+    "tagline": "A tutoring centre supporting secondary and high school students.",
+    "quickLinks": "Quick links",
+    "contact": "Contact",
+    "rights": "All rights reserved."
   }
 }
