@@ -255,10 +255,14 @@
       "error": "Could not send. Please check the details and try again.",
       "errors": {
         "parentName_required": "Please enter the parent's full name",
+        "parentName_too_long": "Parent's full name is too long",
         "phone_invalid": "Phone number is not valid",
         "grade_required": "Please enter the grade",
+        "grade_too_long": "Grade is too long",
         "subject_required": "Please enter the subject",
+        "subject_too_long": "Subject is too long",
         "format_required": "Please enter the learning format",
+        "format_too_long": "Learning format is too long",
         "note_too_long": "Notes are too long",
         "invalid_input": "Invalid submission"
       }

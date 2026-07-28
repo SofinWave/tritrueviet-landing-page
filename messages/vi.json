@@ -272,10 +272,14 @@
       "error": "Gửi chưa thành công. Vui lòng kiểm tra lại thông tin.",
       "errors": {
         "parentName_required": "Vui lòng nhập họ tên phụ huynh",
+        "parentName_too_long": "Họ tên phụ huynh quá dài",
         "phone_invalid": "Số điện thoại không hợp lệ",
         "grade_required": "Vui lòng chọn lớp",
+        "grade_too_long": "Tên lớp quá dài",
         "subject_required": "Vui lòng chọn môn học",
+        "subject_too_long": "Tên môn học quá dài",
         "format_required": "Vui lòng chọn hình thức học",
+        "format_too_long": "Hình thức học quá dài",
         "note_too_long": "Ghi chú quá dài",
         "invalid_input": "Dữ liệu không hợp lệ"
       }

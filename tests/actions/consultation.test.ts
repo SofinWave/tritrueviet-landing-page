@@ -40,6 +40,44 @@ describe("consultationSchema", () => {
   it("rejects a one-character parent name", () => {
     expect(consultationSchema.safeParse({ ...valid, parentName: "A" }).success).toBe(false);
   });
+
+  it("rejects a parent name over 100 characters as parentName_too_long", () => {
+    const result = consultationSchema.safeParse({ ...valid, parentName: "A".repeat(101) });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues[0]?.message).toBe("parentName_too_long");
+    }
+  });
+
+  it("accepts a parent name at exactly 100 characters", () => {
+    expect(consultationSchema.safeParse({ ...valid, parentName: "A".repeat(100) }).success).toBe(
+      true,
+    );
+  });
+
+  it("rejects a grade over 50 characters as grade_too_long", () => {
+    const result = consultationSchema.safeParse({ ...valid, grade: "A".repeat(51) });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues[0]?.message).toBe("grade_too_long");
+    }
+  });
+
+  it("rejects a subject over 50 characters as subject_too_long", () => {
+    const result = consultationSchema.safeParse({ ...valid, subject: "A".repeat(51) });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues[0]?.message).toBe("subject_too_long");
+    }
+  });
+
+  it("rejects a format over 50 characters as format_too_long", () => {
+    const result = consultationSchema.safeParse({ ...valid, format: "A".repeat(51) });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues[0]?.message).toBe("format_too_long");
+    }
+  });
 });
 
 describe("submitConsultation", () => {
