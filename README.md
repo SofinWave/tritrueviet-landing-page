@@ -55,3 +55,14 @@ link, so the `tel:` links (header, hero, footer, contact section) and the
 Zalo links (hero, contact section) will not work until those are filled in.
 `tests/messages/placeholders.test.ts` guards against silently overwriting a
 placeholder with an invented figure.
+
+Two more values are placeholders too but are **not** `[TODO: ...]` strings, so
+the test above cannot catch them — check them manually:
+
+- `NEXT_PUBLIC_SITE_URL` (`lib/site.ts`'s `SITE_URL`) defaults to the
+  placeholder domain `https://tritueviet.example.com`. It is baked into the
+  production image at `docker build` time (see `.docker/production/node/Dockerfile`),
+  not read at container runtime — set it before building, not after.
+- `SITE_SAME_AS` (`lib/site.ts`) is `[]` until the centre's social/canonical
+  profile URLs are added; until then the JSON-LD `EducationalOrganization`
+  node emits `"sameAs":[]`.

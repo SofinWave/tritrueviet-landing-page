@@ -57,7 +57,10 @@ Biome and ESLint are deliberately split — do not merge them:
 The Husky pre-commit hook (`.husky/pre-commit`) runs `pnpm exec lint-staged`,
 which formats staged files with Biome and runs `eslint --fix` on staged
 `.ts`/`.tsx`. CI (`.github/workflows/lint-format.yml`) runs `format:check`,
-then `lint`, then `test` on every push and PR to `develop`.
+then `lint`, then `test`, then `build` on every push and PR to `develop` — the
+`build` step is what actually proves the app compiles and that Server
+Components render, since every section test renders its component as a
+client component under `NextIntlClientProvider`.
 
 Note: `commitlint.config.ts` and the `@commitlint/*` packages are present but
 are **not** currently wired into a git hook — there is no `commit-msg` hook in
@@ -115,7 +118,12 @@ never Vietnamese strings. `consultation-form.tsx` translates each identifier
 through the `contact.form.errors` message block, falling back to
 `contact.form.error` for anything not in the catalog. It currently logs
 submissions — forwarding to a webhook, Google Sheet or email provider is
-deliberately left open.
+deliberately left open. Those logged submissions carry a parent's name and
+phone number: **container logs contain personal data.** `docker-compose.yaml`
+caps the `node` service's `json-file` log driver at `max-size: "10m"` /
+`max-file: "3"` so that data doesn't accumulate on the host disk unrotated
+and indefinitely — it does not make the data disappear, so treat host log
+access accordingly.
 
 ### SEO
 
@@ -127,6 +135,15 @@ blocks are emitted per page: a combined `EducationalOrganization` +
 `LocalBusiness`, a `WebSite`, a `Course` `ItemList` built from `courses.items[]`,
 and a `FAQPage` built from `faq.items[]`.
 
+### Design tokens
+
+`app/globals.css` only defines the token families the current UI actually
+uses — it omits `--color-destructive-foreground`, the `--color-chart-*`
+family and the `--color-sidebar-*` family. The first `shadcn add chart`,
+`shadcn add sonner` or `shadcn add sidebar` on this repo will need the token
+map in `app/globals.css` extended by hand before the generated component's
+classes resolve to real colors.
+
 ## Unfilled content
 
 The centre's real data is not in the repo yet. Every unfilled value is the
@@ -136,18 +153,26 @@ literal string `[TODO: ...]`:
   `SITE_ADDRESS.street/district/city`, `SITE_OPENING_HOURS[0]`. `SITE_URL`'s
   default (`https://tritueviet.example.com`) is also a placeholder domain,
   though not a literal `[TODO: ...]` string — override it with
-  `NEXT_PUBLIC_SITE_URL` once the real domain exists.
+  `NEXT_PUBLIC_SITE_URL` once the real domain exists (see "Commands" above:
+  it must be set at `docker build` time, not just in the runtime `.env`).
 - `messages/vi.json` + `messages/en.json` — `stats.*.value` (all four),
   all four `teachers.items[]` entries (`name`/`subject`/`credential`), all
   three `achievements.items[]` entries (`title`/`detail`), all three
   `pricing.plans[].price`, all three `testimonials.items[]` entries
   (`quote`/`author`/`role`).
+- `lib/site.ts` — `SITE_SAME_AS` is `[]`. Like `SITE_URL`, this is a
+  placeholder that is not a literal `[TODO: ...]` string, so
+  `placeholders.test.ts` cannot catch it — it silently emits `"sameAs":[]` in
+  the JSON-LD `EducationalOrganization` node until social/canonical profile
+  URLs are added.
 
-`tests/messages/placeholders.test.ts` enforces this: it holds an explicit list
-of every one of the key paths above and asserts each still starts with
-`[TODO:` in both catalogs. **A red result there once real data arrives is
-expected and correct** — the fix is to deliberately delete that entry from the
-list, not to weaken or generalize the assertion.
+`tests/messages/placeholders.test.ts` enforces the literal `[TODO: ...]`
+cases: it holds an explicit list of every one of the key paths above and
+asserts each still starts with `[TODO:` in both catalogs. **A red result
+there once real data arrives is expected and correct** — the fix is to
+deliberately delete that entry from the list, not to weaken or generalize the
+assertion. `SITE_URL` and `SITE_SAME_AS` are not on that list — check them
+manually before launch.
 
 Because `SITE_PHONE` and `SITE_ZALO_URL` are still placeholders, the
 `tel:${SITE_PHONE}` links (header, hero, footer, contact section) and the
