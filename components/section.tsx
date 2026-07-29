@@ -1,11 +1,21 @@
 import { cn } from "@/lib/utils";
 
+const TONES = {
+  light: "bg-background text-foreground",
+  muted: "bg-muted/40 text-foreground",
+  ink: "bg-surface-ink text-surface-ink-foreground",
+} as const;
+
+export type SectionTone = keyof typeof TONES;
+
 export function Section({
   id,
   className,
   eyebrow,
   title,
   description,
+  tone = "light",
+  align = "center",
   children,
 }: {
   id?: string;
@@ -13,22 +23,42 @@ export function Section({
   eyebrow?: string;
   title?: string;
   description?: string;
+  tone?: SectionTone;
+  align?: "center" | "start";
   children: React.ReactNode;
 }) {
+  const isInk = tone === "ink";
+
   return (
-    <section id={id} className={cn("container mx-auto px-4 py-16 md:py-24", className)}>
-      {title ? (
-        <div className="mx-auto mb-12 max-w-2xl text-center">
-          {eyebrow ? (
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              {eyebrow}
-            </p>
-          ) : null}
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{title}</h2>
-          {description ? <p className="mt-4 text-muted-foreground">{description}</p> : null}
-        </div>
-      ) : null}
-      {children}
+    <section id={id} data-tone={tone} className={cn(TONES[tone], className)}>
+      <div className="container mx-auto px-4 py-16 md:py-24">
+        {title ? (
+          <div className={cn("mb-12 max-w-2xl", align === "center" && "mx-auto text-center")}>
+            {eyebrow ? (
+              <p
+                className={cn(
+                  "mb-3 text-xs font-semibold uppercase tracking-[0.2em]",
+                  isInk ? "text-highlight" : "text-primary",
+                )}
+              >
+                {eyebrow}
+              </p>
+            ) : null}
+            <h2 className="text-3xl font-extrabold tracking-[-0.03em] md:text-4xl">{title}</h2>
+            {description ? (
+              <p
+                className={cn(
+                  "mt-4",
+                  isInk ? "text-surface-ink-foreground/75" : "text-muted-foreground",
+                )}
+              >
+                {description}
+              </p>
+            ) : null}
+          </div>
+        ) : null}
+        {children}
+      </div>
     </section>
   );
 }
