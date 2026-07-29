@@ -36,21 +36,52 @@ describe("sitemap", () => {
 });
 
 describe("robots", () => {
+  type Rule = { userAgent: string; allow?: string; disallow?: string[] };
+  const rules = () => robots().rules as Rule[];
+  const agents = () => rules().map((r) => r.userAgent);
+
   it("points at the absolute sitemap URL", () => {
     expect(robots().sitemap).toBe(`${SITE_URL}/sitemap.xml`);
   });
 
   it("allows the generic crawler and blocks /api/", () => {
-    const generic = (robots().rules as Array<{ userAgent: string; disallow?: string[] }>).find(
-      (r) => r.userAgent === "*",
-    );
-    expect(generic?.disallow).toContain("/api/");
+    expect(rules().find((r) => r.userAgent === "*")?.disallow).toContain("/api/");
   });
 
-  it("welcomes named AI crawlers", () => {
-    const agents = (robots().rules as Array<{ userAgent: string }>).map((r) => r.userAgent);
-    expect(agents).toContain("GPTBot");
-    expect(agents).toContain("ClaudeBot");
+  // A named User-agent group replaces the `*` group rather than inheriting it,
+  // so every AI rule has to carry the /api/ block itself.
+  it("repeats the /api/ block on every named rule instead of relying on inheritance", () => {
+    for (const rule of rules()) {
+      expect(rule.allow).toBe("/");
+      expect(rule.disallow).toContain("/api/");
+    }
+  });
+
+  // Each vendor runs a training crawler, a search indexer and a fetch-for-user
+  // agent. Allowing only one of the three is the failure mode this pins.
+  describe.each([
+    ["OpenAI", ["GPTBot", "OAI-SearchBot", "ChatGPT-User"]],
+    ["Anthropic", ["ClaudeBot", "Claude-SearchBot", "Claude-User"]],
+    ["Google / Gemini", ["Google-Extended", "GoogleOther", "Google-CloudVertexBot"]],
+  ])("priority vendor: %s", (_vendor, expected) => {
+    it.each(expected)("welcomes %s", (agent) => {
+      expect(agents()).toContain(agent);
+    });
+  });
+
+  it("also welcomes the non-priority answer engines", () => {
+    for (const agent of ["PerplexityBot", "Applebot-Extended", "meta-externalagent", "CCBot"]) {
+      expect(agents()).toContain(agent);
+    }
+  });
+
+  // Naming Googlebot would create a group that overrides the `*` rule for it.
+  it("leaves Googlebot to the generic rule rather than shadowing it", () => {
+    expect(agents()).not.toContain("Googlebot");
+  });
+
+  it("names every AI agent exactly once", () => {
+    expect(new Set(agents()).size).toBe(agents().length);
   });
 });
 
