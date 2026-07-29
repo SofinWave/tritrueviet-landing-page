@@ -35,4 +35,10 @@ describe("LanguageSwitcher", () => {
 
     expect(mockReplace).toHaveBeenCalledWith("/home", { locale: "en" });
   });
+
+  it("styles its trigger for the ink header so it stays legible on a dark surface", () => {
+    renderSwitcher();
+    const trigger = screen.getByLabelText("Đổi ngôn ngữ");
+    expect(trigger.className).toContain("text-surface-ink-foreground");
+  });
 });

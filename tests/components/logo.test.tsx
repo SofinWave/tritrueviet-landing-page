@@ -18,6 +18,8 @@ describe("Logo", () => {
   it("uses currentColor for the mark so it inherits the surface it sits on", () => {
     const { container } = render(<Logo />);
     const svg = container.querySelector("svg");
-    expect(svg?.getAttribute("class")).not.toContain("text-primary");
+    expect(svg?.querySelector("circle")?.getAttribute("stroke")).toBe("currentColor");
+    expect(svg?.querySelector('path[fill="currentColor"]')).not.toBeNull();
+    expect(svg?.getAttribute("class")).not.toMatch(/\btext-\S+/);
   });
 });
