@@ -283,6 +283,17 @@ literal string `[TODO: ...]`:
   entries (`title`/`detail`), all three `pricing.plans[].price`, all three
   `testimonials.items[]` entries (`quote`/`author`/`role`).
 
+  `stats.*` values are rendered through `components/count-up.tsx`, a `"use
+  client"` leaf that animates each figure from 1 up to its target when the band
+  scrolls into view. `Stats` itself stays a Server Component — the client
+  boundary is the leaf, the same shape `consultation-form.tsx` uses. The
+  component is seeded with the **final** figure, so the server, crawlers, a
+  visitor without JS and anyone with `prefers-reduced-motion` all see the real
+  number; the count is an enhancement layered on top, never the source of
+  truth. The catalogue stores display strings (`3.000+` vi, `3,000+` en), so
+  `parseFigure` recovers the digits and `Intl.NumberFormat(locale)` regroups
+  them on every frame.
+
   `stats.*` is **done** — the centre supplied 3.000+ học viên, 2+ năm kinh
   nghiệm, 500+ gia sư, 5+ giáo viên dạy thường xuyên. Note the fourth slot is
   `stats.tutors`, not the original `stats.passRate`: no admission-rate figure
