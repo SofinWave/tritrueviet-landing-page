@@ -91,3 +91,47 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Lưới kẻ mờ dần ra rìa. Chỉ dùng trên nền tone="ink" — trên nền sáng nó
+   gần như vô hình và chỉ làm bẩn ảnh render. */
+.bg-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--surface-ink-foreground) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--surface-ink-foreground) 8%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 2rem 2rem;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 30%, transparent 100%);
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Hai lớp bảo vệ, cả hai đều bắt buộc:
+   - @supports  → trình duyệt chưa có animation-timeline (Firefox) không bao
+     giờ chạm tới rule này, nên không bao giờ nhận opacity: 0 từ keyframe.
+   - no-preference → người tắt hiệu ứng chuyển động cũng không chạm tới.
+   Trạng thái mặc định của .reveal là "hiện đầy đủ, không animation". */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}

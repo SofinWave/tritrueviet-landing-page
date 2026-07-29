@@ -73,3 +73,42 @@ describe("design tokens", () => {
     expect(block(":root {")).toContain("--radius: 0.375rem;");
   });
 });
+
+describe("motion and pattern utilities", () => {
+  it("keeps the .reveal rule inside the @supports guard", () => {
+    // Nếu .reveal lọt ra ngoài @supports, Firefox (chưa hỗ trợ
+    // animation-timeline) sẽ giữ nội dung ở trạng thái đầu của keyframe và
+    // ẩn chữ vĩnh viễn. Đây là chế độ hỏng tệ nhất của cả thiết kế.
+    const guard = css.indexOf("@supports (animation-timeline: view())");
+    expect(guard, "thiếu block @supports cho animation-timeline").toBeGreaterThan(-1);
+
+    const open = css.indexOf("{", guard);
+    let depth = 0;
+    let close = -1;
+    for (let i = open; i < css.length; i++) {
+      if (css[i] === "{") depth++;
+      else if (css[i] === "}") {
+        depth--;
+        if (depth === 0) {
+          close = i;
+          break;
+        }
+      }
+    }
+    expect(close).toBeGreaterThan(open);
+
+    const revealRule = css.indexOf(".reveal {");
+    expect(revealRule, "không tìm thấy rule .reveal").toBeGreaterThan(-1);
+    expect(revealRule).toBeGreaterThan(open);
+    expect(revealRule).toBeLessThan(close);
+  });
+
+  it("honours prefers-reduced-motion", () => {
+    expect(css).toContain("prefers-reduced-motion: no-preference");
+  });
+
+  it("defines the grid pattern utility", () => {
+    expect(css).toContain(".bg-grid {");
+    expect(css).toContain("mask-image:");
+  });
+});
