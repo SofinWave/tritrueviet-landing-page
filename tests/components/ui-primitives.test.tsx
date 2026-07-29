@@ -58,4 +58,14 @@ describe("Card", () => {
     expect(card?.className).toContain("hover:border-highlight");
     expect(card?.className).toContain("motion-reduce:hover:translate-y-0");
   });
+
+  it("eases the property Tailwind actually animates for the hover lift", () => {
+    // `-translate-y-*` biên dịch thành thuộc tính CSS `translate`, không phải
+    // `transform` — CSS build ra là `translate: var(--tw-translate-x) …`.
+    // Liệt kê `transform` trong transition thì card giật cục khi hover.
+    const { container } = render(<Card>nội dung</Card>);
+    const classes = container.querySelector('[data-slot="card"]')?.className ?? "";
+    expect(classes).toContain("transition-[translate,border-color]");
+    expect(classes).not.toContain("transition-[transform,border-color]");
+  });
 });

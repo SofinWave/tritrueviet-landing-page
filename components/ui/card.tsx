@@ -8,7 +8,13 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="card"
       className={cn(
         "flex flex-col gap-6 rounded-lg border bg-card py-6 text-card-foreground shadow-sm",
-        "transition-[transform,border-color] duration-200",
+        // Tailwind v4 biên dịch `-translate-y-*` thành thuộc tính CSS
+        // `translate`, KHÔNG phải `transform` (CSS phát ra là
+        // `translate: var(--tw-translate-x) var(--tw-translate-y)`). Ghi
+        // `transition-[transform,...]` ở đây thì cú nhấc lên giật cục và chỉ
+        // màu viền là mượt. jsdom không quan sát được, nên phải kiểm bằng
+        // cách grep CSS đã build.
+        "transition-[translate,border-color] duration-200",
         "hover:-translate-y-0.5 hover:border-highlight motion-reduce:transition-none motion-reduce:hover:translate-y-0",
         className,
       )}
