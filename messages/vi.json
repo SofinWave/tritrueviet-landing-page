@@ -81,11 +81,11 @@
   "formats": {
     "eyebrow": "Hình thức học",
     "title": "Chọn cách học phù hợp với con",
-    "description": "Bốn hình thức, cùng một chất lượng giáo viên và cùng một hệ thống báo cáo tiến độ.",
+    "description": "Bốn hình thức, cùng một chất lượng gia sư và cùng một hệ thống báo cáo tiến độ.",
     "items": [
       {
         "name": "Kèm 1 – 1",
-        "description": "Giáo viên tập trung hoàn toàn vào một học sinh, điều chỉnh tốc độ theo từng buổi.",
+        "description": "Gia sư tập trung hoàn toàn vào một học sinh, điều chỉnh tốc độ theo từng buổi.",
         "icon": "one-on-one"
       },
       {
@@ -100,7 +100,7 @@
       },
       {
         "name": "Gia sư tại nhà",
-        "description": "Giáo viên tới tận nhà theo lịch phụ huynh sắp xếp.",
+        "description": "Gia sư tới tận nhà theo lịch phụ huynh sắp xếp.",
         "icon": "home"
       }
     ]
