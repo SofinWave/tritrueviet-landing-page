@@ -1,12 +1,12 @@
 {
   "metadata": {
     "title": "Trung tâm Gia sư Trí Tuệ Việt — Kèm 1-1, nhóm nhỏ và online",
-    "description": "Trí Tuệ Việt dạy kèm học sinh từ lớp 1 đến lớp 12 mọi môn văn hoá và lập trình — lộ trình cá nhân hoá, giáo viên tận tâm, báo cáo tiến độ rõ ràng."
+    "description": "Trí Tuệ Việt dạy kèm học sinh từ lớp 1 đến lớp 12 mọi môn văn hoá và lập trình — lộ trình cá nhân hoá, gia sư tận tâm, báo cáo tiến độ rõ ràng."
   },
   "nav": {
     "courses": "Khoá học",
     "formats": "Hình thức học",
-    "teachers": "Giáo viên",
+    "teachers": "Gia sư",
     "pricing": "Học phí",
     "register": "Đăng ký tư vấn",
     "callHotline": "Gọi hotline",
@@ -131,7 +131,7 @@
   "teachers": {
     "eyebrow": "Đội ngũ",
     "title": "Gia sư đồng hành cùng con",
-    "description": "Mỗi giáo viên đều qua vòng phỏng vấn chuyên môn và dạy thử trước khi đứng lớp.",
+    "description": "Mỗi gia sư đều qua vòng phỏng vấn chuyên môn và dạy thử trước khi đứng lớp.",
     "items": [
       {
         "name": "Phạm Linh Thư",
@@ -190,11 +190,7 @@
       {
         "name": "Kèm 1 – 1",
         "price": "150.000đ",
-        "features": [
-          "Giáo viên riêng theo môn",
-          "Lộ trình cá nhân hoá",
-          "Báo cáo tiến độ hàng tuần"
-        ]
+        "features": ["Gia sư riêng theo môn", "Lộ trình cá nhân hoá", "Báo cáo tiến độ hàng tuần"]
       },
       {
         "name": "Học online",
@@ -242,24 +238,20 @@
         "answer": "Không. Buổi học thử đầu tiên hoàn toàn miễn phí, phụ huynh chỉ đóng học phí khi quyết định cho con theo học."
       },
       {
-        "question": "Con học yếu có theo kịp lớp nhóm không?",
-        "answer": "Khi tư vấn, chúng tôi hỏi kỹ về sức học hiện tại để xếp con vào nhóm đúng trình độ. Nếu khoảng cách còn lớn, chúng tôi sẽ đề xuất kèm 1 kèm 1 trong giai đoạn đầu."
-      },
-      {
         "question": "Trung tâm báo cáo tiến độ như thế nào?",
-        "answer": "Phụ huynh nhận báo cáo định kỳ gồm mức độ hoàn thành bài tập, điểm kiểm tra và nhận xét của giáo viên phụ trách."
+        "answer": "Phụ huynh nhận báo cáo định kỳ gồm mức độ hoàn thành bài tập, điểm kiểm tra và nhận xét của gia sư phụ trách."
       },
       {
-        "question": "Có thể đổi giáo viên nếu con chưa hợp không?",
-        "answer": "Có. Phụ huynh báo với trung tâm và chúng tôi sắp xếp giáo viên khác, không phát sinh chi phí."
+        "question": "Có thể đổi gia sư nếu con chưa hợp không?",
+        "answer": "Có. Phụ huynh báo với trung tâm và chúng tôi sắp xếp gia sư khác, không phát sinh chi phí."
       },
       {
         "question": "Lớp online học trên nền tảng nào?",
-        "answer": "Lớp trực tuyến diễn ra theo thời gian thực và được ghi hình lại để con xem lại trong tuần."
+        "answer": "Lớp trực tuyến diễn ra theo thời gian thực trên Google Meet, Microsoft Teams hoặc Zoom, tuỳ nền tảng con quen dùng. Buổi học luôn được ghi lại để con xem lại bất cứ lúc nào."
       },
       {
-        "question": "Học phí đóng theo tháng hay theo khoá?",
-        "answer": "Phụ huynh có thể đóng theo tháng hoặc theo khoá. Đóng theo khoá thường có mức ưu đãi tốt hơn."
+        "question": "Học phí đóng như thế nào?",
+        "answer": "Cách đóng học phí thay đổi theo cấp lớp và hình thức học con đăng ký, nên không có một mức chung cho tất cả. Phụ huynh liên hệ trung tâm để được tư vấn phương án phù hợp nhất."
       }
     ]
   },

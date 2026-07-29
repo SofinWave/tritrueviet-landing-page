@@ -1,12 +1,12 @@
 {
   "metadata": {
     "title": "Tri Tue Viet Tutoring Centre — 1-on-1, small group and online",
-    "description": "Tri Tue Viet tutors students from grade 1 to 12 across every school subject and programming — personalised learning paths, dedicated teachers, clear progress reports."
+    "description": "Tri Tue Viet tutors students from grade 1 to 12 across every school subject and programming — personalised learning paths, dedicated tutors, clear progress reports."
   },
   "nav": {
     "courses": "Courses",
     "formats": "Formats",
-    "teachers": "Teachers",
+    "teachers": "Tutors",
     "pricing": "Tuition",
     "register": "Book a consultation",
     "callHotline": "Call the hotline",
@@ -131,7 +131,7 @@
   "teachers": {
     "eyebrow": "Our team",
     "title": "The tutors your child will work with",
-    "description": "Every teacher passes a subject interview and a trial lesson before taking a class.",
+    "description": "Every tutor passes a subject interview and a trial lesson before taking a class.",
     "items": [
       {
         "name": "Phạm Linh Thư",
@@ -190,7 +190,7 @@
       {
         "name": "One-on-one",
         "price": "150,000₫",
-        "features": ["A dedicated subject teacher", "Personalised path", "Weekly progress report"]
+        "features": ["A dedicated subject tutor", "Personalised path", "Weekly progress report"]
       },
       {
         "name": "Online classes",
@@ -238,24 +238,20 @@
         "answer": "No. The first trial lesson is free; you only pay once you decide to enrol."
       },
       {
-        "question": "Can a struggling student keep up in a group class?",
-        "answer": "During the consultation we ask in detail about their current level so we can place them in the right group. If the gap is still large we recommend one-on-one lessons for the first stage."
-      },
-      {
         "question": "How is progress reported?",
-        "answer": "Parents receive regular reports covering homework completion, test scores and the teacher's comments."
+        "answer": "Parents receive regular reports covering homework completion, test scores and the tutor's comments."
       },
       {
-        "question": "Can we change teacher if it is not a good fit?",
-        "answer": "Yes. Tell us and we will arrange a different teacher at no extra cost."
+        "question": "Can we change tutor if it is not a good fit?",
+        "answer": "Yes. Tell us and we will arrange a different tutor at no extra cost."
       },
       {
         "question": "Which platform do online classes use?",
-        "answer": "Online classes run live and are recorded so your child can review them during the week."
+        "answer": "Lessons run live on Google Meet, Microsoft Teams or Zoom, whichever your child is already comfortable with. Every session is recorded, so they can go back over it whenever they need."
       },
       {
-        "question": "Is tuition paid monthly or per course?",
-        "answer": "Either. Paying per course usually comes with a better rate."
+        "question": "How is tuition paid?",
+        "answer": "It depends on the grade and the format your child is enrolled in, so there is no single schedule that fits everyone. Contact us and we will talk you through the option that suits you best."
       }
     ]
   },
