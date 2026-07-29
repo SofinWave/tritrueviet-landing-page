@@ -9,6 +9,8 @@ import { Teachers } from "@/app/[locale]/(public)/home/_components/teachers";
 import { Pricing } from "@/app/[locale]/(public)/home/_components/pricing";
 import { Testimonials } from "@/app/[locale]/(public)/home/_components/testimonials";
 import { Faq } from "@/app/[locale]/(public)/home/_components/faq";
+import { Achievements } from "@/app/[locale]/(public)/home/_components/achievements";
+import { Contact } from "@/app/[locale]/(public)/home/_components/contact";
 
 const RHYTHM = [
   { name: "courses", Component: Courses, tone: "light" },
@@ -60,6 +62,37 @@ describe("section rhythm", () => {
         </NextIntlClientProvider>,
       );
       expect(container.querySelector("section")?.className).not.toContain("bg-muted/30");
+    }
+  });
+});
+
+describe("ink chapters", () => {
+  it.each([
+    { name: "achievements", Component: Achievements },
+    { name: "contact", Component: Contact },
+  ])("renders $name on the ink tone", ({ Component }) => {
+    const { container } = render(
+      <NextIntlClientProvider locale="vi" messages={vi}>
+        <Component />
+      </NextIntlClientProvider>,
+    );
+    const section = container.querySelector("section");
+    expect(section).toHaveAttribute("data-tone", "ink");
+    expect(section?.className).toContain("bg-surface-ink");
+  });
+
+  it("keeps body copy on the ink tone off amber", () => {
+    // Cam trên ink ở dark mode chỉ đạt 4.1:1 — đủ cho chữ đậm cỡ lớn,
+    // không đủ cho chữ thân. Chữ thân phải dùng surface-ink-foreground.
+    const { container } = render(
+      <NextIntlClientProvider locale="vi" messages={vi}>
+        <Achievements />
+      </NextIntlClientProvider>,
+    );
+    const body = container.querySelectorAll("p.text-sm");
+    expect(body.length, "không tìm thấy chữ thân nào để kiểm").toBeGreaterThan(0);
+    for (const p of body) {
+      expect(p.className.split(/\s+/)).not.toContain("text-highlight");
     }
   });
 });

@@ -16,20 +16,29 @@ export function Contact() {
   ];
 
   return (
-    <Section id="dang-ky" eyebrow={t("eyebrow")} title={t("title")} description={t("description")}>
+    <Section
+      id="dang-ky"
+      tone="ink"
+      eyebrow={t("eyebrow")}
+      title={t("title")}
+      description={t("description")}
+    >
       <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-2">
         <ul className="space-y-6">
           {details.map((detail) => (
             <li key={detail.label} className="flex gap-3">
-              <detail.icon className="mt-1 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+              <detail.icon className="mt-1 h-5 w-5 shrink-0 text-highlight" aria-hidden="true" />
               <div>
                 <p className="text-sm font-semibold">{detail.label}</p>
                 {detail.href ? (
-                  <a href={detail.href} className="text-sm text-muted-foreground hover:underline">
+                  <a
+                    href={detail.href}
+                    className="text-sm text-surface-ink-foreground/70 hover:text-surface-ink-foreground hover:underline"
+                  >
                     {detail.value}
                   </a>
                 ) : (
-                  <p className="text-sm text-muted-foreground">{detail.value}</p>
+                  <p className="text-sm text-surface-ink-foreground/70">{detail.value}</p>
                 )}
               </div>
             </li>
