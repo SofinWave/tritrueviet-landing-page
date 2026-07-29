@@ -10,13 +10,14 @@ export function Process() {
   return (
     <Section
       id="quy-trinh"
+      tone="light"
       eyebrow={t("eyebrow")}
       title={t("title")}
       description={t("description")}
     >
       <ol className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
         {steps.map((step, index) => (
-          <li key={step.title} className="relative border-t-2 border-primary/30 pt-6">
+          <li key={step.title} className="reveal relative border-t-2 border-highlight pt-6">
             <span className="text-sm font-bold tracking-widest text-primary">
               {String(index + 1).padStart(2, "0")}
             </span>

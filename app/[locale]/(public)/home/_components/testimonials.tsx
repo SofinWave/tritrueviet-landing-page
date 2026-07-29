@@ -10,10 +10,10 @@ export function Testimonials() {
   const items = t.raw("items") as Testimonial[];
 
   return (
-    <Section id="cam-nhan" eyebrow={t("eyebrow")} title={t("title")}>
+    <Section id="cam-nhan" tone="muted" eyebrow={t("eyebrow")} title={t("title")}>
       <div className="grid gap-6 md:grid-cols-3">
         {items.map((item, index) => (
-          <Card key={`testimonial-${index}`} className="h-full">
+          <Card key={`testimonial-${index}`} className="reveal h-full">
             <CardContent className="pt-6">
               <Quote className="mb-4 h-6 w-6 text-primary" aria-hidden="true" />
               <blockquote className="text-sm leading-relaxed">{item.quote}</blockquote>

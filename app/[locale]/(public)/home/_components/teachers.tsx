@@ -11,14 +11,14 @@ export function Teachers() {
   return (
     <Section
       id="giao-vien"
+      tone="muted"
       eyebrow={t("eyebrow")}
       title={t("title")}
       description={t("description")}
-      className="bg-muted/30"
     >
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((teacher, index) => (
-          <Card key={`teacher-${index}`} className="h-full text-center">
+          <Card key={`teacher-${index}`} className="reveal h-full text-center">
             <CardHeader>
               <div
                 className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-lg font-bold text-primary"

@@ -13,14 +13,14 @@ export function Pricing() {
   return (
     <Section
       id="hoc-phi"
+      tone="light"
       eyebrow={t("eyebrow")}
       title={t("title")}
       description={t("description")}
-      className="bg-muted/30"
     >
       <div className="grid gap-6 md:grid-cols-3">
         {plans.map((plan) => (
-          <Card key={plan.name} className="flex h-full flex-col">
+          <Card key={plan.name} className="reveal flex h-full flex-col">
             <CardHeader>
               <h3 className="text-lg font-semibold leading-none">{plan.name}</h3>
               <p className="mt-2">
@@ -37,7 +37,7 @@ export function Pricing() {
                   </li>
                 ))}
               </ul>
-              <Button asChild className="mt-auto w-full">
+              <Button asChild variant="highlight" className="mt-auto w-full">
                 <a href="#dang-ky">{t("cta")}</a>
               </Button>
             </CardContent>

@@ -22,16 +22,16 @@ export function Formats() {
   return (
     <Section
       id="hinh-thuc"
+      tone="muted"
       eyebrow={t("eyebrow")}
       title={t("title")}
       description={t("description")}
-      className="bg-muted/30"
     >
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item) => {
           const Icon = ICONS[item.icon] ?? User;
           return (
-            <Card key={item.name} className="h-full">
+            <Card key={item.name} className="reveal h-full">
               <CardHeader>
                 <Icon className="mb-2 h-6 w-6 text-primary" aria-hidden="true" />
                 <h3 className="text-lg font-semibold leading-none">{item.name}</h3>

@@ -9,10 +9,17 @@ export function Courses() {
   const items = t.raw("items") as CourseItem[];
 
   return (
-    <Section id="khoa-hoc" eyebrow={t("eyebrow")} title={t("title")} description={t("description")}>
+    <Section
+      id="khoa-hoc"
+      tone="light"
+      align="start"
+      eyebrow={t("eyebrow")}
+      title={t("title")}
+      description={t("description")}
+    >
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
-          <Card key={item.name} className="h-full">
+          <Card key={item.name} className="reveal h-full">
             <CardHeader>
               <h3 className="text-lg font-semibold leading-none">{item.name}</h3>
             </CardHeader>
