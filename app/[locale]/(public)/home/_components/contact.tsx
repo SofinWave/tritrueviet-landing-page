@@ -48,7 +48,15 @@ export function Contact() {
             </li>
           ))}
         </ul>
-        <ConsultationForm />
+        {/* Form phải nổi trên một tấm nền sáng, không đặt trần lên dải ink.
+            Đo trên --surface-ink thì thông báo thành công (text-primary) chỉ
+            đạt 2.96:1 / 2.35:1, thông báo lỗi (text-destructive) 4.23:1 /
+            3.06:1, placeholder 4.23:1 / 3.36:1 và nút gửi 2.96:1 / 2.35:1 —
+            cả bốn đều trượt AA. Tấm bg-card này khôi phục đúng bề mặt mà các
+            token đó được thiết kế để nằm trên. Đừng gỡ nó ra. */}
+        <div className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
+          <ConsultationForm />
+        </div>
       </div>
     </Section>
   );

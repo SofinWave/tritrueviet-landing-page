@@ -40,6 +40,17 @@ describe("ConsultationForm", () => {
     }
   });
 
+  it("paints the submit button with the amber CTA, like every other primary CTA", () => {
+    // Nút gửi là hành động chuyển đổi mà cả trang dẫn tới. Header, hero và
+    // ba nút bảng giá đều là variant highlight; nút này không được lệch về
+    // màu primary xanh.
+    renderForm();
+    const submit = screen.getByRole("button", { name: "Gửi đăng ký" });
+    expect(submit).toHaveAttribute("data-variant", "highlight");
+    expect(submit.className).toContain("bg-highlight");
+    expect(submit.className).not.toContain("bg-primary");
+  });
+
   it("sends the typed values to the server action", async () => {
     submitConsultation.mockResolvedValue({ ok: true });
     const user = userEvent.setup();

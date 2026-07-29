@@ -84,7 +84,12 @@ export function ConsultationForm() {
         <Textarea id="note" name="note" rows={4} placeholder={t("notePlaceholder")} />
       </div>
 
-      <Button type="submit" className="w-full" disabled={status.kind === "sending"}>
+      <Button
+        type="submit"
+        variant="highlight"
+        className="w-full"
+        disabled={status.kind === "sending"}
+      >
         {status.kind === "sending" ? t("submitting") : t("submit")}
       </Button>
 
