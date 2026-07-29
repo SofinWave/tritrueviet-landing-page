@@ -12,23 +12,71 @@ export const SITE_URL = (
 export const SITE_NAME = "Trung tâm Gia sư Trí Tuệ Việt";
 export const SITE_SHORT_NAME = "Trí Tuệ Việt";
 
-/** Contact details — fill these in before launch. */
-export const SITE_PHONE = "[TODO: hotline]";
-export const SITE_ZALO_URL = "[TODO: link Zalo OA]";
-export const SITE_EMAIL = "[TODO: email trung tâm]";
+/**
+ * Hotline as it is *shown* to a reader — grouped for legibility. Never put this
+ * in an `href`: a `tel:` URI may not contain raw spaces (RFC 3966 allows `-`
+ * and `.` as visual separators, nothing else), so linking it depends on the
+ * browser silently repairing the URI. Use `SITE_PHONE_E164` for that.
+ */
+export const SITE_PHONE = "0965 492 153";
+
+/**
+ * The same number in E.164. This is what every `tel:` link and schema.org's
+ * `telephone` must carry — the national `0` prefix only resolves for a caller
+ * already inside Vietnam, and Google reads `telephone` literally.
+ */
+export const SITE_PHONE_E164 = "+84965492153";
+
+/**
+ * The centre has no Zalo Official Account yet, so this points at the personal
+ * Zalo profile behind the same hotline number rather than an `oa.zalo.me` link.
+ * Swap it the day an OA exists — the deep link shape differs.
+ *
+ * Derived from `SITE_PHONE_E164` minus the `+` (i.e. `84…`, not `0…`) so the
+ * hotline only has to be corrected in one place if it ever changes.
+ */
+export const SITE_ZALO_URL = `https://zalo.me/${SITE_PHONE_E164.slice(1)}`;
+
+export const SITE_FACEBOOK_URL = "https://www.facebook.com/tritueviet.official";
+
+/**
+ * The handle shown to readers next to the mark — the URL's last path segment,
+ * derived rather than restated so the two cannot drift apart.
+ */
+export const SITE_FACEBOOK_HANDLE = SITE_FACEBOOK_URL.replace(/\/+$/, "").split("/").pop() ?? "";
+
+/**
+ * No published email yet. The centre asked to drop it rather than show a
+ * placeholder, so `mailto:` links were removed from the footer and the contact
+ * list instead of being left pointing at nothing. Re-adding one means restoring
+ * those two call sites and the `email` field in `organizationSchema`.
+ */
 
 export const SITE_ADDRESS = {
-  street: "[TODO: số nhà, tên đường]",
-  district: "[TODO: quận/huyện]",
-  city: "[TODO: tỉnh/thành phố]",
+  street: "Số 68, ngõ 66B Triều Khúc",
+  district: "Thanh Liệt",
+  city: "Hà Nội",
   country: "VN",
 };
+
+/**
+ * Master switch for the consultation form. While this is `false` every field
+ * and the submit button render disabled, so no lead can be entered — worth
+ * knowing that `app/actions/consultation.ts` still only logs submissions, so
+ * nothing downstream is listening for them yet either.
+ *
+ * The form's own behaviour is untouched and still fully covered: the tests in
+ * `tests/sections/consultation-form.test.tsx` render it with `disabled={false}`
+ * so that coverage stays live, and one test pins that the *default* is off.
+ * Flipping this back to `true` is the whole re-enable.
+ */
+export const CONSULTATION_FORM_ENABLED = false;
 
 /** schema.org openingHours strings, e.g. "Mo-Fr 08:00-20:00". */
 export const SITE_OPENING_HOURS: string[] = ["[TODO: giờ mở cửa]"];
 
 /** Social / canonical profiles surfaced in structured data (sameAs). */
-export const SITE_SAME_AS: string[] = [];
+export const SITE_SAME_AS: string[] = [SITE_FACEBOOK_URL];
 
 /** BCP-47 tags used for Open Graph locale + hreflang. */
 export const OG_LOCALE: Record<string, string> = {

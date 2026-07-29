@@ -61,12 +61,10 @@ const MESSAGE_PLACEHOLDER_PATHS = [
  * real data, not a placeholder.
  */
 const SITE_PLACEHOLDER_PATHS = [
-  "SITE_PHONE",
-  "SITE_ZALO_URL",
-  "SITE_EMAIL",
-  "SITE_ADDRESS.street",
-  "SITE_ADDRESS.district",
-  "SITE_ADDRESS.city",
+  // SITE_PHONE, SITE_ZALO_URL and SITE_ADDRESS.* were removed on purpose once
+  // the centre supplied them. SITE_EMAIL is gone entirely rather than filled —
+  // there is no published address yet, and the centre chose to drop the channel
+  // instead of showing a dead `mailto:`. Only opening hours are still unknown.
   "SITE_OPENING_HOURS[0]",
 ] as const;
 

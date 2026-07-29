@@ -1,7 +1,14 @@
 import { useTranslations } from "next-intl";
 import { Logo } from "@/components/logo";
 import { INK_FOCUS_RING, INK_SURFACE } from "@/components/section";
-import { SITE_EMAIL, SITE_NAME, SITE_PHONE } from "@/lib/site";
+import { FacebookIcon } from "@/components/facebook-icon";
+import {
+  SITE_FACEBOOK_HANDLE,
+  SITE_FACEBOOK_URL,
+  SITE_NAME,
+  SITE_PHONE,
+  SITE_PHONE_E164,
+} from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const LINKS = [
@@ -46,7 +53,7 @@ export function SiteFooter() {
           <ul className="space-y-2 text-sm text-surface-ink-foreground/70">
             <li>
               <a
-                href={`tel:${SITE_PHONE}`}
+                href={`tel:${SITE_PHONE_E164}`}
                 className={cn("rounded-sm hover:text-surface-ink-foreground", INK_FOCUS_RING)}
               >
                 {SITE_PHONE}
@@ -54,10 +61,16 @@ export function SiteFooter() {
             </li>
             <li>
               <a
-                href={`mailto:${SITE_EMAIL}`}
-                className={cn("rounded-sm hover:text-surface-ink-foreground", INK_FOCUS_RING)}
+                href={SITE_FACEBOOK_URL}
+                target="_blank"
+                rel="noreferrer"
+                className={cn(
+                  "inline-flex items-center gap-2 rounded-sm hover:text-surface-ink-foreground",
+                  INK_FOCUS_RING,
+                )}
               >
-                {SITE_EMAIL}
+                <FacebookIcon className="h-4 w-4 shrink-0" />
+                {SITE_FACEBOOK_HANDLE}
               </a>
             </li>
           </ul>

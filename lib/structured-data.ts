@@ -1,10 +1,9 @@
 import {
   localeUrl,
   SITE_ADDRESS,
-  SITE_EMAIL,
   SITE_NAME,
   SITE_OPENING_HOURS,
-  SITE_PHONE,
+  SITE_PHONE_E164,
   SITE_SAME_AS,
   SITE_URL,
 } from "@/lib/site";
@@ -31,8 +30,7 @@ export function educationalOrganizationSchema({
     url: localeUrl(locale),
     description,
     inLanguage: locale,
-    email: SITE_EMAIL,
-    telephone: SITE_PHONE,
+    telephone: SITE_PHONE_E164,
     sameAs: SITE_SAME_AS,
     openingHours: SITE_OPENING_HOURS,
     address: {

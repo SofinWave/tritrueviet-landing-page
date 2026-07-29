@@ -261,7 +261,7 @@
     "description": "Leave your details and we will call back within 24 working hours.",
     "phoneLabel": "Hotline",
     "zaloLabel": "Zalo",
-    "emailLabel": "Email",
+    "facebookLabel": "Facebook",
     "addressLabel": "Address",
     "form": {
       "parentName": "Parent's full name",
@@ -274,6 +274,7 @@
       "formatPlaceholder": "e.g. one-on-one",
       "note": "Notes",
       "notePlaceholder": "Your child's goals, available times, anything else…",
+      "disabledNotice": "The registration form is temporarily unavailable — please reach us on the hotline or Zalo listed alongside.",
       "submit": "Send registration",
       "submitting": "Sending…",
       "success": "We have your details and will be in touch within 24 working hours.",
@@ -294,7 +295,7 @@
     }
   },
   "footer": {
-    "tagline": "A tutoring centre supporting students from grade 1 to 12, plus programming courses.",
+    "tagline": "A tutoring centre supporting students from grade 1 to 12, and working adults too.",
     "quickLinks": "Quick links",
     "contact": "Contact",
     "rights": "All rights reserved."

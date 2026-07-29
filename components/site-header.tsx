@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { SITE_PHONE } from "@/lib/site";
+import { SITE_PHONE_E164 } from "@/lib/site";
 
 const NAV_ITEMS = [
   { href: "#khoa-hoc", key: "courses" },
@@ -67,7 +67,7 @@ export function SiteHeader() {
           <LanguageSwitcher />
           <ModeToggle />
           <Button asChild variant="ink-ghost" size="icon" aria-label={t("callHotline")}>
-            <a href={`tel:${SITE_PHONE}`}>
+            <a href={`tel:${SITE_PHONE_E164}`}>
               <Phone className="h-5 w-5" />
             </a>
           </Button>

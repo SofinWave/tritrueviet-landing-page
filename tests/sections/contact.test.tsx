@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { NextIntlClientProvider } from "next-intl";
 import viMessages from "@/messages/vi.json";
+import { SITE_FACEBOOK_URL, SITE_PHONE, SITE_PHONE_E164, SITE_ZALO_URL } from "@/lib/site";
 import { Contact } from "@/app/[locale]/(public)/home/_components/contact";
 
 vi.mock("@/app/actions/consultation", () => ({ submitConsultation: vi.fn() }));
@@ -16,15 +17,51 @@ describe("Contact", () => {
     expect(container.querySelector("section#dang-ky")).not.toBeNull();
   });
 
-  it("shows the hotline, email and address alongside the form", () => {
+  it("shows every contact channel alongside the form", () => {
     render(
       <NextIntlClientProvider locale="vi" messages={viMessages}>
         <Contact />
       </NextIntlClientProvider>,
     );
     expect(screen.getByText("Hotline")).toBeInTheDocument();
-    expect(screen.getByText("Email")).toBeInTheDocument();
+    expect(screen.getByText("Zalo")).toBeInTheDocument();
+    expect(screen.getByText("Facebook")).toBeInTheDocument();
     expect(screen.getByText("Địa chỉ")).toBeInTheDocument();
+  });
+
+  it("dials the hotline in E.164 while showing the grouped form", () => {
+    // `tel:` may not carry raw spaces, so the displayed "0965 492 153" cannot
+    // be the href. The two must stay in step but must not be the same string.
+    const { container } = render(
+      <NextIntlClientProvider locale="vi" messages={viMessages}>
+        <Contact />
+      </NextIntlClientProvider>,
+    );
+    const link = container.querySelector(`a[href="tel:${SITE_PHONE_E164}"]`);
+    expect(link, "hotline không trỏ tới số E.164").not.toBeNull();
+    expect(link).toHaveTextContent(SITE_PHONE);
+    expect(SITE_PHONE_E164).not.toContain(" ");
+  });
+
+  it("opens the off-site channels in a new tab but never the dialler", () => {
+    // A visitor part way through the consultation form should not lose it to a
+    // chat window. `tel:` is deliberately excluded: on desktop it would hand off
+    // to the dialler and leave an empty tab behind.
+    const { container } = render(
+      <NextIntlClientProvider locale="vi" messages={viMessages}>
+        <Contact />
+      </NextIntlClientProvider>,
+    );
+
+    for (const url of [SITE_ZALO_URL, SITE_FACEBOOK_URL]) {
+      const link = container.querySelector(`a[href="${url}"]`);
+      expect(link, `không tìm thấy link ${url}`).not.toBeNull();
+      expect(link).toHaveAttribute("target", "_blank");
+      expect(link).toHaveAttribute("rel", "noreferrer");
+    }
+
+    const dialler = container.querySelector(`a[href="tel:${SITE_PHONE_E164}"]`);
+    expect(dialler).not.toHaveAttribute("target");
   });
 
   it("floats the form on a light card panel inside the ink band", () => {

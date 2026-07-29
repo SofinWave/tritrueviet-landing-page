@@ -157,7 +157,7 @@ that wrapper — `tests/sections/contact.test.tsx` guards it.
 
 `SiteHeader` (`components/site-header.tsx`) builds both the desktop nav and
 the mobile dropdown menu from the same `NAV_ITEMS` array, plus a hotline
-button (`tel:${SITE_PHONE}`, labelled via the `nav.callHotline` message key)
+button (`tel:${SITE_PHONE_E164}`, labelled via the `nav.callHotline` message key)
 and the language switcher / theme toggle (`components/mode-toggle.tsx`). It
 sits on the ink surface, so all five of its controls carry the ink focus
 ring.
@@ -179,6 +179,18 @@ different crops plus one full-body square, so the card frames them with
 the `alt` is empty on purpose — the name is live text directly below.
 
 ### Server actions
+
+**The consultation form currently ships disabled.**
+`CONSULTATION_FORM_ENABLED` in `lib/site.ts` is `false`, and
+`ConsultationForm`'s `disabled` prop defaults to its negation, so all six
+controls and the submit button render with `disabled` in the built HTML. The
+prop exists so `tests/sections/consultation-form.test.tsx` can render
+`disabled={false}` and keep every submit / success / failure path exercised —
+that coverage is live, not skipped, and must stay that way. Re-enabling the
+form is a single flip of the constant; two tests pin the current default (all
+controls disabled, and the action unreachable on click). `onSubmit` also
+early-returns when disabled, so a submit raised some other way cannot create a
+lead.
 
 `app/actions/consultation.ts` (`"use server"`) handles the lead form, validating
 with the Zod schema in `consultation.schema.ts`. The schema returns stable
@@ -294,12 +306,34 @@ trusting them.
 The centre's real data is not in the repo yet. Every unfilled value is the
 literal string `[TODO: ...]`:
 
-- `lib/site.ts` — `SITE_PHONE`, `SITE_ZALO_URL`, `SITE_EMAIL`,
-  `SITE_ADDRESS.street/district/city`, `SITE_OPENING_HOURS[0]`. `SITE_URL`'s
-  default (`https://tritueviet.example.com`) is also a placeholder domain,
-  though not a literal `[TODO: ...]` string — override it with
-  `NEXT_PUBLIC_SITE_URL` once the real domain exists (see "Commands" above:
+- `lib/site.ts` — only `SITE_OPENING_HOURS[0]` is still a literal
+  `[TODO: ...]`. `SITE_URL`'s default (`https://tritueviet.example.com`) is also
+  a placeholder domain, though not a literal `[TODO: ...]` string — override it
+  with `NEXT_PUBLIC_SITE_URL` once the real domain exists (see "Commands" above:
   it must be set at `docker build` time, not just in the runtime `.env`).
+
+  The hotline is stored **twice on purpose**: `SITE_PHONE` (`"0965 492 153"`) is
+  the display form and `SITE_PHONE_E164` (`"+84965492153"`) is what every
+  `tel:` href and schema.org `telephone` carries. A `tel:` URI may not contain
+  raw spaces — RFC 3966 allows `-` and `.` as visual separators and nothing
+  else — so linking the grouped string relies on the browser repairing it, and
+  Google reads `telephone` literally, where a leading national `0` only dials
+  from inside Vietnam. `tests/sections/contact.test.tsx` pins both halves.
+
+  `SITE_EMAIL` **no longer exists.** The centre has no published address and
+  chose to drop the channel rather than show a dead `mailto:`, so the field was
+  deleted along with its call sites in `footer.tsx`, `contact.tsx` and the
+  `email` key in `organizationSchema`. Re-adding one means restoring all four.
+
+  `SITE_ZALO_URL` points at `https://zalo.me/<number>` — the personal profile
+  behind the hotline, because there is no Zalo Official Account yet. An OA link
+  is shaped `https://oa.zalo.me/<oa-id>`, so this is a swap, not an edit.
+
+  `SITE_FACEBOOK_URL` is the one social profile, and `SITE_SAME_AS` is built
+  from it — that array is no longer the empty `[]` that used to emit
+  `"sameAs":[]` into the JSON-LD. The contact row uses lucide's `Globe`: lucide
+  dropped its brand icons, so there is no `Facebook` glyph to import, and the
+  row is identified by its text label instead.
 - `messages/vi.json` + `messages/en.json` — **nothing left.** Every message-catalog
   placeholder has been filled; `MESSAGE_PLACEHOLDER_PATHS` in
   `tests/messages/placeholders.test.ts` is now deliberately empty, kept as the
@@ -362,11 +396,6 @@ literal string `[TODO: ...]`:
   ever arrives it needs a new slot and a layout decision — the grid is
   `grid-cols-2 md:grid-cols-4`, so a fifth figure leaves one orphaned on its
   own row.
-- `lib/site.ts` — `SITE_SAME_AS` is `[]`. Like `SITE_URL`, this is a
-  placeholder that is not a literal `[TODO: ...]` string, so
-  `placeholders.test.ts` cannot catch it — it silently emits `"sameAs":[]` in
-  the JSON-LD `EducationalOrganization` node until social/canonical profile
-  URLs are added.
 
 `tests/messages/placeholders.test.ts` enforces the literal `[TODO: ...]`
 cases: it holds an explicit list of every one of the key paths above and
@@ -377,13 +406,11 @@ assertion. Its `MESSAGE_PLACEHOLDER_PATHS` list is now empty (every catalog
 placeholder has been filled) and `SITE_PLACEHOLDER_PATHS` still guards
 `lib/site.ts`; the retirement comments left behind in that file record what each
 slot became and why, so read them before repurposing a slot again. `SITE_URL`
-and `SITE_SAME_AS` are not on either list — check them manually before launch.
+is not on either list — check it manually before launch.
 
-Because `SITE_PHONE` and `SITE_ZALO_URL` are still placeholders, the
-`tel:${SITE_PHONE}` links (header, hero, footer, contact section) and the
-Zalo link (hero, contact section) are non-functional. They are launch
-blockers, not cosmetic issues — fixing `lib/site.ts` fixes all of them at
-once since every call site imports from there.
+The `tel:` links (header, hero, footer, contact section) and the Zalo link
+(hero, contact section) all resolve now. What is left before launch is
+`SITE_OPENING_HOURS[0]`, the real `SITE_URL`, and an Open Graph image.
 
 Never invent figures for these — they are advertising claims.
 

@@ -2,7 +2,7 @@ import { MessageCircle, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { INK_FOCUS_RING, INK_SURFACE } from "@/components/section";
 import { Button } from "@/components/ui/button";
-import { SITE_PHONE, SITE_ZALO_URL } from "@/lib/site";
+import { SITE_PHONE_E164, SITE_ZALO_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function Hero() {
@@ -37,7 +37,7 @@ export function Hero() {
         </div>
         <div className="mt-8 flex flex-col gap-4 text-sm text-surface-ink-foreground/75 sm:flex-row">
           <a
-            href={`tel:${SITE_PHONE}`}
+            href={`tel:${SITE_PHONE_E164}`}
             className={cn(
               "inline-flex items-center gap-2 rounded-sm hover:text-surface-ink-foreground hover:underline",
               INK_FOCUS_RING,
@@ -52,6 +52,7 @@ export function Hero() {
               "inline-flex items-center gap-2 rounded-sm hover:text-surface-ink-foreground hover:underline",
               INK_FOCUS_RING,
             )}
+            target="_blank"
             rel="noreferrer"
           >
             <MessageCircle className="h-4 w-4" />

@@ -1,18 +1,47 @@
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { MapPin, MessageCircle, Phone } from "lucide-react";
+import { FacebookIcon } from "@/components/facebook-icon";
 import { useTranslations } from "next-intl";
 import { INK_FOCUS_RING, Section } from "@/components/section";
-import { SITE_ADDRESS, SITE_EMAIL, SITE_PHONE, SITE_ZALO_URL } from "@/lib/site";
+import {
+  SITE_ADDRESS,
+  SITE_FACEBOOK_URL,
+  SITE_PHONE,
+  SITE_PHONE_E164,
+  SITE_ZALO_URL,
+} from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { ConsultationForm } from "./consultation-form";
+
+/** A bare URL reads as noise in a contact list; the scheme carries nothing. */
+const stripScheme = (url: string) => url.replace(/^https?:\/\//, "");
+
+/**
+ * Zalo and Facebook leave the site, so they open in a new tab — a visitor part
+ * way through the consultation form should not lose it to a chat window. `tel:`
+ * must NOT get the same treatment: on desktop it would leave a blank tab behind
+ * after handing off to the dialler.
+ */
+const isExternal = (href: string) => href.startsWith("http");
 
 export function Contact() {
   const t = useTranslations("contact");
   const address = [SITE_ADDRESS.street, SITE_ADDRESS.district, SITE_ADDRESS.city].join(", ");
 
+  // Shown grouped, dialled in E.164 — see the note on SITE_PHONE.
   const details = [
-    { icon: Phone, label: t("phoneLabel"), value: SITE_PHONE, href: `tel:${SITE_PHONE}` },
-    { icon: MessageCircle, label: t("zaloLabel"), value: SITE_ZALO_URL, href: SITE_ZALO_URL },
-    { icon: Mail, label: t("emailLabel"), value: SITE_EMAIL, href: `mailto:${SITE_EMAIL}` },
+    { icon: Phone, label: t("phoneLabel"), value: SITE_PHONE, href: `tel:${SITE_PHONE_E164}` },
+    {
+      icon: MessageCircle,
+      label: t("zaloLabel"),
+      value: stripScheme(SITE_ZALO_URL),
+      href: SITE_ZALO_URL,
+    },
+    {
+      icon: FacebookIcon,
+      label: t("facebookLabel"),
+      value: stripScheme(SITE_FACEBOOK_URL),
+      href: SITE_FACEBOOK_URL,
+    },
     { icon: MapPin, label: t("addressLabel"), value: address, href: undefined },
   ];
 
@@ -34,6 +63,8 @@ export function Contact() {
                 {detail.href ? (
                   <a
                     href={detail.href}
+                    target={isExternal(detail.href) ? "_blank" : undefined}
+                    rel={isExternal(detail.href) ? "noreferrer" : undefined}
                     className={cn(
                       "rounded-sm text-sm text-surface-ink-foreground/70 hover:text-surface-ink-foreground hover:underline",
                       INK_FOCUS_RING,

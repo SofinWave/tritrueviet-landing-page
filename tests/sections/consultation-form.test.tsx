@@ -8,7 +8,19 @@ import { ConsultationForm } from "@/app/[locale]/(public)/home/_components/consu
 const submitConsultation = vi.hoisted(() => vi.fn());
 vi.mock("@/app/actions/consultation", () => ({ submitConsultation }));
 
+// Rendered with `disabled={false}` on purpose: the shipped default is OFF
+// (see CONSULTATION_FORM_ENABLED in lib/site.ts), but every submit, success and
+// failure path below stays exercised so the coverage does not rot while the form
+// is switched off. The default itself is pinned by its own test at the bottom.
 function renderForm() {
+  return render(
+    <NextIntlClientProvider locale="vi" messages={viMessages}>
+      <ConsultationForm disabled={false} />
+    </NextIntlClientProvider>,
+  );
+}
+
+function renderDefaultForm() {
   return render(
     <NextIntlClientProvider locale="vi" messages={viMessages}>
       <ConsultationForm />
@@ -163,5 +175,42 @@ describe("ConsultationForm", () => {
 
     expect(await screen.findByRole("alert")).toHaveTextContent("Gửi chưa thành công");
     expect(screen.getByRole("button", { name: "Gửi đăng ký" })).not.toBeDisabled();
+  });
+
+  it("ships disabled by default — every field and the submit button", () => {
+    // The centre asked for the form to be switched off. This pins the default so
+    // that re-enabling it is a deliberate flip of CONSULTATION_FORM_ENABLED and
+    // never an accident of someone editing a single field.
+    const { container } = renderDefaultForm();
+    const controls = container.querySelectorAll("input, textarea, button");
+    expect(controls.length).toBeGreaterThan(0);
+    for (const control of controls) {
+      expect(control, `${control.getAttribute("name") ?? control.tagName} vẫn bật`).toBeDisabled();
+    }
+  });
+
+  it("explains why the form is dead, before the dead controls", () => {
+    // Every CTA on the page points at #dang-ky, so a visitor lands here expecting
+    // to type. Without this the section reads as broken rather than paused. It is
+    // rendered first inside the form so a screen reader hits it before the fields.
+    const { container } = renderDefaultForm();
+    const notice = screen.getByText(viMessages.contact.form.disabledNotice);
+    expect(notice).toBeInTheDocument();
+    expect(notice.querySelector("svg"), "notice has no icon").not.toBeNull();
+
+    const form = container.querySelector("form");
+    expect(form?.firstElementChild).toBe(notice);
+  });
+
+  it("hides the notice once the form is live", () => {
+    renderForm();
+    expect(screen.queryByText(viMessages.contact.form.disabledNotice)).toBeNull();
+  });
+
+  it("cannot reach the server action while disabled", async () => {
+    const user = userEvent.setup();
+    renderDefaultForm();
+    await user.click(screen.getByRole("button", { name: "Gửi đăng ký" }));
+    expect(submitConsultation).not.toHaveBeenCalled();
   });
 });

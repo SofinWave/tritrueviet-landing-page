@@ -261,7 +261,7 @@
     "description": "Để lại thông tin, chúng tôi gọi lại trong vòng 24 giờ làm việc.",
     "phoneLabel": "Hotline",
     "zaloLabel": "Zalo",
-    "emailLabel": "Email",
+    "facebookLabel": "Facebook",
     "addressLabel": "Địa chỉ",
     "form": {
       "parentName": "Họ tên phụ huynh",
@@ -274,6 +274,7 @@
       "formatPlaceholder": "Ví dụ: kèm 1 kèm 1",
       "note": "Ghi chú",
       "notePlaceholder": "Mục tiêu của con, lịch rảnh, yêu cầu khác…",
+      "disabledNotice": "Form đăng ký đang tạm bảo trì — anh chị vui lòng liên hệ qua hotline hoặc Zalo bên cạnh.",
       "submit": "Gửi đăng ký",
       "submitting": "Đang gửi…",
       "success": "Đã nhận thông tin. Trung tâm sẽ liên hệ lại trong vòng 24 giờ làm việc.",
@@ -294,7 +295,7 @@
     }
   },
   "footer": {
-    "tagline": "Trung tâm gia sư đồng hành cùng học sinh từ lớp 1 đến lớp 12 và các khoá lập trình.",
+    "tagline": "Trung tâm gia sư đồng hành cùng học sinh từ lớp 1 đến lớp 12 và cả người đi làm.",
     "quickLinks": "Liên kết nhanh",
     "contact": "Liên hệ",
     "rights": "Bảo lưu mọi quyền."
