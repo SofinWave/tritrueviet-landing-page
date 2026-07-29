@@ -13,8 +13,11 @@ describe("Process", () => {
     );
     const headings = screen.getAllByRole("heading", { level: 3 });
     expect(headings).toHaveLength(4);
-    expect(headings[0]).toHaveTextContent("Tư vấn miễn phí");
+    expect(headings[0]).toHaveTextContent("Liên hệ và nghe tư vấn");
     expect(headings[3]).toHaveTextContent("Học thử và theo dõi");
+    // The centre's real differentiator at this step: the parent may name the
+    // tutor rather than be assigned one.
+    expect(headings[2]).toHaveTextContent("Xếp lớp và chọn gia sư");
     expect(screen.getByText("01")).toBeInTheDocument();
     expect(screen.getByText("04")).toBeInTheDocument();
   });

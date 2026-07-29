@@ -17,7 +17,7 @@
   "hero": {
     "eyebrow": "Trung tâm gia sư uy tín",
     "title": "Học đúng lộ trình, tiến bộ thấy rõ từng tháng",
-    "subtitle": "Trí Tuệ Việt xây lộ trình riêng cho từng học sinh — kiểm tra đầu vào, xếp lớp phù hợp, báo cáo tiến độ đều đặn cho phụ huynh.",
+    "subtitle": "Trí Tuệ Việt xây lộ trình riêng cho từng học sinh — tư vấn theo đúng sức học, xếp lớp phù hợp, báo cáo tiến độ đều đặn cho phụ huynh.",
     "ctaPrimary": "Đăng ký học thử miễn phí",
     "ctaSecondary": "Xem khoá học",
     "callNow": "Gọi ngay",
@@ -111,16 +111,16 @@
     "description": "Không mất phí cho tới khi phụ huynh hài lòng với buổi học thử.",
     "steps": [
       {
-        "title": "Tư vấn miễn phí",
-        "description": "Phụ huynh để lại thông tin, chúng tôi gọi lại trong vòng 24 giờ để nghe về mục tiêu của con."
+        "title": "Liên hệ và nghe tư vấn",
+        "description": "Phụ huynh để lại thông tin và chúng tôi gọi lại trong vòng 24 giờ, hoặc nhắn Zalo và gọi hotline để được tư vấn ngay."
       },
       {
-        "title": "Kiểm tra đầu vào",
-        "description": "Bài test ngắn xác định đúng lỗ hổng kiến thức, không xếp lớp theo cảm tính."
+        "title": "Trao đổi về sức học",
+        "description": "Chúng tôi lắng nghe phụ huynh chia sẻ về sức học hiện tại và mục tiêu của con ngay trong buổi tư vấn — nhẹ nhàng, không tạo áp lực bài vở cho con."
       },
       {
-        "title": "Xếp lớp và chọn giáo viên",
-        "description": "Ghép con với giáo viên và hình thức học phù hợp nhất với kết quả kiểm tra."
+        "title": "Xếp lớp và chọn gia sư",
+        "description": "Phụ huynh có thể chỉ định gia sư hoặc nêu yêu cầu riêng; chúng tôi ghép theo đúng nguyện vọng và hình thức học phù hợp."
       },
       {
         "title": "Học thử và theo dõi",
@@ -238,7 +238,7 @@
       },
       {
         "question": "Con học yếu có theo kịp lớp nhóm không?",
-        "answer": "Bài kiểm tra đầu vào giúp chúng tôi xếp con vào nhóm đúng trình độ. Nếu khoảng cách còn lớn, chúng tôi sẽ đề xuất kèm 1 kèm 1 trong giai đoạn đầu."
+        "answer": "Khi tư vấn, chúng tôi hỏi kỹ về sức học hiện tại để xếp con vào nhóm đúng trình độ. Nếu khoảng cách còn lớn, chúng tôi sẽ đề xuất kèm 1 kèm 1 trong giai đoạn đầu."
       },
       {
         "question": "Trung tâm báo cáo tiến độ như thế nào?",

@@ -17,7 +17,7 @@
   "hero": {
     "eyebrow": "A tutoring centre parents trust",
     "title": "A learning path that fits, with progress you can see",
-    "subtitle": "Tri Tue Viet builds an individual plan for every student — entry assessment, the right class, and regular progress reports for parents.",
+    "subtitle": "Tri Tue Viet builds an individual plan for every student — advice matched to their level, the right class, and regular progress reports for parents.",
     "ctaPrimary": "Book a free trial lesson",
     "ctaSecondary": "Browse courses",
     "callNow": "Call now",
@@ -111,20 +111,20 @@
     "description": "Nothing is charged until you are happy with the trial lesson.",
     "steps": [
       {
-        "title": "Free consultation",
-        "description": "Leave your details and we call back within 24 hours to hear about your child's goals."
+        "title": "Get in touch for advice",
+        "description": "Leave your details and we call back within 24 hours, or reach us on Zalo or the hotline for advice straight away."
       },
       {
-        "title": "Entry assessment",
-        "description": "A short test pinpoints the actual knowledge gaps — no placement by guesswork."
+        "title": "Talk through where they are",
+        "description": "We listen as you describe your child's current level and goals, right there in the consultation — a conversation, not an exam."
       },
       {
-        "title": "Class and teacher matching",
-        "description": "We match your child to the teacher and format that fit the assessment result."
+        "title": "Match a class and a tutor",
+        "description": "You can name a tutor or set your own requirements; we match accordingly, along with the right learning format."
       },
       {
-        "title": "Trial lesson and tracking",
-        "description": "A free trial lesson, then regular progress reports sent to parents."
+        "title": "Trial lesson and follow-up",
+        "description": "A free trial lesson, then regular progress reports sent to you."
       }
     ]
   },
@@ -230,7 +230,7 @@
       },
       {
         "question": "Can a struggling student keep up in a group class?",
-        "answer": "The entry assessment places your child at the right level. If the gap is still large we recommend one-on-one lessons for the first stage."
+        "answer": "During the consultation we ask in detail about their current level so we can place them in the right group. If the gap is still large we recommend one-on-one lessons for the first stage."
       },
       {
         "question": "How is progress reported?",
