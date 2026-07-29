@@ -96,12 +96,60 @@ testimonials, faq, contact — plus `SiteHeader` above and `SiteFooter` below.
 Sections are anchor-linked: `#top`, `#khoa-hoc`, `#hinh-thuc`, `#quy-trinh`,
 `#giao-vien`, `#thanh-tich`, `#hoc-phi`, `#cam-nhan`, `#cau-hoi`, `#dang-ky`.
 
-`components/section.tsx` provides the shared shell.
+`components/section.tsx` provides the shared shell. It takes two design props:
+
+- `tone: "light" | "muted" | "ink"` (default `light`) picks the background
+  from the `TONES` map and renders it as `<section data-tone={tone}>`. On
+  `ink` the eyebrow switches from `text-primary` to `text-highlight` and the
+  description from `text-muted-foreground` to
+  `text-surface-ink-foreground/75`.
+- `align: "center" | "start"` (default `center`) controls the heading block.
+
+Those tones alternate into a fixed rhythm — three "chapters", each opened by
+a dark ink band:
+
+| # | Section | Tone |
+|---|---|---|
+| 1 | hero | ink |
+| 2 | stats | ink |
+| 3 | courses | light |
+| 4 | formats | muted |
+| 5 | process | light |
+| 6 | teachers | muted |
+| 7 | achievements | ink |
+| 8 | pricing | light |
+| 9 | testimonials | muted |
+| 10 | faq | light |
+| 11 | contact | ink |
+
+`tests/sections/page-rhythm.test.tsx` pins that whole table. Because
+`page.tsx` is an async Server Component that will not render under jsdom
+(`setRequestLocale` throws outside a real RSC render and `StructuredData` is
+async), it reads the component order out of `page.tsx`'s **source** and then
+renders each component to read its real `data-tone`. Adding or reordering a
+section means updating that test.
+
+Hero, stats, `SiteHeader` and `SiteFooter` are **not** `Section`s — they are
+plain containers on the ink surface. They must paint themselves with the
+exported `INK_SURFACE` constant from `components/section.tsx` (which is also
+what `TONES.ink` holds), not a hand-copied class string. `INK_FOCUS_RING` is
+exported next to it: shadcn's default `focus-visible:ring-ring/50` measures
+1.54:1 on `--surface-ink` in light mode, well under SC 1.4.11's 3:1, so every
+interactive element on an ink surface that is not a `Button` carries that
+constant instead. `Button`s use the `ink-ghost` variant.
+
+Contact is `tone="ink"` but the consultation form sits inside a
+`bg-card` panel: `text-primary`, `text-destructive` and
+`placeholder:text-muted-foreground` all fail AA when measured against
+`--surface-ink`, so the form needs a light surface under it. Do not remove
+that wrapper — `tests/sections/contact.test.tsx` guards it.
 
 `SiteHeader` (`components/site-header.tsx`) builds both the desktop nav and
 the mobile dropdown menu from the same `NAV_ITEMS` array, plus a hotline
 button (`tel:${SITE_PHONE}`, labelled via the `nav.callHotline` message key)
-and the language switcher / theme toggle (`components/mode-toggle.tsx`).
+and the language switcher / theme toggle (`components/mode-toggle.tsx`). It
+sits on the ink surface, so all five of its controls carry the ink focus
+ring.
 
 `app/[locale]/(public)/home/_components/formats.tsx` looks its icon up by the
 `icon` identifier on each `formats.items[]` entry (`one-on-one`, `small-group`,
@@ -137,12 +185,66 @@ and a `FAQPage` built from `faq.items[]`.
 
 ### Design tokens
 
+On top of shadcn's default map, `app/globals.css` defines two brand token
+families, both mapped through `@theme inline` so Tailwind emits the utilities:
+
+- `--highlight` / `--highlight-foreground` — the amber CTA. Amber is a
+  **background**, never text: on a light surface amber text measures 2.1:1.
+  `--highlight` is deliberately *different* between themes (amber-500 in
+  `:root`, amber-400 in `.dark`) because amber on ink only reaches 4.06:1 at
+  amber-500 in dark mode; do not "sync" the two values.
+  **Amber must never be written into shadcn's `--accent`.** `--accent` is
+  what shadcn's own components (ghost buttons, dropdown hover, etc.) reach
+  for automatically, and pushing amber there would spray the CTA colour over
+  every incidental hover state.
+- `--surface-ink` / `--surface-ink-foreground` — the dark band. It
+  **inverts** between modes: slate-950 in light, blue-800 in dark. That
+  carries an invariant — `.dark`'s `--background` must stay *darker* than
+  `.dark`'s `--surface-ink`, or the band sinks into the page instead of
+  floating on it. `tests/styles/tokens.test.ts` asserts this by comparing
+  the two oklch lightness values.
+
+Text on the ink surface must not drop below `text-surface-ink-foreground/70`
+(4.94:1 in dark mode; `/60` is 4.04:1 and fails AA).
+`tests/styles/ink-contrast.test.ts` sweeps `app/` and `components/` for
+violations.
+
+`app/globals.css` also holds two global classes, both inside
+`@layer utilities` so ordinary utilities can still override them:
+
+- `.bg-grid` — the faded grid pattern, for ink surfaces only.
+- `.reveal` — the pure-CSS scroll reveal. Its rule is wrapped in
+  `@supports (animation-timeline: view())` **and**
+  `@media (prefers-reduced-motion: no-preference)`, and **both wrappers are
+  load-bearing**: a browser without `animation-timeline` (Firefox) that
+  reached this rule would pin every revealed element at the keyframe's
+  `opacity: 0` forever. `tests/styles/tokens.test.ts` proves the nesting by
+  balanced brace ranges, not substring matching. Never lift `.reveal` out of
+  either wrapper.
+
+`components/ui/button.tsx` carries two variants beyond upstream shadcn:
+`highlight` (the amber CTA — used by the header register button, the hero
+primary, all three pricing CTAs and the consultation form's submit) and
+`ink-ghost` (a ghost button for ink surfaces). `ink-ghost`'s
+`hover:text-surface-ink-foreground` is **not** redundant with the base
+`ghost` variant: `cn()` is `twMerge(clsx(...))`, and that class is precisely
+what cancels `ghost`'s `hover:text-accent-foreground` (slate-900 — near-black
+text on the near-black ink header). It also swaps the focus ring for one that
+reads on ink.
+
 `app/globals.css` only defines the token families the current UI actually
 uses — it omits `--color-destructive-foreground`, the `--color-chart-*`
 family and the `--color-sidebar-*` family. The first `shadcn add chart`,
 `shadcn add sonner` or `shadcn add sidebar` on this repo will need the token
 map in `app/globals.css` extended by hand before the generated component's
 classes resolve to real colors.
+
+The `--radius-*` scale was also **remapped**, not merely rescaled: upstream
+shadcn is `sm = r−4 / md = r−2 / lg = r / xl = r+4`, this repo is
+`sm = r−2 / md = r / lg = r+2 / xl = r+6`. So `rounded-lg` no longer equals
+`--radius`. Anything `shadcn add` generates will render one step rounder than
+upstream assumes — check the corners on generated components rather than
+trusting them.
 
 ## Unfilled content
 
