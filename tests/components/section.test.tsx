@@ -101,4 +101,13 @@ describe("Section", () => {
     );
     expect(container.querySelector("section > .container")).not.toBeNull();
   });
+
+  it("gives the h2 the tightened leading for large headings", () => {
+    render(
+      <Section title="Khoá học">
+        <p>content</p>
+      </Section>,
+    );
+    expect(screen.getByRole("heading", { level: 2 }).className).toContain("leading-[1.1]");
+  });
 });

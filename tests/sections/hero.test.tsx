@@ -35,4 +35,28 @@ describe("Hero", () => {
     const { container } = renderHero();
     expect(container.querySelector("#top")).not.toBeNull();
   });
+
+  it("sits on the ink surface with the grid pattern", () => {
+    const { container } = renderHero();
+    const root = container.querySelector("#top");
+    expect(root?.className).toContain("bg-surface-ink");
+    expect(container.querySelector(".bg-grid")).not.toBeNull();
+  });
+
+  it("makes the registration CTA the amber highlight button", () => {
+    const { container } = renderHero();
+    const cta = container.querySelector('a[href="#dang-ky"]');
+    expect(cta?.className).toContain("bg-highlight");
+  });
+
+  it("does not close the hero with a border so stats reads as the same block", () => {
+    const { container } = renderHero();
+    expect(container.querySelector("#top")?.className).not.toContain("border-b");
+  });
+
+  it("gives the h1 the tightened leading for large headings", () => {
+    renderHero();
+    const heading = screen.getByRole("heading", { level: 1 });
+    expect(heading.className).toContain("leading-[1.1]");
+  });
 });

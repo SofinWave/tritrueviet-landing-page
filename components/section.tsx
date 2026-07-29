@@ -44,7 +44,9 @@ export function Section({
                 {eyebrow}
               </p>
             ) : null}
-            <h2 className="text-3xl font-extrabold tracking-[-0.03em] md:text-4xl">{title}</h2>
+            <h2 className="text-3xl font-extrabold tracking-[-0.03em] leading-[1.1] md:text-4xl">
+              {title}
+            </h2>
             {description ? (
               <p
                 className={cn(
