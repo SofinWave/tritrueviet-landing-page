@@ -26,7 +26,12 @@ export function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" aria-label={t("switchLanguage")}>
+        <Button
+          variant="ghost"
+          size="icon"
+          aria-label={t("switchLanguage")}
+          className="text-surface-ink-foreground hover:bg-surface-ink-foreground/10 hover:text-surface-ink-foreground dark:hover:bg-surface-ink-foreground/10"
+        >
           <Languages className="h-5 w-5" />
         </Button>
       </DropdownMenuTrigger>

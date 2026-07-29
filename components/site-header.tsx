@@ -23,7 +23,7 @@ export function SiteHeader() {
   const t = useTranslations("nav");
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur">
+    <header className="sticky top-0 z-50 w-full bg-surface-ink text-surface-ink-foreground">
       <div className="container mx-auto flex h-16 items-center gap-4 px-4">
         <a href="#top" className="mr-auto">
           <Logo />
@@ -33,7 +33,7 @@ export function SiteHeader() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground"
+              className="text-sm font-medium text-surface-ink-foreground/70 hover:text-surface-ink-foreground"
             >
               {t(item.key)}
             </a>
@@ -42,7 +42,12 @@ export function SiteHeader() {
         <div className="flex items-center gap-1">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label={t("openMenu")} className="md:hidden">
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label={t("openMenu")}
+                className="text-surface-ink-foreground hover:bg-surface-ink-foreground/10 hover:text-surface-ink-foreground dark:hover:bg-surface-ink-foreground/10 md:hidden"
+              >
                 <Menu className="h-5 w-5" />
               </Button>
             </DropdownMenuTrigger>
@@ -56,12 +61,18 @@ export function SiteHeader() {
           </DropdownMenu>
           <LanguageSwitcher />
           <ModeToggle />
-          <Button asChild variant="ghost" size="icon" aria-label={t("callHotline")}>
+          <Button
+            asChild
+            variant="ghost"
+            size="icon"
+            aria-label={t("callHotline")}
+            className="text-surface-ink-foreground hover:bg-surface-ink-foreground/10 hover:text-surface-ink-foreground dark:hover:bg-surface-ink-foreground/10"
+          >
             <a href={`tel:${SITE_PHONE}`}>
               <Phone className="h-5 w-5" />
             </a>
           </Button>
-          <Button asChild size="sm" className="ml-1">
+          <Button asChild size="sm" variant="highlight" className="ml-1">
             <a href="#dang-ky">{t("register")}</a>
           </Button>
         </div>

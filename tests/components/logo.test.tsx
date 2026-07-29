@@ -14,4 +14,10 @@ describe("Logo", () => {
     expect(svg).not.toBeNull();
     expect(svg?.getAttribute("aria-hidden")).toBe("true");
   });
+
+  it("uses currentColor for the mark so it inherits the surface it sits on", () => {
+    const { container } = render(<Logo />);
+    const svg = container.querySelector("svg");
+    expect(svg?.getAttribute("class")).not.toContain("text-primary");
+  });
 });

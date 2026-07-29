@@ -42,4 +42,17 @@ describe("SiteHeader", () => {
       expect(menuLinks).toContain(anchor);
     }
   });
+
+  it("sits on the ink surface so it reads as part of the hero", () => {
+    const { container } = renderHeader();
+    const header = container.querySelector("header");
+    expect(header?.className).toContain("bg-surface-ink");
+    expect(header?.className).toContain("text-surface-ink-foreground");
+  });
+
+  it("makes the register button the amber highlight", () => {
+    const { container } = renderHeader();
+    const register = container.querySelector('a[href="#dang-ky"]');
+    expect(register?.className).toContain("bg-highlight");
+  });
 });
