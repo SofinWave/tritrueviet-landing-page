@@ -19,16 +19,27 @@ const css = readFileSync(
 function block(selector: string): string {
   const start = css.indexOf(selector);
   expect(start, `không tìm thấy block "${selector}" trong globals.css`).toBeGreaterThan(-1);
-  const open = css.indexOf("{", start);
+  const { open, close } = balancedRange(start);
+  return css.slice(open + 1, close);
+}
+
+/**
+ * Từ vị trí bắt đầu một construct CSS (selector/@rule, trước dấu `{` của nó),
+ * tìm dấu `{` mở đầu tiên và dấu `}` đóng cân bằng tương ứng. Trả về chỉ số
+ * của cả hai để gọi có thể kiểm tra quan hệ lồng nhau (A nằm trong B) bằng
+ * cách so sánh khoảng [open, close] thay vì chỉ khớp chuỗi con.
+ */
+function balancedRange(fromIndex: number): { open: number; close: number } {
+  const open = css.indexOf("{", fromIndex);
   let depth = 0;
   for (let i = open; i < css.length; i++) {
     if (css[i] === "{") depth++;
     else if (css[i] === "}") {
       depth--;
-      if (depth === 0) return css.slice(open + 1, i);
+      if (depth === 0) return { open, close: i };
     }
   }
-  throw new Error(`block "${selector}" không đóng ngoặc`);
+  throw new Error(`construct bắt đầu tại chỉ số ${fromIndex} không đóng ngoặc`);
 }
 
 const NEW_TOKENS = ["highlight", "highlight-foreground", "surface-ink", "surface-ink-foreground"];
@@ -75,36 +86,43 @@ describe("design tokens", () => {
 });
 
 describe("motion and pattern utilities", () => {
-  it("keeps the .reveal rule inside the @supports guard", () => {
+  it("keeps .reveal nested inside @media(no-preference) nested inside @supports", () => {
     // Nếu .reveal lọt ra ngoài @supports, Firefox (chưa hỗ trợ
     // animation-timeline) sẽ giữ nội dung ở trạng thái đầu của keyframe và
     // ẩn chữ vĩnh viễn. Đây là chế độ hỏng tệ nhất của cả thiết kế.
-    const guard = css.indexOf("@supports (animation-timeline: view())");
-    expect(guard, "thiếu block @supports cho animation-timeline").toBeGreaterThan(-1);
+    //
+    // Chỉ khớp chuỗi con là không đủ: cả @supports lẫn @media đều có thể
+    // tồn tại đâu đó trong file mà không thực sự lồng nhau, hoặc .reveal có
+    // thể nằm trong @supports nhưng ngoài @media (mất bảo vệ
+    // prefers-reduced-motion trong khi vẫn "chứa" cả hai chuỗi). Vì vậy ở
+    // đây kiểm tra quan hệ lồng nhau bằng khoảng ngoặc cân bằng, không phải
+    // bằng vị trí chuỗi con đơn thuần.
+    const supportsStart = css.indexOf("@supports (animation-timeline: view())");
+    expect(supportsStart, "thiếu block @supports cho animation-timeline").toBeGreaterThan(-1);
+    const supportsRange = balancedRange(supportsStart);
 
-    const open = css.indexOf("{", guard);
-    let depth = 0;
-    let close = -1;
-    for (let i = open; i < css.length; i++) {
-      if (css[i] === "{") depth++;
-      else if (css[i] === "}") {
-        depth--;
-        if (depth === 0) {
-          close = i;
-          break;
-        }
-      }
-    }
-    expect(close).toBeGreaterThan(open);
+    const mediaStart = css.indexOf(
+      "@media (prefers-reduced-motion: no-preference)",
+      supportsRange.open,
+    );
+    expect(mediaStart, "thiếu @media(no-preference) bên trong @supports").toBeGreaterThan(-1);
+    expect(mediaStart, "@media(no-preference) phải nằm trong @supports").toBeLessThan(
+      supportsRange.close,
+    );
+    const mediaRange = balancedRange(mediaStart);
+    expect(
+      mediaRange.close,
+      "@media(no-preference) phải đóng trước khi @supports đóng",
+    ).toBeLessThan(supportsRange.close);
 
-    const revealRule = css.indexOf(".reveal {");
+    const revealRule = css.indexOf(".reveal {", mediaRange.open);
     expect(revealRule, "không tìm thấy rule .reveal").toBeGreaterThan(-1);
-    expect(revealRule).toBeGreaterThan(open);
-    expect(revealRule).toBeLessThan(close);
-  });
-
-  it("honours prefers-reduced-motion", () => {
-    expect(css).toContain("prefers-reduced-motion: no-preference");
+    expect(revealRule, ".reveal phải nằm trong @media(no-preference)").toBeGreaterThan(
+      mediaRange.open,
+    );
+    expect(revealRule, ".reveal phải nằm trong @media(no-preference)").toBeLessThan(
+      mediaRange.close,
+    );
   });
 
   it("defines the grid pattern utility", () => {
