@@ -23,7 +23,12 @@ export function Pricing() {
           <Card key={plan.name} className="reveal flex h-full flex-col">
             <CardHeader>
               <h3 className="text-lg font-semibold leading-none">{plan.name}</h3>
+              {/* Every figure in `plans[].price` is the centre's floor, not a flat
+                  rate, so the "from" prefix is load-bearing rather than decorative —
+                  dropping it turns a starting price into a promise. It is a separate
+                  muted span so the number keeps the visual weight on its own. */}
               <p className="mt-2">
+                <span className="text-sm text-muted-foreground">{t("from")} </span>
                 <span className="text-2xl font-bold">{plan.price}</span>{" "}
                 <span className="text-sm text-muted-foreground">{t("perSession")}</span>
               </p>

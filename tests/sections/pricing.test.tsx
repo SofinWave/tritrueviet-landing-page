@@ -19,10 +19,24 @@ describe("Pricing", () => {
     expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(vi.pricing.plans.length);
   });
 
-  it("lists every feature of a plan", () => {
+  it("lists every feature of every plan", () => {
     renderPricing();
-    expect(screen.getByText("Giáo viên riêng theo môn")).toBeInTheDocument();
-    expect(screen.getByText("Sĩ số tối đa 6 học sinh")).toBeInTheDocument();
+    for (const plan of vi.pricing.plans) {
+      for (const feature of plan.features) {
+        expect(screen.getByText(feature)).toBeInTheDocument();
+      }
+    }
+  });
+
+  it("prefixes every price with the 'from' qualifier", () => {
+    renderPricing();
+    // Each `plans[].price` is the centre's floor, not a flat rate. Without this
+    // prefix the card advertises the cheapest possible session as the price of
+    // every session — a claim the centre never made.
+    expect(screen.getAllByText(vi.pricing.from)).toHaveLength(vi.pricing.plans.length);
+    for (const plan of vi.pricing.plans) {
+      expect(screen.getByText(plan.price)).toBeInTheDocument();
+    }
   });
 
   it("routes every plan CTA to the registration form", () => {

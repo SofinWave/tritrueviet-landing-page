@@ -167,6 +167,17 @@ ring.
 `online`, `home`), not by array position — keep the identifier and the `ICONS`
 map in that file in sync when editing the catalog.
 
+`app/[locale]/(public)/home/_components/teachers.tsx` follows the same shape for
+portraits: each `teachers.items[]` entry carries a `photo` identifier
+(`pham-linh-thu`, `hoang-thu-huong`, `duong-trung-kien`, `ha-huy-anh`) that is
+looked up in the exported `PHOTOS` map of static imports from
+`public/images/tutors/`, so reordering or translating the catalog can never slide
+a portrait onto the wrong person. `tests/sections/teachers.test.tsx` pins every
+identifier in both catalogs to a real key. The four sources are portraits of
+different crops plus one full-body square, so the card frames them with
+`aspect-4/5` + `object-cover object-top` rather than per-image focal points, and
+the `alt` is empty on purpose — the name is live text directly below.
+
 ### Server actions
 
 `app/actions/consultation.ts` (`"use server"`) handles the lead form, validating
@@ -289,10 +300,48 @@ literal string `[TODO: ...]`:
   though not a literal `[TODO: ...]` string — override it with
   `NEXT_PUBLIC_SITE_URL` once the real domain exists (see "Commands" above:
   it must be set at `docker build` time, not just in the runtime `.env`).
-- `messages/vi.json` + `messages/en.json` — all four `teachers.items[]`
-  entries (`name`/`subject`/`credential`), all three `achievements.items[]`
-  entries (`title`/`detail`), all three `pricing.plans[].price`, all three
-  `testimonials.items[]` entries (`quote`/`author`/`role`).
+- `messages/vi.json` + `messages/en.json` — **nothing left.** Every message-catalog
+  placeholder has been filled; `MESSAGE_PLACEHOLDER_PATHS` in
+  `tests/messages/placeholders.test.ts` is now deliberately empty, kept as the
+  landing spot for the next placeholder rather than deleted.
+
+  `testimonials.items[]` is **done** — three parent quotes, supplied by the
+  centre in the parents' own words and kept that way: the colloquial register
+  ("chị phải lên giục để cho em Quân nó đi tắm") is the evidence that a person
+  said it. The `en` versions are translations of those quotes, which is normal
+  practice but does mean they are no longer verbatim. Slot 3 was reserved for a
+  *student* quote; all three that arrived were from parents, so
+  `testimonials.title` dropped "và học viên".
+
+  This is the one field on the page that must never be drafted on the customer's
+  behalf. Filling it by writing plausible quotes — even framed as marketing copy,
+  even in the same warm voice as the rest of the page — produces a fake review
+  attributed to a named person, which is a different thing from every other
+  string in these catalogs. Refilling the slot means going back to a parent.
+
+  `pricing.plans[].price` is **done** — 150.000đ kèm 1–1, 200.000đ người đi làm,
+  140.000đ học online. Every one is a **floor, not a flat rate**, which is why
+  `pricing.from` ("Chỉ từ") renders as a muted prefix in front of the figure;
+  `tests/sections/pricing.test.tsx` pins that prefix on every card, because
+  dropping it turns a starting price into a promise. Note the middle plan is now
+  `Người đi làm`, not the original `Nhóm nhỏ 3 – 6 bạn`: the centre priced the
+  working-adult track and the grid is `md:grid-cols-3`, so the slot was
+  repurposed rather than left as a visible placeholder — the same call
+  `stats.passRate` -> `stats.tutors` made. Small groups are still offered and
+  still listed under `formats.items[]`; they just carry no published price.
+
+  `achievements.items[]` is **done** — the centre supplied three named student
+  results (IELTS 6.5, chuyên Hà Nội – Amsterdam, ĐH Bách khoa Hà Nội). They
+  deliberately carry **no school year and no exact entrance score**: neither was
+  supplied, and the centre's own placeholder text asked for a year. Those gaps
+  get filled by asking the centre, never by estimating.
+
+  `teachers.items[]` is **done** — the centre supplied four tutors with their
+  credentials and portraits (Phạm Linh Thư, Hoàng Thu Hương, Dương Trung Kiên,
+  Hà Huy Anh). `public/images/tutors/tran-minh-thuy.webp` was supplied alongside
+  them but belongs to nobody on that list and is unused; delete it or add a
+  fifth entry, but note the grid is `sm:grid-cols-2 lg:grid-cols-4`, so a fifth
+  card leaves one orphaned on its own row.
 
   `stats.*` values are rendered through `components/count-up.tsx`, a `"use
   client"` leaf that animates each figure from 1 up to its target when the band
@@ -324,8 +373,11 @@ cases: it holds an explicit list of every one of the key paths above and
 asserts each still starts with `[TODO:` in both catalogs. **A red result
 there once real data arrives is expected and correct** — the fix is to
 deliberately delete that entry from the list, not to weaken or generalize the
-assertion. `SITE_URL` and `SITE_SAME_AS` are not on that list — check them
-manually before launch.
+assertion. Its `MESSAGE_PLACEHOLDER_PATHS` list is now empty (every catalog
+placeholder has been filled) and `SITE_PLACEHOLDER_PATHS` still guards
+`lib/site.ts`; the retirement comments left behind in that file record what each
+slot became and why, so read them before repurposing a slot again. `SITE_URL`
+and `SITE_SAME_AS` are not on either list — check them manually before launch.
 
 Because `SITE_PHONE` and `SITE_ZALO_URL` are still placeholders, the
 `tel:${SITE_PHONE}` links (header, hero, footer, contact section) and the

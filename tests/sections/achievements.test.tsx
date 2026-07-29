@@ -14,12 +14,18 @@ describe("Achievements", () => {
     expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(vi.achievements.items.length);
   });
 
-  it("still shows unfilled placeholders rather than hiding them", () => {
+  it("renders both the headline and the detail of every entry", () => {
     render(
       <NextIntlClientProvider locale="vi" messages={vi}>
         <Achievements />
       </NextIntlClientProvider>,
     );
-    expect(screen.getByText("[TODO: thành tích 1]")).toBeInTheDocument();
+    // This used to assert the "[TODO: ...]" placeholders were still on screen
+    // rather than hidden. The centre has since supplied real student results,
+    // so the guarantee worth keeping is that nothing silently drops out.
+    for (const item of vi.achievements.items) {
+      expect(screen.getByText(item.title)).toBeInTheDocument();
+      expect(screen.getByText(item.detail)).toBeInTheDocument();
+    }
   });
 });

@@ -23,36 +23,36 @@ const MESSAGE_PLACEHOLDER_PATHS = [
   // available, so the slot became `stats.tutors` rather than carry an invented
   // one. Deleting entries here is the intended way to retire a placeholder —
   // never weaken the assertion instead.
-  "teachers.items.0.name",
-  "teachers.items.0.subject",
-  "teachers.items.0.credential",
-  "teachers.items.1.name",
-  "teachers.items.1.subject",
-  "teachers.items.1.credential",
-  "teachers.items.2.name",
-  "teachers.items.2.subject",
-  "teachers.items.2.credential",
-  "teachers.items.3.name",
-  "teachers.items.3.subject",
-  "teachers.items.3.credential",
-  "achievements.items.0.title",
-  "achievements.items.0.detail",
-  "achievements.items.1.title",
-  "achievements.items.1.detail",
-  "achievements.items.2.title",
-  "achievements.items.2.detail",
-  "pricing.plans.0.price",
-  "pricing.plans.1.price",
-  "pricing.plans.2.price",
-  "testimonials.items.0.quote",
-  "testimonials.items.0.author",
-  "testimonials.items.0.role",
-  "testimonials.items.1.quote",
-  "testimonials.items.1.author",
-  "testimonials.items.1.role",
-  "testimonials.items.2.quote",
-  "testimonials.items.2.author",
-  "testimonials.items.2.role",
+  // teachers.items.* were removed on purpose once the centre supplied the four
+  // real tutors, their credentials and their portraits. `teachers.items[].photo`
+  // is a new sibling key and was never a placeholder — it is pinned to a real
+  // portrait by tests/sections/teachers.test.tsx instead.
+  // achievements.items.* were removed on purpose once the centre supplied three
+  // real student results. Note what is NOT in those entries: no school year and
+  // no exact entrance score, because none were given. Filling those gaps in
+  // later means asking the centre, never estimating — these are advertising
+  // claims aimed at parents.
+  // pricing.plans.*.price were removed on purpose once the centre supplied its
+  // floor prices. Every one of them is a *starting* figure, which is why the
+  // card renders a `pricing.from` prefix in front of it — see
+  // tests/sections/pricing.test.tsx, which pins that prefix so a later edit
+  // cannot quietly turn "from 150k" into a flat rate.
+  //
+  // `pricing.plans[1]` is no longer the small-group plan: the centre priced the
+  // working-adult track instead, and the grid is md:grid-cols-3, so the slot was
+  // repurposed rather than left as a visible placeholder — the same move
+  // stats.passRate -> stats.tutors made. Small groups still appear under
+  // `formats.items[]`, just without a listed price.
+  // testimonials.items.* were removed on purpose once the centre supplied three
+  // real parent quotes. These are the one field on the page that must never be
+  // written by anyone but the person quoted: a testimonial is an endorsement
+  // attributed to a named customer, so composing one — however plausible, and
+  // however much it reads like the rest of the marketing copy around it — makes
+  // it a fake review rather than a placeholder. Refilling this slot means going
+  // back to a parent, never drafting on their behalf.
+  //
+  // Slot 2 was originally reserved for a *student* quote; all three supplied
+  // quotes came from parents, so `testimonials.title` dropped "và học viên".
 ] as const;
 
 /**

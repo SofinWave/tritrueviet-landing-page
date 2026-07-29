@@ -12,6 +12,13 @@ describe("Testimonials", () => {
       </NextIntlClientProvider>,
     );
     expect(container.querySelectorAll("blockquote")).toHaveLength(vi.testimonials.items.length);
-    expect(screen.getByText("[TODO: tên phụ huynh 1]")).toBeInTheDocument();
+    // Every quote must carry its attribution. An unattributed testimonial reads
+    // as the centre praising itself in someone else's voice, which is exactly
+    // what these are not.
+    for (const item of vi.testimonials.items) {
+      expect(screen.getByText(item.quote)).toBeInTheDocument();
+      expect(screen.getByText(item.author)).toBeInTheDocument();
+      expect(screen.getByText(item.role)).toBeInTheDocument();
+    }
   });
 });

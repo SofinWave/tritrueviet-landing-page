@@ -130,47 +130,51 @@
   },
   "teachers": {
     "eyebrow": "Đội ngũ",
-    "title": "Giáo viên đồng hành cùng con",
+    "title": "Gia sư đồng hành cùng con",
     "description": "Mỗi giáo viên đều qua vòng phỏng vấn chuyên môn và dạy thử trước khi đứng lớp.",
     "items": [
       {
-        "name": "[TODO: tên giáo viên 1]",
-        "subject": "[TODO: môn phụ trách]",
-        "credential": "[TODO: bằng cấp, số năm kinh nghiệm]"
+        "name": "Phạm Linh Thư",
+        "subject": "Tiếng Anh & Tiếng Trung",
+        "credential": "Chứng chỉ tiếng Trung HSK6, chứng chỉ tiếng Anh B2",
+        "photo": "pham-linh-thu"
       },
       {
-        "name": "[TODO: tên giáo viên 2]",
-        "subject": "[TODO: môn phụ trách]",
-        "credential": "[TODO: bằng cấp, số năm kinh nghiệm]"
+        "name": "Hoàng Thu Hương",
+        "subject": "Toán",
+        "credential": "Giải Nhì học sinh giỏi Toán cấp Tỉnh, Huy chương Đồng môn Toán trại hè Hùng Vương",
+        "photo": "hoang-thu-huong"
       },
       {
-        "name": "[TODO: tên giáo viên 3]",
-        "subject": "[TODO: môn phụ trách]",
-        "credential": "[TODO: bằng cấp, số năm kinh nghiệm]"
+        "name": "Dương Trung Kiên",
+        "subject": "Toán & Tiếng Anh",
+        "credential": "Huy chương Vàng Violympic Toán cấp Quốc gia, Huy chương Bạc kỳ thi HOMC, IELTS 7.5",
+        "photo": "duong-trung-kien"
       },
       {
-        "name": "[TODO: tên giáo viên 4]",
-        "subject": "[TODO: môn phụ trách]",
-        "credential": "[TODO: bằng cấp, số năm kinh nghiệm]"
+        "name": "Hà Huy Anh",
+        "subject": "Tiếng Anh & luyện thi IELTS",
+        "credential": "IELTS 8.0, chứng chỉ SAT 1540/1600",
+        "photo": "ha-huy-anh"
       }
     ]
   },
   "achievements": {
     "eyebrow": "Kết quả",
     "title": "Thành tích học viên",
-    "description": "Những con số dưới đây sẽ được cập nhật theo từng năm học.",
+    "description": "Kết quả của học viên Trí Tuệ Việt, cập nhật theo từng năm học.",
     "items": [
       {
-        "title": "[TODO: thành tích 1]",
-        "detail": "[TODO: mô tả kết quả, năm học]"
+        "title": "IELTS 6.5",
+        "detail": "Bạn Nguyễn Hoàng Nhật Minh đạt band 6.5 trong kỳ thi IELTS."
       },
       {
-        "title": "[TODO: thành tích 2]",
-        "detail": "[TODO: mô tả kết quả, năm học]"
+        "title": "Đỗ chuyên Hà Nội – Amsterdam",
+        "detail": "Bạn Đinh Nhật Hoàng trúng tuyển THPT Chuyên Hà Nội – Amsterdam với số điểm cao."
       },
       {
-        "title": "[TODO: thành tích 3]",
-        "detail": "[TODO: mô tả kết quả, năm học]"
+        "title": "Đỗ Đại học Bách khoa Hà Nội",
+        "detail": "Bạn Trần Thu Hương đạt điểm cao trong kỳ thi tuyển chọn đầu vào Đại học Bách khoa Hà Nội."
       }
     ]
   },
@@ -178,13 +182,14 @@
     "eyebrow": "Học phí",
     "title": "Học phí minh bạch, không phát sinh",
     "description": "Học phí tính theo buổi và theo hình thức học. Buổi học thử đầu tiên miễn phí.",
+    "from": "Chỉ từ",
     "perSession": "mỗi buổi",
     "cta": "Nhận báo giá chi tiết",
     "note": "Học phí có thể thay đổi theo cấp lớp và số buổi đăng ký. Liên hệ để nhận báo giá chính xác.",
     "plans": [
       {
         "name": "Kèm 1 – 1",
-        "price": "[TODO: học phí 1 kèm 1]",
+        "price": "150.000đ",
         "features": [
           "Giáo viên riêng theo môn",
           "Lộ trình cá nhân hoá",
@@ -192,39 +197,39 @@
         ]
       },
       {
-        "name": "Nhóm nhỏ 3 – 6 bạn",
-        "price": "[TODO: học phí nhóm nhỏ]",
-        "features": [
-          "Sĩ số tối đa 6 học sinh",
-          "Chữa bài chi tiết từng buổi",
-          "Báo cáo tiến độ hàng tháng"
-        ]
+        "name": "Học online",
+        "price": "140.000đ",
+        "features": ["Lớp trực tuyến có ghi hình", "Tài liệu số đi kèm", "Linh hoạt lịch học"]
       },
       {
-        "name": "Học online",
-        "price": "[TODO: học phí online]",
-        "features": ["Lớp trực tuyến có ghi hình", "Tài liệu số đi kèm", "Linh hoạt lịch học"]
+        "name": "Người đi làm",
+        "price": "200.000đ",
+        "features": [
+          "Lộ trình bám theo mục tiêu công việc",
+          "Lịch học linh hoạt theo ca làm việc",
+          "Kèm riêng hoặc nhóm nhỏ tuỳ nhu cầu"
+        ]
       }
     ]
   },
   "testimonials": {
     "eyebrow": "Phụ huynh nói gì",
-    "title": "Cảm nhận từ phụ huynh và học viên",
+    "title": "Cảm nhận từ phụ huynh",
     "items": [
       {
-        "quote": "[TODO: trích cảm nhận phụ huynh 1]",
-        "author": "[TODO: tên phụ huynh 1]",
-        "role": "[TODO: phụ huynh em ..., lớp ...]"
+        "quote": "Chị đã đi tìm qua rất nhiều trung tâm gia sư rồi, nhưng chị thấy các bạn gia sư ở bên em là tận tâm, tận tuỵ nhất, nhiều khi còn dạy quá giờ chị phải lên giục để cho em Quân nó đi tắm.",
+        "author": "Chị Nguyễn Mai Hoa",
+        "role": "Phụ huynh em Nguyễn Trung Quân"
       },
       {
-        "quote": "[TODO: trích cảm nhận phụ huynh 2]",
-        "author": "[TODO: tên phụ huynh 2]",
-        "role": "[TODO: phụ huynh em ..., lớp ...]"
+        "quote": "Chị thấy bạn gia sư có lượng kiến thức rất rộng, còn biết cách giảng cho bạn nhà chị cách tư duy giải quyết bài toán, cách phân loại và tiếp cận bài toán rất hay.",
+        "author": "Chị Phạm Thu Hà",
+        "role": "Phụ huynh em Trần Hoàng Nhật"
       },
       {
-        "quote": "[TODO: trích cảm nhận học viên]",
-        "author": "[TODO: tên học viên]",
-        "role": "[TODO: học viên lớp ...]"
+        "quote": "Bạn nhà chị nhiều khi lười học, mà bên em tìm được cho chị bạn gia sư ưng ý quá, sau 1 tháng mà 2 chị em nhà nó gắn với nhau, học bất chấp mọi nơi luôn ý. Mấy lần chị thấy ngoài giờ dạy em nhà chị nó gọi cho bạn Huyền (gia sư bên trung tâm) mà tíu tít lắm…",
+        "author": "Chị Nguyễn Thị Linh",
+        "role": "Phụ huynh em Nguyễn Thị Ánh Tuyết"
       }
     ]
   },

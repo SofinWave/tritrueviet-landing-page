@@ -130,47 +130,51 @@
   },
   "teachers": {
     "eyebrow": "Our team",
-    "title": "The teachers your child will work with",
+    "title": "The tutors your child will work with",
     "description": "Every teacher passes a subject interview and a trial lesson before taking a class.",
     "items": [
       {
-        "name": "[TODO: teacher 1 name]",
-        "subject": "[TODO: subject]",
-        "credential": "[TODO: qualification, years of experience]"
+        "name": "Phạm Linh Thư",
+        "subject": "English & Chinese",
+        "credential": "HSK6 in Chinese, B2 in English",
+        "photo": "pham-linh-thu"
       },
       {
-        "name": "[TODO: teacher 2 name]",
-        "subject": "[TODO: subject]",
-        "credential": "[TODO: qualification, years of experience]"
+        "name": "Hoàng Thu Hương",
+        "subject": "Maths",
+        "credential": "Second prize, provincial Maths olympiad; bronze medal in Maths, Hùng Vương Summer Camp",
+        "photo": "hoang-thu-huong"
       },
       {
-        "name": "[TODO: teacher 3 name]",
-        "subject": "[TODO: subject]",
-        "credential": "[TODO: qualification, years of experience]"
+        "name": "Dương Trung Kiên",
+        "subject": "Maths & English",
+        "credential": "Gold medal, national Violympic Maths; silver medal, HOMC; IELTS 7.5",
+        "photo": "duong-trung-kien"
       },
       {
-        "name": "[TODO: teacher 4 name]",
-        "subject": "[TODO: subject]",
-        "credential": "[TODO: qualification, years of experience]"
+        "name": "Hà Huy Anh",
+        "subject": "English & IELTS preparation",
+        "credential": "IELTS 8.0, SAT 1540/1600",
+        "photo": "ha-huy-anh"
       }
     ]
   },
   "achievements": {
     "eyebrow": "Results",
     "title": "Student achievements",
-    "description": "These figures are updated each academic year.",
+    "description": "Results from Trí Tuệ Việt students, updated each academic year.",
     "items": [
       {
-        "title": "[TODO: achievement 1]",
-        "detail": "[TODO: result description, school year]"
+        "title": "IELTS 6.5",
+        "detail": "Nguyễn Hoàng Nhật Minh scored band 6.5 in the IELTS exam."
       },
       {
-        "title": "[TODO: achievement 2]",
-        "detail": "[TODO: result description, school year]"
+        "title": "Admitted to Hà Nội – Amsterdam",
+        "detail": "Đinh Nhật Hoàng won a place at Hà Nội – Amsterdam High School for the Gifted with a high entrance score."
       },
       {
-        "title": "[TODO: achievement 3]",
-        "detail": "[TODO: result description, school year]"
+        "title": "Admitted to Hanoi University of Science and Technology",
+        "detail": "Trần Thu Hương scored highly in the entrance selection exam for Hanoi University of Science and Technology."
       }
     ]
   },
@@ -178,45 +182,50 @@
     "eyebrow": "Tuition",
     "title": "Transparent tuition, no hidden extras",
     "description": "Tuition is charged per session and per format. The first trial lesson is free.",
+    "from": "From only",
     "perSession": "per session",
     "cta": "Request a detailed quote",
     "note": "Tuition varies by grade and by the number of sessions booked. Contact us for an exact quote.",
     "plans": [
       {
         "name": "One-on-one",
-        "price": "[TODO: one-on-one tuition]",
+        "price": "150,000₫",
         "features": ["A dedicated subject teacher", "Personalised path", "Weekly progress report"]
       },
       {
-        "name": "Small group of 3 – 6",
-        "price": "[TODO: small group tuition]",
-        "features": ["Maximum 6 students", "Detailed per-session review", "Monthly progress report"]
+        "name": "Online classes",
+        "price": "140,000₫",
+        "features": ["Recorded live lessons", "Digital materials included", "Flexible scheduling"]
       },
       {
-        "name": "Online classes",
-        "price": "[TODO: online tuition]",
-        "features": ["Recorded live lessons", "Digital materials included", "Flexible scheduling"]
+        "name": "Working adults",
+        "price": "200,000₫",
+        "features": [
+          "A path built around your job goal",
+          "Scheduling that works around shifts",
+          "One-on-one or small group, as you prefer"
+        ]
       }
     ]
   },
   "testimonials": {
     "eyebrow": "What parents say",
-    "title": "Feedback from parents and students",
+    "title": "Feedback from parents",
     "items": [
       {
-        "quote": "[TODO: parent testimonial 1]",
-        "author": "[TODO: parent 1 name]",
-        "role": "[TODO: parent of ..., grade ...]"
+        "quote": "I had been round a great many tutoring centres before this one, but your tutors are the most dedicated I have found — sometimes they teach well past the hour and I have to go up and hurry them along so Quân can get his shower.",
+        "author": "Nguyễn Mai Hoa",
+        "role": "Parent of Nguyễn Trung Quân"
       },
       {
-        "quote": "[TODO: parent testimonial 2]",
-        "author": "[TODO: parent 2 name]",
-        "role": "[TODO: parent of ..., grade ...]"
+        "quote": "The tutor knows the subject very broadly, and beyond that they teach my child how to think a problem through — how to sort a question into its type and find a way into it. It is done really well.",
+        "author": "Phạm Thu Hà",
+        "role": "Parent of Trần Hoàng Nhật"
       },
       {
-        "quote": "[TODO: student testimonial]",
-        "author": "[TODO: student name]",
-        "role": "[TODO: grade ... student]"
+        "quote": "My child can be lazy about studying, but you found her a tutor she took to straight away. After a month the two of them are inseparable and she will study absolutely anywhere. More than once I have seen her ring Huyền, her tutor, outside lesson hours just to chat away…",
+        "author": "Nguyễn Thị Linh",
+        "role": "Parent of Nguyễn Thị Ánh Tuyết"
       }
     ]
   },
