@@ -4,6 +4,7 @@ import {
   educationalOrganizationSchema,
   faqSchema,
   toJsonLdScript,
+  webPageSchema,
   websiteSchema,
 } from "@/lib/structured-data";
 
@@ -11,17 +12,33 @@ export async function StructuredData({ locale }: { locale: string }) {
   const meta = await getTranslations({ locale, namespace: "metadata" });
   const courses = await getTranslations({ locale, namespace: "courses" });
   const faq = await getTranslations({ locale, namespace: "faq" });
+  const formats = await getTranslations({ locale, namespace: "formats" });
+  const teachers = await getTranslations({ locale, namespace: "teachers" });
 
   const courseItems =
-    (courses.raw("items") as Array<{ name: string; description: string }> | undefined) ?? [];
+    (courses.raw("items") as
+      | Array<{ name: string; description: string; grades?: string }>
+      | undefined) ?? [];
   const faqItems =
     (faq.raw("items") as Array<{ question: string; answer: string }> | undefined) ?? [];
+  const formatItems =
+    (formats.raw("items") as Array<{ name: string; description: string }> | undefined) ?? [];
+  const teacherItems =
+    (teachers.raw("items") as
+      | Array<{ name: string; subject: string; credential: string }>
+      | undefined) ?? [];
 
   const nodes = [
-    educationalOrganizationSchema({ locale, description: meta("description") }),
+    educationalOrganizationSchema({
+      locale,
+      description: meta("description"),
+      formats: formatItems,
+      teachers: teacherItems,
+    }),
     websiteSchema(locale),
+    webPageSchema({ locale, name: meta("title"), description: meta("description") }),
     courseListSchema(courseItems, locale),
-    faqSchema(faqItems),
+    faqSchema(faqItems, locale),
   ];
 
   return (
