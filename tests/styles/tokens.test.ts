@@ -78,6 +78,21 @@ describe("design tokens", () => {
     expect(dark).toContain("--highlight: oklch(82.8% 0.189 84.429);");
   });
 
+  it("keeps --primary on the brand red taken from the logo artwork", () => {
+    // public/images/logo.png sampled: #BF1516 = oklch(51.3% 0.200 28.0). The site
+    // follows the logo, not the other way round — if this ever drifts, the header
+    // stops matching the mark sitting in it. 6.30:1 on white, so it is safe as
+    // body-weight text.
+    expect(block(":root {")).toContain("--primary: oklch(51.3% 0.2 28);");
+  });
+
+  it("gives inputs a boundary that satisfies WCAG 1.4.11 on a light surface", () => {
+    // An input's outline is the only cue that the control exists, so it needs 3:1
+    // against what's behind it. stone-200 (the shadcn default) measured 1.26:1 on
+    // the white form panel — effectively no boundary at all.
+    expect(block(":root {")).toContain("--input: oklch(66% 0.012 56);");
+  });
+
   it("keeps the dark page background darker than the dark ink surface", () => {
     // Bất biến của thiết kế: ở dark mode dải ink phải NỔI trên nền, không chìm.
     const dark = block(".dark {");

@@ -78,6 +78,35 @@ describe("ConsultationForm", () => {
     expect(await screen.findByRole("status")).toHaveTextContent("Đã nhận thông tin");
   });
 
+  it("distinguishes confirmed from failed by icon, not by colour alone", async () => {
+    // The brand red is hue 28.0 and --destructive is hue 27.3 — 0.7 degrees apart.
+    // Since the palette moved to the logo's red, colour can no longer carry the
+    // difference between "sent" and "failed" (WCAG 1.4.1). Each state must ship a
+    // distinct icon, and success must not be painted in brand red either.
+    submitConsultation.mockResolvedValue({ ok: true });
+    const user = userEvent.setup();
+    const { container } = renderForm();
+    await fillValidForm(user);
+    await user.click(screen.getByRole("button", { name: "Gửi đăng ký" }));
+
+    const sent = await screen.findByRole("status");
+    expect(sent.querySelector("svg"), "success message has no icon").not.toBeNull();
+    expect(sent.className).not.toContain("text-primary");
+    expect(container.querySelector('[role="alert"]')).toBeNull();
+  });
+
+  it("gives the failure message its own icon so it cannot be read as brand emphasis", async () => {
+    submitConsultation.mockResolvedValue({ ok: false, error: "phone_invalid" });
+    const user = userEvent.setup();
+    renderForm();
+    await fillValidForm(user);
+    await user.click(screen.getByRole("button", { name: "Gửi đăng ký" }));
+
+    const failed = await screen.findByRole("alert");
+    expect(failed.querySelector("svg"), "error message has no icon").not.toBeNull();
+    expect(failed.className).toContain("text-destructive");
+  });
+
   it("clears the fields after a successful submission so a second click can't duplicate the lead", async () => {
     submitConsultation.mockResolvedValue({ ok: true });
     const user = userEvent.setup();

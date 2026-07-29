@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AlertCircle, CheckCircle2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { submitConsultation } from "@/app/actions/consultation";
 import { Button } from "@/components/ui/button";
@@ -93,13 +94,24 @@ export function ConsultationForm() {
         {status.kind === "sending" ? t("submitting") : t("submit")}
       </Button>
 
+      {/* The brand red (hue 28.0) and --destructive (hue 27.3) are 0.7 degrees apart,
+          so colour alone can no longer tell "confirmed" from "failed" — WCAG 1.4.1.
+          The icon and the tinted block carry the meaning; the colour only reinforces it. */}
       {status.kind === "sent" ? (
-        <p role="status" className="text-sm font-medium text-primary">
+        <p
+          role="status"
+          className="flex items-start gap-2 rounded-md bg-secondary p-3 text-sm font-medium text-foreground"
+        >
+          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
           {t("success")}
         </p>
       ) : null}
       {status.kind === "failed" ? (
-        <p role="alert" className="text-sm font-medium text-destructive">
+        <p
+          role="alert"
+          className="flex items-start gap-2 rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm font-medium text-destructive"
+        >
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
           {status.error}
         </p>
       ) : null}

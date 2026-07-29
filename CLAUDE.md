@@ -198,11 +198,32 @@ families, both mapped through `@theme inline` so Tailwind emits the utilities:
   for automatically, and pushing amber there would spray the CTA colour over
   every incidental hover state.
 - `--surface-ink` / `--surface-ink-foreground` — the dark band. It
-  **inverts** between modes: slate-950 in light, blue-800 in dark. That
-  carries an invariant — `.dark`'s `--background` must stay *darker* than
-  `.dark`'s `--surface-ink`, or the band sinks into the page instead of
+  **inverts** between modes: a deep maroon in light, a lighter red in dark.
+  That carries an invariant — `.dark`'s `--background` must stay *darker*
+  than `.dark`'s `--surface-ink`, or the band sinks into the page instead of
   floating on it. `tests/styles/tokens.test.ts` asserts this by comparing
   the two oklch lightness values.
+
+`--primary` is the brand red sampled from `public/images/logo.png`:
+`oklch(51.3% 0.2 28)` = `#BF1516`, 6.30:1 on white. **The site follows the
+logo, not the reverse** — if this drifts, the header stops matching the mark
+sitting inside it. `tests/styles/tokens.test.ts` pins the value. The neutrals
+are Tailwind's warm `stone` family rather than the cool `slate` shadcn ships,
+because slate greys read blue-ish next to red.
+
+That red creates one hazard worth knowing about: **`--primary` (hue 28.0) and
+`--destructive` (hue 27.3) are 0.7 degrees apart** — the same colour to the
+eye. Colour alone can therefore no longer separate "brand emphasis" from
+"error". Anything conveying success or failure must also carry a
+non-colour cue; `consultation-form.tsx` pairs each status message with its own
+lucide icon and a tinted block, and `tests/sections/consultation-form.test.tsx`
+asserts both icons exist. This is WCAG 1.4.1, and it is why the success message
+is *not* painted in `--primary`.
+
+`--input` is deliberately much darker than `--border`
+(`oklch(66% 0.012 56)`, 3.03:1 on white). An input's outline is the only thing
+showing the control exists, so WCAG 1.4.11 asks 3:1; shadcn's stock stone-200
+measured 1.26:1 against the white form panel.
 
 Text on the ink surface must not drop below `text-surface-ink-foreground/70`
 (4.94:1 in dark mode; `/60` is 4.04:1 and fails AA).
@@ -286,10 +307,32 @@ Never invent figures for these — they are advertising claims.
 
 ## Brand assets
 
-`components/logo.tsx` renders an SVG + text wordmark; `app/icon.tsx` generates
-the favicon at runtime via `ImageResponse`. There is no image asset yet — when
-real artwork arrives, replace the SVG in `logo.tsx` and swap `icon.tsx` for an
-`icon.png`.
+`public/images/logo.png` is the supplied artwork: a square social-avatar
+lockup — wordmark, figure reaching for a star atop books, and a tagline —
+brand red on a genuinely transparent background (all four corners are
+`alpha=0`; it only *looks* white-backed in viewers that composite onto white).
+
+`public/images/logo-mark.png` is the figure cropped out of it (source rows
+176–361, squared and resampled to 512). `components/logo.tsx` renders **that
+crop plus live HTML text**, never the full lockup: at the header's 36px, the
+lockup's three text bands come out 4px, 4px and 1px tall, and its wordmark
+would duplicate the `SITE_SHORT_NAME` text beside it. Live text also scales,
+translates and is readable by screen readers.
+
+The mark sits inside a **white chip** (`bg-white` wrapper). This is not
+decoration — the artwork is the brand red, which measures **1.00:1 on the red
+header** and 1.40:1 on the dark ink band. Without the chip the logo is
+literally invisible in both places. `tests/components/logo.test.tsx` guards
+the chip, the crop, and the empty `alt`.
+
+`app/icon.png` (512) and `app/apple-icon.png` (180) are generated from the
+mark on a white rounded tile — Next picks them up by filename. They replaced
+the old `app/icon.tsx`, which drew a blue "TTV" via `ImageResponse`.
+`app/manifest.ts`'s `theme_color` must be kept in step with `--primary`.
+
+Still missing: an Open Graph image. `app/[locale]/layout.tsx` declares
+`twitter.card: "summary_large_image"` but no image, so shared links render
+without one.
 
 ## Testing
 
