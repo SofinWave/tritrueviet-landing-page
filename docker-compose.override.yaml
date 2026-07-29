@@ -6,10 +6,35 @@ services:
         - UID_HOST_USER=${UID_HOST_USER}
         - GID_HOST_USER=${GID_HOST_USER}
     tty: true
+    # The base image has no CMD, so without this the container idles in a bare
+    # `node` REPL and nothing answers on port 3000. `pnpm install` runs first
+    # because the node_modules volume below survives image rebuilds and can go
+    # stale after a dependency change.
+    command: sh -c "pnpm install --frozen-lockfile && pnpm dev"
     ports:
       - ${APP_PORT:-3000}:3000
     volumes:
       - .:/app
+      # The host's node_modules holds host-platform binaries (darwin-arm64
+      # @next/swc, sharp, lightningcss, …) and the bind mount above would
+      # shadow the linux install baked into the image with them. These two
+      # volumes keep the container's node_modules and build cache separate
+      # from the host's.
+      - node_modules:/app/node_modules
+      - next_cache:/app/.next
     environment:
       - UID_HOST_USER=${UID_HOST_USER}
       - GID_HOST_USER=${GID_HOST_USER}
+    # Lets `local:up` block until the dev server actually serves a request
+    # (see `docker compose up --wait` in mise/tasks/local/up). `/` answers with
+    # a 307 to /vi, which curl -f treats as success.
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://localhost:3000/"]
+      interval: 5s
+      timeout: 10s
+      retries: 60
+      start_period: 30s
+
+volumes:
+  node_modules:
+  next_cache:

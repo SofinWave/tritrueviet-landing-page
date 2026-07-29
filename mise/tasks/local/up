@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
-#MISE description="Start the local dev containers"
+#MISE description="Start the local dev containers and wait until the site serves"
 set -euo pipefail
-docker compose up -d
+docker compose up -d --wait
+port="$(docker compose port node 3000)"
+echo "Ready: http://localhost:${port##*:}"

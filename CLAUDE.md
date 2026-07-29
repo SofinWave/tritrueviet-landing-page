@@ -45,6 +45,17 @@ Docker Compose override pattern: `docker-compose.yaml` (base),
 `docker-compose.production.yaml` (prod, applied explicitly with
 `-f docker-compose.yaml -f docker-compose.production.yaml`).
 
+`mise run local:up` starts the dev server itself — the override's `command`
+runs `pnpm install --frozen-lockfile && pnpm dev`, and the task uses
+`docker compose up -d --wait` against a healthcheck, so it only returns once
+http://localhost:3000 actually answers. Follow the server output with
+`mise run local:logs`. Two named volumes (`node_modules`, `next_cache`) sit on
+top of the `.:/app` bind mount so the host's platform-specific `node_modules`
+(darwin-arm64 `@next/swc`, `sharp`, `lightningcss`, …) and `.next` cache never
+shadow the container's linux ones. `/app/.next` is pre-created in
+`.docker/development/node/Dockerfile` so its volume inherits the container
+user's ownership instead of root's.
+
 ## Formatting vs. linting split
 
 Biome and ESLint are deliberately split — do not merge them:

@@ -28,4 +28,10 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 RUN pnpm install --frozen-lockfile
 
+# docker-compose.override.yaml mounts a named volume over /app/.next. Docker
+# only inherits ownership from the image, so the directory has to exist here
+# as ${NAME_CONTAINER_USER} — otherwise the volume is created root-owned and
+# `next dev` dies with EACCES on mkdir /app/.next/dev.
+RUN mkdir -p /app/.next
+
 EXPOSE 3000
