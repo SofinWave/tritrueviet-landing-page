@@ -107,6 +107,10 @@ describe("motion and pattern utilities", () => {
     // prefers-reduced-motion trong khi vẫn "chứa" cả hai chuỗi). Vì vậy ở
     // đây kiểm tra quan hệ lồng nhau bằng khoảng ngoặc cân bằng, không phải
     // bằng vị trí chuỗi con đơn thuần.
+    //
+    // `balancedRange` bắt đầu từ chính chỉ số của @supports nên lớp bọc
+    // @layer utilities ở ngoài không làm đổi bất cứ điều gì test này chứng
+    // minh — quan hệ lồng nhau vẫn được đo trên đúng ba construct đó.
     const supportsStart = css.indexOf("@supports (animation-timeline: view())");
     expect(supportsStart, "thiếu block @supports cho animation-timeline").toBeGreaterThan(-1);
     const supportsRange = balancedRange(supportsStart);
@@ -138,5 +142,20 @@ describe("motion and pattern utilities", () => {
   it("defines the grid pattern utility", () => {
     expect(css).toContain(".bg-grid {");
     expect(css).toContain("mask-image:");
+  });
+
+  it("keeps both global classes inside @layer utilities", () => {
+    // Ngoài mọi layer, .bg-grid và .reveal thắng mọi utility đã xếp lớp của
+    // Tailwind và không class nào ghi đè lên được.
+    const layerStart = css.indexOf("@layer utilities");
+    expect(layerStart, "thiếu @layer utilities trong globals.css").toBeGreaterThan(-1);
+    const layer = balancedRange(layerStart);
+
+    for (const rule of [".bg-grid {", "@supports (animation-timeline: view())"]) {
+      const at = css.indexOf(rule);
+      expect(at, `không tìm thấy "${rule}"`).toBeGreaterThan(-1);
+      expect(at, `"${rule}" phải nằm trong @layer utilities`).toBeGreaterThan(layer.open);
+      expect(at, `"${rule}" phải nằm trong @layer utilities`).toBeLessThan(layer.close);
+    }
   });
 });
