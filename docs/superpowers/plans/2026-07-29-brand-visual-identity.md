@@ -504,11 +504,14 @@ describe("Button", () => {
     expect(button.className).toContain("text-highlight-foreground");
   });
 
-  it("keeps amber off light backgrounds as a text colour", () => {
-    // Cam trên nền sáng chỉ đạt 2.1:1. Variant highlight phải là nền cam,
-    // không bao giờ là chữ cam.
+  it("uses amber as a background, never as the button's own text colour", () => {
+    // Cam trên nền sáng chỉ đạt 2.1:1. Variant highlight phải là NỀN cam với
+    // chữ amber-950, không bao giờ là chữ cam.
     render(<Button variant="highlight">Đăng ký</Button>);
-    expect(screen.getByRole("button").className).not.toContain("text-highlight ");
+    const classes = screen.getByRole("button").className.split(/\s+/);
+    expect(classes).toContain("bg-highlight");
+    expect(classes).toContain("text-highlight-foreground");
+    expect(classes).not.toContain("text-highlight");
   });
 
   it("still exposes the variant through the data attribute", () => {
@@ -1100,11 +1103,23 @@ describe("section rhythm", () => {
     expect(container.querySelector("section")).toHaveAttribute("data-tone", tone);
   });
 
-  it("alternates light and muted so no two neighbours share a tone", () => {
-    for (let i = 1; i < RHYTHM.length; i++) {
-      expect(RHYTHM[i].tone, `${RHYTHM[i].name} trùng tone với ${RHYTHM[i - 1].name}`).not.toBe(
-        RHYTHM[i - 1].tone,
+  it("alternates tones so no two neighbouring sections share a background", () => {
+    // Đọc tone từ DOM đã render, không đọc từ hằng RHYTHM ở trên — nếu so
+    // RHYTHM với chính nó thì test luôn xanh và không chứng minh được gì.
+    const rendered = RHYTHM.map(({ name, Component }) => {
+      const { container } = render(
+        <NextIntlClientProvider locale="vi" messages={vi}>
+          <Component />
+        </NextIntlClientProvider>,
       );
+      return { name, tone: container.querySelector("section")?.getAttribute("data-tone") };
+    });
+
+    for (let i = 1; i < rendered.length; i++) {
+      expect(
+        rendered[i].tone,
+        `${rendered[i].name} trùng tone với ${rendered[i - 1].name}`,
+      ).not.toBe(rendered[i - 1].tone);
     }
   });
 
@@ -1280,8 +1295,10 @@ describe("ink chapters", () => {
         <Achievements />
       </NextIntlClientProvider>,
     );
-    for (const p of container.querySelectorAll("p.text-sm")) {
-      expect(p.className).not.toContain("text-highlight");
+    const body = container.querySelectorAll("p.text-sm");
+    expect(body.length, "không tìm thấy chữ thân nào để kiểm").toBeGreaterThan(0);
+    for (const p of body) {
+      expect(p.className.split(/\s+/)).not.toContain("text-highlight");
     }
   });
 });
