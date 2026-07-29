@@ -1,9 +1,25 @@
 import { cn } from "@/lib/utils";
 
+/**
+ * Công thức nền ink, định nghĩa MỘT lần. `tone="ink"` phủ 9/13 bề mặt ink;
+ * bốn chỗ còn lại (hero, stats, footer, site-header) không phải `Section`
+ * nên phải nhập hằng này thay vì chép lại chuỗi.
+ */
+export const INK_SURFACE = "bg-surface-ink text-surface-ink-foreground";
+
+/**
+ * Vòng focus đọc được trên nền ink. `ring-ring/50` mặc định của shadcn chỉ
+ * đạt 1.54:1 trên `--surface-ink` ở light mode — dưới ngưỡng 3:1 của
+ * SC 1.4.11. Dùng cho mọi phần tử tương tác nằm trên bề mặt ink mà không
+ * phải `Button` (Button đã có variant `ink-ghost`).
+ */
+export const INK_FOCUS_RING =
+  "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-surface-ink-foreground/60";
+
 const TONES = {
   light: "bg-background text-foreground",
   muted: "bg-muted/40 text-foreground",
-  ink: "bg-surface-ink text-surface-ink-foreground",
+  ink: INK_SURFACE,
 } as const;
 
 export type SectionTone = keyof typeof TONES;

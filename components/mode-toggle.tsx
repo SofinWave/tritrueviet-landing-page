@@ -11,10 +11,9 @@ export function ModeToggle() {
 
   return (
     <Button
-      variant="ghost"
+      variant="ink-ghost"
       size="icon"
       aria-label={t("toggleTheme")}
-      className="text-surface-ink-foreground hover:bg-surface-ink-foreground/10 hover:text-surface-ink-foreground dark:hover:bg-surface-ink-foreground/10"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     >
       <Sun className="h-5 w-5 dark:hidden" />

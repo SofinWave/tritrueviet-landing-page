@@ -1,7 +1,8 @@
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Section } from "@/components/section";
+import { INK_FOCUS_RING, Section } from "@/components/section";
 import { SITE_ADDRESS, SITE_EMAIL, SITE_PHONE, SITE_ZALO_URL } from "@/lib/site";
+import { cn } from "@/lib/utils";
 import { ConsultationForm } from "./consultation-form";
 
 export function Contact() {
@@ -33,7 +34,10 @@ export function Contact() {
                 {detail.href ? (
                   <a
                     href={detail.href}
-                    className="text-sm text-surface-ink-foreground/70 hover:text-surface-ink-foreground hover:underline"
+                    className={cn(
+                      "rounded-sm text-sm text-surface-ink-foreground/70 hover:text-surface-ink-foreground hover:underline",
+                      INK_FOCUS_RING,
+                    )}
                   >
                     {detail.value}
                   </a>

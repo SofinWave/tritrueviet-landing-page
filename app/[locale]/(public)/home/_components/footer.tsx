@@ -1,6 +1,8 @@
 import { useTranslations } from "next-intl";
 import { Logo } from "@/components/logo";
+import { INK_FOCUS_RING, INK_SURFACE } from "@/components/section";
 import { SITE_EMAIL, SITE_NAME, SITE_PHONE } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 const LINKS = [
   { href: "#khoa-hoc", key: "courses" },
@@ -15,7 +17,7 @@ export function SiteFooter() {
   const nav = useTranslations("nav");
 
   return (
-    <footer className="border-t border-surface-ink-foreground/15 bg-surface-ink text-surface-ink-foreground">
+    <footer className={cn("border-t border-surface-ink-foreground/15", INK_SURFACE)}>
       <div className="container mx-auto grid gap-10 px-4 py-12 md:grid-cols-3">
         <div>
           <Logo />
@@ -28,7 +30,10 @@ export function SiteFooter() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-sm text-surface-ink-foreground/70 hover:text-surface-ink-foreground"
+                  className={cn(
+                    "rounded-sm text-sm text-surface-ink-foreground/70 hover:text-surface-ink-foreground",
+                    INK_FOCUS_RING,
+                  )}
                 >
                   {nav(link.key)}
                 </a>
@@ -40,12 +45,18 @@ export function SiteFooter() {
           <p className="mb-3 text-sm font-semibold">{t("contact")}</p>
           <ul className="space-y-2 text-sm text-surface-ink-foreground/70">
             <li>
-              <a href={`tel:${SITE_PHONE}`} className="hover:text-surface-ink-foreground">
+              <a
+                href={`tel:${SITE_PHONE}`}
+                className={cn("rounded-sm hover:text-surface-ink-foreground", INK_FOCUS_RING)}
+              >
                 {SITE_PHONE}
               </a>
             </li>
             <li>
-              <a href={`mailto:${SITE_EMAIL}`} className="hover:text-surface-ink-foreground">
+              <a
+                href={`mailto:${SITE_EMAIL}`}
+                className={cn("rounded-sm hover:text-surface-ink-foreground", INK_FOCUS_RING)}
+              >
                 {SITE_EMAIL}
               </a>
             </li>

@@ -1,13 +1,15 @@
 import { MessageCircle, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { INK_FOCUS_RING, INK_SURFACE } from "@/components/section";
 import { Button } from "@/components/ui/button";
 import { SITE_PHONE, SITE_ZALO_URL } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 export function Hero() {
   const t = useTranslations("hero");
 
   return (
-    <div id="top" className="relative overflow-hidden bg-surface-ink text-surface-ink-foreground">
+    <div id="top" className={cn("relative overflow-hidden", INK_SURFACE)}>
       <div className="bg-grid pointer-events-none absolute inset-0" aria-hidden="true" />
       <div className="container relative z-10 mx-auto px-4 py-20 md:py-28">
         <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-highlight">
@@ -18,14 +20,17 @@ export function Hero() {
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-surface-ink-foreground/75">{t("subtitle")}</p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button asChild size="lg" variant="highlight">
+          <Button asChild size="lg" variant="highlight" className={INK_FOCUS_RING}>
             <a href="#dang-ky">{t("ctaPrimary")}</a>
           </Button>
           <Button
             asChild
             size="lg"
             variant="outline"
-            className="border-surface-ink-foreground/25 bg-transparent text-surface-ink-foreground hover:bg-surface-ink-foreground/10 hover:text-surface-ink-foreground dark:border-surface-ink-foreground/25 dark:bg-transparent dark:hover:bg-surface-ink-foreground/10"
+            className={cn(
+              "border-surface-ink-foreground/25 bg-transparent text-surface-ink-foreground hover:bg-surface-ink-foreground/10 hover:text-surface-ink-foreground dark:border-surface-ink-foreground/25 dark:bg-transparent dark:hover:bg-surface-ink-foreground/10",
+              INK_FOCUS_RING,
+            )}
           >
             <a href="#khoa-hoc">{t("ctaSecondary")}</a>
           </Button>
@@ -33,14 +38,20 @@ export function Hero() {
         <div className="mt-8 flex flex-col gap-4 text-sm text-surface-ink-foreground/75 sm:flex-row">
           <a
             href={`tel:${SITE_PHONE}`}
-            className="inline-flex items-center gap-2 hover:text-surface-ink-foreground hover:underline"
+            className={cn(
+              "inline-flex items-center gap-2 rounded-sm hover:text-surface-ink-foreground hover:underline",
+              INK_FOCUS_RING,
+            )}
           >
             <Phone className="h-4 w-4" />
             {t("callNow")}
           </a>
           <a
             href={SITE_ZALO_URL}
-            className="inline-flex items-center gap-2 hover:text-surface-ink-foreground hover:underline"
+            className={cn(
+              "inline-flex items-center gap-2 rounded-sm hover:text-surface-ink-foreground hover:underline",
+              INK_FOCUS_RING,
+            )}
             rel="noreferrer"
           >
             <MessageCircle className="h-4 w-4" />

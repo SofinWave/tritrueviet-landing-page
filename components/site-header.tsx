@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { Logo } from "@/components/logo";
 import { ModeToggle } from "@/components/mode-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { INK_FOCUS_RING, INK_SURFACE } from "@/components/section";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 import { SITE_PHONE } from "@/lib/site";
 
 const NAV_ITEMS = [
@@ -23,9 +25,9 @@ export function SiteHeader() {
   const t = useTranslations("nav");
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-surface-ink text-surface-ink-foreground">
+    <header className={cn("sticky top-0 z-50 w-full", INK_SURFACE)}>
       <div className="container mx-auto flex h-16 items-center gap-4 px-4">
-        <a href="#top" className="mr-auto">
+        <a href="#top" className={cn("mr-auto rounded-sm", INK_FOCUS_RING)}>
           <Logo />
         </a>
         <nav className="hidden items-center gap-6 md:flex">
@@ -33,7 +35,10 @@ export function SiteHeader() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-surface-ink-foreground/70 hover:text-surface-ink-foreground"
+              className={cn(
+                "rounded-sm text-sm font-medium text-surface-ink-foreground/70 hover:text-surface-ink-foreground",
+                INK_FOCUS_RING,
+              )}
             >
               {t(item.key)}
             </a>
@@ -43,10 +48,10 @@ export function SiteHeader() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                variant="ghost"
+                variant="ink-ghost"
                 size="icon"
                 aria-label={t("openMenu")}
-                className="text-surface-ink-foreground hover:bg-surface-ink-foreground/10 hover:text-surface-ink-foreground dark:hover:bg-surface-ink-foreground/10 md:hidden"
+                className="md:hidden"
               >
                 <Menu className="h-5 w-5" />
               </Button>
@@ -61,18 +66,12 @@ export function SiteHeader() {
           </DropdownMenu>
           <LanguageSwitcher />
           <ModeToggle />
-          <Button
-            asChild
-            variant="ghost"
-            size="icon"
-            aria-label={t("callHotline")}
-            className="text-surface-ink-foreground hover:bg-surface-ink-foreground/10 hover:text-surface-ink-foreground dark:hover:bg-surface-ink-foreground/10"
-          >
+          <Button asChild variant="ink-ghost" size="icon" aria-label={t("callHotline")}>
             <a href={`tel:${SITE_PHONE}`}>
               <Phone className="h-5 w-5" />
             </a>
           </Button>
-          <Button asChild size="sm" variant="highlight" className="ml-1">
+          <Button asChild size="sm" variant="highlight" className={cn("ml-1", INK_FOCUS_RING)}>
             <a href="#dang-ky">{t("register")}</a>
           </Button>
         </div>

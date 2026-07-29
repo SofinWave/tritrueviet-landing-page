@@ -17,6 +17,12 @@ const buttonVariants = cva(
           "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+        // Ghost dành cho nền ink. `hover:text-surface-ink-foreground` KHÔNG
+        // thừa: nó huỷ `hover:text-accent-foreground` của variant ghost
+        // (slate-900 — gần như đen trên nền ink gần như đen). Vòng focus cũng
+        // phải đổi vì `ring-ring/50` chỉ đạt 1.54:1 trên `--surface-ink`.
+        "ink-ghost":
+          "text-surface-ink-foreground hover:bg-surface-ink-foreground/10 hover:text-surface-ink-foreground focus-visible:border-surface-ink-foreground/60 focus-visible:ring-surface-ink-foreground/60 dark:hover:bg-surface-ink-foreground/10",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {

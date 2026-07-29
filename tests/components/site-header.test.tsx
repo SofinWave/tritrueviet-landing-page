@@ -50,6 +50,20 @@ describe("SiteHeader", () => {
     expect(header?.className).toContain("text-surface-ink-foreground");
   });
 
+  it("gives every focusable control a focus ring that reads on ink", () => {
+    // Header dính trên mọi màn hình và có năm control. `ring-ring/50` mặc
+    // định của shadcn chỉ đạt 1.54:1 trên --surface-ink ở light mode.
+    const { container } = renderHeader();
+    const controls = container.querySelectorAll("a, button");
+    expect(controls.length, "không tìm thấy control nào trong header").toBeGreaterThan(0);
+    for (const control of controls) {
+      expect(
+        control.className,
+        `control "${control.getAttribute("aria-label") ?? control.textContent}" thiếu vòng focus trên nền ink`,
+      ).toContain("focus-visible:ring-surface-ink-foreground/60");
+    }
+  });
+
   it("makes the register button the amber highlight", () => {
     const { container } = renderHeader();
     const register = container.querySelector('a[href="#dang-ky"]');

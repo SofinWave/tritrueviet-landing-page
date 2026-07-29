@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { Section } from "@/components/section";
+import { INK_SURFACE, Section } from "@/components/section";
 
 describe("Section", () => {
   it("renders its id so anchor navigation works", () => {
@@ -53,6 +53,21 @@ describe("Section", () => {
     expect(section).toHaveAttribute("data-tone", "ink");
     expect(section?.className).toContain("bg-surface-ink");
     expect(section?.className).toContain("text-surface-ink-foreground");
+  });
+
+  it("paints the ink tone from the shared INK_SURFACE recipe", () => {
+    // Công thức ink chỉ được định nghĩa một lần; hero/stats/footer/header
+    // nhập lại hằng này. Nếu TONES.ink tách khỏi INK_SURFACE thì bốn bề mặt
+    // ngoài Section sẽ lệch màu so với chín bề mặt trong Section.
+    const { container } = render(
+      <Section tone="ink">
+        <p>content</p>
+      </Section>,
+    );
+    const classes = container.querySelector("section")!.className.split(/\s+/);
+    for (const token of INK_SURFACE.split(/\s+/)) {
+      expect(classes, `TONES.ink thiếu "${token}" của INK_SURFACE`).toContain(token);
+    }
   });
 
   it("paints the muted tone with the muted surface", () => {
