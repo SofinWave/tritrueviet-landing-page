@@ -11,9 +11,12 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
         // Tailwind v4 biên dịch `-translate-y-*` thành thuộc tính CSS
         // `translate`, KHÔNG phải `transform` (CSS phát ra là
         // `translate: var(--tw-translate-x) var(--tw-translate-y)`). Ghi
-        // `transition-[transform,...]` ở đây thì cú nhấc lên giật cục và chỉ
-        // màu viền là mượt. jsdom không quan sát được, nên phải kiểm bằng
-        // cách grep CSS đã build.
+        // Liệt kê `transform` trong danh sách transition ở đây thì cú nhấc
+        // lên giật cục và chỉ màu viền là mượt. jsdom không quan sát được,
+        // nên phải kiểm bằng cách grep CSS đã build.
+        //
+        // (Chú thích này cố tình KHÔNG viết lại chuỗi class sai — Tailwind
+        // quét cả comment và sẽ phát ra một rule chết cho nó.)
         "transition-[translate,border-color] duration-200",
         "hover:-translate-y-0.5 hover:border-highlight motion-reduce:transition-none motion-reduce:hover:translate-y-0",
         className,

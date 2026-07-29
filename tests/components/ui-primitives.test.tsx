@@ -66,6 +66,8 @@ describe("Card", () => {
     const { container } = render(<Card>nội dung</Card>);
     const classes = container.querySelector('[data-slot="card"]')?.className ?? "";
     expect(classes).toContain("transition-[translate,border-color]");
-    expect(classes).not.toContain("transition-[transform,border-color]");
+    // Ghép chuỗi để Tailwind (quét cả file test) không phát ra một rule chết
+    // cho đúng cái class sai mà test này đang cấm.
+    expect(classes).not.toContain(`transition-${"[transform,border-color]"}`);
   });
 });
