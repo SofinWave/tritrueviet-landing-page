@@ -93,6 +93,19 @@ wired into `i18n/routing.ts` (`localePrefix: "always"`). Middleware lives in
 `redirect` and `useRouter` from `i18n/navigation.ts`, not `next/link` or
 `next/navigation`.
 
+`localeDetection` is **`false`**, and that is what actually makes the site open
+in Vietnamese. `defaultLocale: VI` alone does not: next-intl's detection is on
+by default and resolves a bare `/` from the visitor's `Accept-Language` header
+and `NEXT_LOCALE` cookie *first*, falling back to `defaultLocale` only when
+neither matches — so an English browser landed on `/en`. With it off, `/` always
+redirects to `/vi`; `tests/i18n/routing.test.ts` pins the flag. Turning it back
+on silently re-breaks the default without failing anything else.
+
+Nothing depends on detection to stay reachable: every route carries a locale
+prefix and `LanguageSwitcher` navigates to explicit `/en/...` URLs. The
+trade-off is that a visitor who switched to English and later returns to the
+bare `/` lands on Vietnamese again — the cookie is no longer consulted.
+
 `messages/vi.json` and `messages/en.json` **must have identical key
 structure**, arrays included — `tests/messages/parity.test.ts` walks both
 catalogs recursively (indexed paths like `teachers.items.2.name`) and diffs
