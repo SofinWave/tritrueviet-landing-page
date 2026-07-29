@@ -24,10 +24,22 @@
     "chatZalo": "Nhắn Zalo"
   },
   "stats": {
-    "students": { "value": "[TODO: số học viên]", "label": "Học viên đã đồng hành" },
-    "years": { "value": "[TODO: số năm]", "label": "Năm kinh nghiệm" },
-    "passRate": { "value": "[TODO: tỉ lệ đỗ]", "label": "Tỉ lệ đỗ nguyện vọng 1" },
-    "teachers": { "value": "[TODO: số giáo viên]", "label": "Giáo viên cơ hữu" }
+    "students": {
+      "value": "3.000+",
+      "label": "Học viên đã đồng hành"
+    },
+    "years": {
+      "value": "2+",
+      "label": "Năm kinh nghiệm"
+    },
+    "tutors": {
+      "value": "500+",
+      "label": "Gia sư trong mạng lưới"
+    },
+    "teachers": {
+      "value": "5+",
+      "label": "Giáo viên dạy thường xuyên"
+    }
   },
   "courses": {
     "eyebrow": "Chương trình",

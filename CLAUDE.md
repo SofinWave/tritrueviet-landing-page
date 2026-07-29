@@ -278,11 +278,19 @@ literal string `[TODO: ...]`:
   though not a literal `[TODO: ...]` string — override it with
   `NEXT_PUBLIC_SITE_URL` once the real domain exists (see "Commands" above:
   it must be set at `docker build` time, not just in the runtime `.env`).
-- `messages/vi.json` + `messages/en.json` — `stats.*.value` (all four),
-  all four `teachers.items[]` entries (`name`/`subject`/`credential`), all
-  three `achievements.items[]` entries (`title`/`detail`), all three
-  `pricing.plans[].price`, all three `testimonials.items[]` entries
-  (`quote`/`author`/`role`).
+- `messages/vi.json` + `messages/en.json` — all four `teachers.items[]`
+  entries (`name`/`subject`/`credential`), all three `achievements.items[]`
+  entries (`title`/`detail`), all three `pricing.plans[].price`, all three
+  `testimonials.items[]` entries (`quote`/`author`/`role`).
+
+  `stats.*` is **done** — the centre supplied 3.000+ học viên, 2+ năm kinh
+  nghiệm, 500+ gia sư, 5+ giáo viên dạy thường xuyên. Note the fourth slot is
+  `stats.tutors`, not the original `stats.passRate`: no admission-rate figure
+  was available, and inventing one was not an option, so the slot was
+  repurposed rather than left as a visible placeholder. If a real pass rate
+  ever arrives it needs a new slot and a layout decision — the grid is
+  `grid-cols-2 md:grid-cols-4`, so a fifth figure leaves one orphaned on its
+  own row.
 - `lib/site.ts` — `SITE_SAME_AS` is `[]`. Like `SITE_URL`, this is a
   placeholder that is not a literal `[TODO: ...]` string, so
   `placeholders.test.ts` cannot catch it — it silently emits `"sameAs":[]` in

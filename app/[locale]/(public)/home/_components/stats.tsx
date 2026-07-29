@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { INK_SURFACE } from "@/components/section";
 
-const KEYS = ["students", "years", "passRate", "teachers"] as const;
+const KEYS = ["students", "years", "tutors", "teachers"] as const;
 
 export function Stats() {
   const t = useTranslations("stats");

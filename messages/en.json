@@ -24,10 +24,22 @@
     "chatZalo": "Chat on Zalo"
   },
   "stats": {
-    "students": { "value": "[TODO: student count]", "label": "Students taught" },
-    "years": { "value": "[TODO: years]", "label": "Years of experience" },
-    "passRate": { "value": "[TODO: pass rate]", "label": "First-choice admission rate" },
-    "teachers": { "value": "[TODO: teacher count]", "label": "In-house teachers" }
+    "students": {
+      "value": "3,000+",
+      "label": "Students taught"
+    },
+    "years": {
+      "value": "2+",
+      "label": "Years of experience"
+    },
+    "tutors": {
+      "value": "500+",
+      "label": "Tutors in the network"
+    },
+    "teachers": {
+      "value": "5+",
+      "label": "Regular teachers"
+    }
   },
   "courses": {
     "eyebrow": "Programmes",
@@ -149,9 +161,18 @@
     "title": "Student achievements",
     "description": "These figures are updated each academic year.",
     "items": [
-      { "title": "[TODO: achievement 1]", "detail": "[TODO: result description, school year]" },
-      { "title": "[TODO: achievement 2]", "detail": "[TODO: result description, school year]" },
-      { "title": "[TODO: achievement 3]", "detail": "[TODO: result description, school year]" }
+      {
+        "title": "[TODO: achievement 1]",
+        "detail": "[TODO: result description, school year]"
+      },
+      {
+        "title": "[TODO: achievement 2]",
+        "detail": "[TODO: result description, school year]"
+      },
+      {
+        "title": "[TODO: achievement 3]",
+        "detail": "[TODO: result description, school year]"
+      }
     ]
   },
   "pricing": {

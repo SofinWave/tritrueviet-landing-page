@@ -5,16 +5,33 @@ import vi from "@/messages/vi.json";
 import { Stats } from "@/app/[locale]/(public)/home/_components/stats";
 
 describe("Stats", () => {
-  it("renders all four trust figures", () => {
+  it("renders all four trust figures with their real values", () => {
     render(
       <NextIntlClientProvider locale="vi" messages={vi}>
         <Stats />
       </NextIntlClientProvider>,
     );
-    expect(screen.getByText("Học viên đã đồng hành")).toBeInTheDocument();
-    expect(screen.getByText("Năm kinh nghiệm")).toBeInTheDocument();
-    expect(screen.getByText("Tỉ lệ đỗ nguyện vọng 1")).toBeInTheDocument();
-    expect(screen.getByText("Giáo viên cơ hữu")).toBeInTheDocument();
+    for (const [value, label] of [
+      ["3.000+", "Học viên đã đồng hành"],
+      ["2+", "Năm kinh nghiệm"],
+      ["500+", "Gia sư trong mạng lưới"],
+      ["5+", "Giáo viên dạy thường xuyên"],
+    ]) {
+      expect(screen.getByText(label)).toBeInTheDocument();
+      expect(screen.getByText(value)).toBeInTheDocument();
+    }
+  });
+
+  it("shows no unfilled placeholder now that the figures are real", () => {
+    // These are advertising claims. A "[TODO: …]" reaching production here would
+    // be visible to every visitor, and placeholders.test.ts no longer guards
+    // stats.* because those entries were deliberately retired.
+    const { container } = render(
+      <NextIntlClientProvider locale="vi" messages={vi}>
+        <Stats />
+      </NextIntlClientProvider>,
+    );
+    expect(container.textContent).not.toContain("[TODO");
   });
 
   it("continues the ink block and paints the figures amber", () => {

@@ -18,10 +18,11 @@ import * as site from "@/lib/site";
  * pricing.plans[].price, testimonials.items).
  */
 const MESSAGE_PLACEHOLDER_PATHS = [
-  "stats.students.value",
-  "stats.years.value",
-  "stats.passRate.value",
-  "stats.teachers.value",
+  // stats.* were removed on purpose once the centre supplied real figures.
+  // `stats.passRate` no longer exists at all: no admission-rate number was
+  // available, so the slot became `stats.tutors` rather than carry an invented
+  // one. Deleting entries here is the intended way to retire a placeholder —
+  // never weaken the assertion instead.
   "teachers.items.0.name",
   "teachers.items.0.subject",
   "teachers.items.0.credential",
