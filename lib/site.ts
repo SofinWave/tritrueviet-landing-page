@@ -15,6 +15,52 @@ export const SITE_NAME = "Trung tâm Gia sư Trí Tuệ Việt";
 export const SITE_SHORT_NAME = "Trí Tuệ Việt";
 
 /**
+ * The Open Graph / Twitter card image. 1200x630 is not a preference — it is the
+ * ratio Facebook, Zalo, X and LinkedIn all crop to, and anything smaller than
+ * 1200 wide makes X fall back from `summary_large_image` to the small card that
+ * `app/[locale]/layout.tsx` explicitly asks not to use. The dimensions are
+ * declared here rather than left for the scraper to discover, so the first
+ * share renders at the right size instead of at whatever the crawler guessed
+ * before it finished downloading the file.
+ *
+ * `tests/seo/og-image.test.ts` reads the real JPEG header and fails if the file
+ * on disk ever stops matching these numbers.
+ */
+export const SITE_OG_IMAGE = {
+  path: "/images/og-image.jpg",
+  width: 1200,
+  height: 630,
+  type: "image/jpeg",
+} as const;
+
+/**
+ * The square lockup, used for schema.org `logo`. Google reads this as the
+ * organisation's mark for the knowledge panel and wants it raster and square-ish
+ * — the OG image is neither, which is why the two are separate fields rather
+ * than one image reused twice.
+ */
+export const SITE_LOGO = {
+  path: "/images/logo.png",
+  width: 500,
+  height: 500,
+  type: "image/png",
+} as const;
+
+/** Absolute URL for a `public/` asset — JSON-LD and Open Graph both need one. */
+export function absoluteUrl(path: string): string {
+  return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+/**
+ * The brand red from `public/images/logo.png`, i.e. `--primary` in
+ * `app/globals.css`. It is the browser-chrome colour on mobile and the PWA
+ * theme colour, so `app/manifest.ts` and the `viewport` export in
+ * `app/[locale]/layout.tsx` both read it from here rather than each carrying
+ * their own hex — those two used to drift.
+ */
+export const SITE_THEME_COLOR = "#bf1516";
+
+/**
  * Hotline as it is *shown* to a reader — grouped for legibility. Never put this
  * in an `href`: a `tel:` URI may not contain raw spaces (RFC 3966 allows `-`
  * and `.` as visual separators, nothing else), so linking it depends on the

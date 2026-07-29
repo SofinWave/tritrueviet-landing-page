@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { SITE_NAME, SITE_SHORT_NAME } from "@/lib/site";
+import { LocaleSupport } from "@/enums";
+import { SITE_NAME, SITE_SHORT_NAME, SITE_THEME_COLOR } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -10,8 +11,9 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
-    // The brand red from public/images/logo.png — keep in step with --primary.
-    theme_color: "#bf1516",
+    theme_color: SITE_THEME_COLOR,
+    lang: LocaleSupport.VI,
+    categories: ["education"],
     icons: [
       { src: "/icon.png", sizes: "512x512", type: "image/png" },
       { src: "/apple-icon.png", sizes: "180x180", type: "image/png" },
