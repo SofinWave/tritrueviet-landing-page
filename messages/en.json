@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Tri Tue Viet Tutoring Centre — 1-on-1, small group and online",
-    "description": "Tri Tue Viet supports students from grade 6 to 12 with personalised learning paths, dedicated teachers and clear progress commitments."
+    "description": "Tri Tue Viet tutors students from grade 1 to 12 across every school subject and programming — personalised learning paths, dedicated teachers, clear progress reports."
   },
   "nav": {
     "courses": "Courses",
@@ -44,38 +44,37 @@
   "courses": {
     "eyebrow": "Programmes",
     "title": "Courses by subject and grade",
-    "description": "Each subject has its own path per grade, aligned with the national curriculum and real exam papers.",
-    "gradesLabel": "Grades",
+    "description": "Open to students from grade 1 to 12 across every school subject, plus programming courses from first steps to competitive and career tracks.",
     "items": [
       {
-        "name": "Mathematics",
-        "description": "Algebra, geometry and focused drilling on the question types that matter per grade.",
-        "grades": "Grades 6 – 12"
+        "name": "Natural sciences",
+        "description": "Maths, Physics, Chemistry, Biology and General Science — aligned with the national curriculum, the grade 10 entrance exam and the graduation exam.",
+        "grades": "Grades 1 – 12"
       },
       {
-        "name": "Literature",
-        "description": "Reading comprehension, social and literary essays following the current exam format.",
-        "grades": "Grades 6 – 12"
+        "name": "Social sciences",
+        "description": "Literature, History, Geography and Civics — reading comprehension, argumentative writing and exam technique for the current format.",
+        "grades": "Grades 1 – 12"
       },
       {
-        "name": "English",
-        "description": "Grammar foundations, topic vocabulary and exam technique.",
-        "grades": "Grades 6 – 12"
+        "name": "Foreign languages",
+        "description": "English from the ground up through to exam skills; other languages arranged on request.",
+        "grades": "Grades 1 – 12"
       },
       {
-        "name": "Physics",
-        "description": "Formula systems, applied problems and demonstrative experiments.",
-        "grades": "Grades 8 – 12"
+        "name": "Programming basics",
+        "description": "Algorithmic thinking and a first programming language, starting from zero at each student's own pace.",
+        "grades": "Grades 1 – 12"
       },
       {
-        "name": "Chemistry",
-        "description": "Equations, reaction chains and fully worked chemistry problems.",
-        "grades": "Grades 8 – 12"
+        "name": "Competitive programming",
+        "description": "Algorithms and data structures for informatics olympiad candidates and programming contests.",
+        "grades": "By level"
       },
       {
-        "name": "Transition exam prep",
-        "description": "Accelerated paths for the grade 10 entrance exam and the high school graduation exam.",
-        "grades": "Grades 9 and 12"
+        "name": "Programming for work",
+        "description": "A path for people already working or moving into software, structured around the job they are aiming for.",
+        "grades": "Working adults"
       }
     ]
   },
@@ -262,10 +261,10 @@
     "form": {
       "parentName": "Parent's full name",
       "phone": "Phone number",
-      "grade": "Grade",
-      "gradePlaceholder": "e.g. grade 9",
+      "grade": "Grade / level",
+      "gradePlaceholder": "e.g. grade 9, or working adult",
       "subject": "Subject of interest",
-      "subjectPlaceholder": "e.g. Mathematics",
+      "subjectPlaceholder": "e.g. Mathematics, or Programming",
       "format": "Learning format",
       "formatPlaceholder": "e.g. one-on-one",
       "note": "Notes",
@@ -290,7 +289,7 @@
     }
   },
   "footer": {
-    "tagline": "A tutoring centre supporting secondary and high school students.",
+    "tagline": "A tutoring centre supporting students from grade 1 to 12, plus programming courses.",
     "quickLinks": "Quick links",
     "contact": "Contact",
     "rights": "All rights reserved."

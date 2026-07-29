@@ -5,7 +5,8 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: SITE_NAME,
     short_name: SITE_SHORT_NAME,
-    description: "Trung tâm gia sư kèm 1-1, nhóm nhỏ và online cho học sinh THCS và THPT.",
+    description:
+      "Trung tâm gia sư kèm 1-1, nhóm nhỏ và online cho học sinh lớp 1–12, kèm các khoá lập trình.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

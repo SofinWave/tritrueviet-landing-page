@@ -45,7 +45,11 @@ export const SITE_KEYWORDS: Record<string, string[]> = {
     "luyện thi THPT quốc gia",
     "gia sư online",
     "dạy kèm nhóm nhỏ",
+    "gia sư tiểu học",
     "gia sư Toán Lý Hoá Anh",
+    "dạy lập trình cho trẻ",
+    "luyện thi học sinh giỏi Tin học",
+    "học lập trình chuyển nghề",
   ],
   [LocaleSupport.EN]: [
     "tutoring centre",
@@ -54,8 +58,12 @@ export const SITE_KEYWORDS: Record<string, string[]> = {
     "small group classes",
     "online tutoring",
     "exam preparation",
+    "primary school tutor",
     "maths tutor",
     "english tutor",
+    "programming for kids",
+    "competitive programming coaching",
+    "learn to code career change",
   ],
 };
 

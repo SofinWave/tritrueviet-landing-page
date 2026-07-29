@@ -324,6 +324,28 @@ once since every call site imports from there.
 
 Never invent figures for these — they are advertising claims.
 
+## Advertised scope
+
+The centre takes **grades 1–12** across natural sciences, social sciences,
+foreign languages and programming; programming splits into basics, competitive,
+and a career track for working adults.
+
+That range is spelled out in five places, four of which are invisible on
+screen — `metadata.description`, `footer.tagline`, `app/manifest.ts`,
+`SITE_KEYWORDS` in `lib/site.ts`, and the `courses.items[]` cards. It went stale
+in all of them once before. `tests/messages/scope.test.ts` is the net: it fails
+on any surviving "lớp 6 đến lớp 12" / "THCS và THPT" claim, pins the course-card
+count across both locales, and requires the primary-school and programming
+keywords to stay in the keyword list.
+
+The career-track course is the one audience the rest of the funnel does not
+address: `hero`, `process` and `formats` all speak to a parent about their
+child. The registration form's grade field was widened to
+**"Lớp / trình độ"** so an adult can complete it — that relabelling is the only
+concession, and it is deliberate. Widening the rest of the copy was considered
+and rejected: parents are the paying audience and the warm tone is aimed at
+them.
+
 ## Brand assets
 
 `public/images/logo.png` is the supplied artwork: a square social-avatar

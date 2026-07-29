@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Trung tâm Gia sư Trí Tuệ Việt — Kèm 1-1, nhóm nhỏ và online",
-    "description": "Trí Tuệ Việt đồng hành cùng học sinh từ lớp 6 đến lớp 12 với lộ trình cá nhân hoá, giáo viên tận tâm và cam kết tiến bộ rõ ràng."
+    "description": "Trí Tuệ Việt dạy kèm học sinh từ lớp 1 đến lớp 12 mọi môn văn hoá và lập trình — lộ trình cá nhân hoá, giáo viên tận tâm, báo cáo tiến độ rõ ràng."
   },
   "nav": {
     "courses": "Khoá học",
@@ -44,38 +44,37 @@
   "courses": {
     "eyebrow": "Chương trình",
     "title": "Khoá học theo môn và cấp lớp",
-    "description": "Mỗi môn có lộ trình riêng cho từng khối, bám sát chương trình của Bộ và đề thi thực tế.",
-    "gradesLabel": "Cấp lớp",
+    "description": "Nhận học sinh từ lớp 1 đến lớp 12 ở mọi môn văn hoá, cùng các khoá lập trình từ căn bản đến thi đấu và định hướng nghề nghiệp.",
     "items": [
       {
-        "name": "Toán",
-        "description": "Đại số, hình học và ôn luyện dạng bài trọng tâm theo từng khối.",
-        "grades": "Lớp 6 – 12"
+        "name": "Khoa học tự nhiên",
+        "description": "Toán, Vật lý, Hoá học, Sinh học và Khoa học tự nhiên — bám sát chương trình của Bộ, đề thi vào lớp 10 và tốt nghiệp THPT.",
+        "grades": "Lớp 1 – 12"
       },
       {
-        "name": "Ngữ văn",
-        "description": "Đọc hiểu, nghị luận xã hội và nghị luận văn học theo cấu trúc đề mới.",
-        "grades": "Lớp 6 – 12"
+        "name": "Khoa học xã hội",
+        "description": "Ngữ văn, Lịch sử, Địa lý và Giáo dục công dân — đọc hiểu, nghị luận và kỹ năng làm bài theo cấu trúc đề mới.",
+        "grades": "Lớp 1 – 12"
       },
       {
-        "name": "Tiếng Anh",
-        "description": "Ngữ pháp nền tảng, từ vựng theo chủ đề và kỹ năng làm bài thi.",
-        "grades": "Lớp 6 – 12"
+        "name": "Ngoại ngữ",
+        "description": "Tiếng Anh từ nền tảng đến kỹ năng làm bài thi; các ngoại ngữ khác sắp xếp theo nhu cầu của học sinh.",
+        "grades": "Lớp 1 – 12"
       },
       {
-        "name": "Vật lý",
-        "description": "Hệ thống công thức, bài tập vận dụng và thí nghiệm minh hoạ.",
-        "grades": "Lớp 8 – 12"
+        "name": "Lập trình căn bản",
+        "description": "Tư duy thuật toán và ngôn ngữ lập trình đầu tiên, bắt đầu từ con số không theo tốc độ của từng bạn.",
+        "grades": "Lớp 1 – 12"
       },
       {
-        "name": "Hoá học",
-        "description": "Phương trình, chuỗi phản ứng và bài toán hoá học có lời giải chi tiết.",
-        "grades": "Lớp 8 – 12"
+        "name": "Lập trình thi đấu",
+        "description": "Thuật toán và cấu trúc dữ liệu cho học sinh giỏi Tin học và các kỳ thi lập trình.",
+        "grades": "Theo trình độ"
       },
       {
-        "name": "Luyện thi chuyển cấp",
-        "description": "Lộ trình tăng tốc cho kỳ thi vào lớp 10 và kỳ thi tốt nghiệp THPT.",
-        "grades": "Lớp 9 và lớp 12"
+        "name": "Lập trình hướng nghiệp",
+        "description": "Lộ trình cho người đã đi làm hoặc chuẩn bị chuyển sang nghề lập trình, học bám theo mục tiêu công việc.",
+        "grades": "Người đi làm"
       }
     ]
   },
@@ -270,10 +269,10 @@
     "form": {
       "parentName": "Họ tên phụ huynh",
       "phone": "Số điện thoại",
-      "grade": "Lớp",
-      "gradePlaceholder": "Ví dụ: lớp 9",
+      "grade": "Lớp / trình độ",
+      "gradePlaceholder": "Ví dụ: lớp 9, hoặc người đi làm",
       "subject": "Môn quan tâm",
-      "subjectPlaceholder": "Ví dụ: Toán",
+      "subjectPlaceholder": "Ví dụ: Toán, hoặc Lập trình",
       "format": "Hình thức học",
       "formatPlaceholder": "Ví dụ: kèm 1 kèm 1",
       "note": "Ghi chú",
@@ -298,7 +297,7 @@
     }
   },
   "footer": {
-    "tagline": "Trung tâm gia sư đồng hành cùng học sinh THCS và THPT.",
+    "tagline": "Trung tâm gia sư đồng hành cùng học sinh từ lớp 1 đến lớp 12 và các khoá lập trình.",
     "quickLinks": "Liên kết nhanh",
     "contact": "Liên hệ",
     "rights": "Bảo lưu mọi quyền."

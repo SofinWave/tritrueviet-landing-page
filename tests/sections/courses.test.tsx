@@ -18,11 +18,33 @@ describe("Courses", () => {
     expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(vi.courses.items.length);
   });
 
-  it("shows each subject name and its grade range", () => {
+  it("covers every subject group the centre teaches", () => {
     renderCourses();
-    expect(screen.getByText("Toán")).toBeInTheDocument();
-    expect(screen.getByText("Luyện thi chuyển cấp")).toBeInTheDocument();
-    expect(screen.getByText("Lớp 9 và lớp 12")).toBeInTheDocument();
+    for (const name of [
+      "Khoa học tự nhiên",
+      "Khoa học xã hội",
+      "Ngoại ngữ",
+      "Lập trình căn bản",
+      "Lập trình thi đấu",
+      "Lập trình hướng nghiệp",
+    ]) {
+      expect(screen.getByText(name)).toBeInTheDocument();
+    }
+  });
+
+  it("advertises the full grade 1–12 range, not just secondary school", () => {
+    // The centre took on primary pupils; several places in the site still said
+    // "lớp 6 đến lớp 12" and this is the one a visitor actually reads.
+    renderCourses();
+    expect(screen.getAllByText("Lớp 1 – 12").length).toBeGreaterThanOrEqual(3);
+  });
+
+  it("labels the two tracks that are not tied to a school grade", () => {
+    // Competitive programming is grouped by level, and the career track is for
+    // adults — neither has a "Lớp N" and must not pretend to.
+    renderCourses();
+    expect(screen.getByText("Theo trình độ")).toBeInTheDocument();
+    expect(screen.getByText("Người đi làm")).toBeInTheDocument();
   });
 
   it("carries the anchor the header links to", () => {

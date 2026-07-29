@@ -19,7 +19,7 @@ function renderForm() {
 async function fillValidForm(user: ReturnType<typeof userEvent.setup>) {
   await user.type(screen.getByLabelText("Họ tên phụ huynh"), "Nguyễn Văn A");
   await user.type(screen.getByLabelText("Số điện thoại"), "0912345678");
-  await user.type(screen.getByLabelText("Lớp"), "9");
+  await user.type(screen.getByLabelText("Lớp / trình độ"), "9");
   await user.type(screen.getByLabelText("Môn quan tâm"), "Toán");
   await user.type(screen.getByLabelText("Hình thức học"), "1 kèm 1");
 }
@@ -32,7 +32,7 @@ describe("ConsultationForm", () => {
     for (const label of [
       "Họ tên phụ huynh",
       "Số điện thoại",
-      "Lớp",
+      "Lớp / trình độ",
       "Môn quan tâm",
       "Hình thức học",
     ]) {
@@ -117,7 +117,7 @@ describe("ConsultationForm", () => {
 
     expect(screen.getByLabelText("Họ tên phụ huynh")).toHaveValue("");
     expect(screen.getByLabelText("Số điện thoại")).toHaveValue("");
-    expect(screen.getByLabelText("Lớp")).toHaveValue("");
+    expect(screen.getByLabelText("Lớp / trình độ")).toHaveValue("");
     expect(screen.getByLabelText("Môn quan tâm")).toHaveValue("");
     expect(screen.getByLabelText("Hình thức học")).toHaveValue("");
   });
