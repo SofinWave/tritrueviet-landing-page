@@ -63,7 +63,9 @@ export function SiteFooter() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-surface-ink-foreground/15 py-6 text-center text-xs text-surface-ink-foreground/60">
+      {/* /60 chỉ đạt 4.04:1 trên --surface-ink ở dark mode — trượt AA cho
+          chữ 12px thường. /70 đạt 4.94:1, /75 đạt 5.44:1. */}
+      <div className="border-t border-surface-ink-foreground/15 py-6 text-center text-xs text-surface-ink-foreground/75">
         © {SITE_NAME}. {t("rights")}
       </div>
     </footer>
