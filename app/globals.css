@@ -63,7 +63,9 @@
 }
 
 .dark {
-  --background: oklch(12% 0.03 25);
+  /* Chroma 0.006, not 0.03: this paints ~45% of the viewport, and a red cast that
+     wide is what made dark mode read hot while light mode read calm. */
+  --background: oklch(11% 0.006 40);
   --foreground: oklch(98.5% 0.001 106.423);
   --card: oklch(21.6% 0.006 56.043);
   --card-foreground: oklch(98.5% 0.001 106.423);
@@ -80,7 +82,14 @@
   --destructive: oklch(0.704 0.191 22.216);
   --highlight: oklch(82.8% 0.189 84.429);
   --highlight-foreground: oklch(27.9% 0.077 45.635);
-  --surface-ink: oklch(43% 0.15 27);
+  /* The ink band covers ~40% of the page across three chapters, so its chroma
+     dominates how warm the whole theme feels. The first pass carried the blue
+     design's inversion rule over literally (slate-950 -> blue-800); in red that
+     same move produced a bright brick slab. Lightness 0.43 -> 0.32 and chroma
+     0.15 -> 0.06 cools it without flattening the rhythm: the band still separates
+     from the page at 1.57:1, and text on it improved (white 8.4 -> 12.5:1,
+     amber 5.1 -> 7.6:1). Light mode is deliberately untouched — it was already calm. */
+  --surface-ink: oklch(32% 0.06 30);
   --surface-ink-foreground: oklch(98.5% 0.001 106.423);
   --border: oklch(1 0 0 / 12%);
   /* Same 3:1 reasoning as light mode, resolved against the dark --card. */
