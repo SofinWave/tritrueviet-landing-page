@@ -48,21 +48,25 @@ to your own `id -u` / `id -g` so bind-mounted files keep the right ownership.
 
 ## Before launch
 
-The centre's real details are still placeholders written as `[TODO: ...]` in
-`lib/site.ts` and `messages/{vi,en}.json`. See the "Unfilled content" section
-of `CLAUDE.md` for the exact list — it includes the phone number and Zalo
-link, so the `tel:` links (header, hero, footer, contact section) and the
-Zalo links (hero, contact section) will not work until those are filled in.
-`tests/messages/placeholders.test.ts` guards against silently overwriting a
-placeholder with an invented figure.
+The centre has supplied its real details — no `[TODO: ...]` placeholder is
+left in `lib/site.ts` or `messages/{vi,en}.json`, and
+`tests/messages/placeholders.test.ts` now fails if one is either filled without
+being deregistered or added without being registered. See the "Unfilled
+content" section of `CLAUDE.md` for what each slot became and why.
 
-Two more values are placeholders too but are **not** `[TODO: ...]` strings, so
-the test above cannot catch them — check them manually:
+Three things are still outstanding:
 
-- `NEXT_PUBLIC_SITE_URL` (`lib/site.ts`'s `SITE_URL`) defaults to the
-  placeholder domain `https://tritueviet.example.com`. It is baked into the
-  production image at `docker build` time (see `.docker/production/node/Dockerfile`),
-  not read at container runtime — set it before building, not after.
-- `SITE_SAME_AS` (`lib/site.ts`) is `[]` until the centre's social/canonical
-  profile URLs are added; until then the JSON-LD `EducationalOrganization`
-  node emits `"sameAs":[]`.
+- **No Open Graph image.** `app/[locale]/layout.tsx` declares
+  `twitter.card: "summary_large_image"` but ships no image, so shared links
+  render blank.
+- **The consultation form is switched off.** `CONSULTATION_FORM_ENABLED` in
+  `lib/site.ts` is `false`, so every field and the submit button render
+  disabled behind a short explanatory line. Flip it once submissions have
+  somewhere real to go — `app/actions/consultation.ts` still only logs them.
+- **`NEXT_PUBLIC_SITE_URL` on non-production deploys.** `SITE_URL` now defaults
+  to the real `https://tritueviet.org`, which means a staging build that leaves
+  this unset will advertise the production domain as its own canonical, in
+  `sitemap.ts`, `robots.ts`, every `alternates` block and all four JSON-LD
+  nodes. It is baked into the image at `docker build` time (see
+  `.docker/production/node/Dockerfile`), not read at container runtime — set it
+  before building, not after.

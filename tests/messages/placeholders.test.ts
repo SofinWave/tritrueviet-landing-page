@@ -61,43 +61,55 @@ const MESSAGE_PLACEHOLDER_PATHS = [
  * real data, not a placeholder.
  */
 const SITE_PLACEHOLDER_PATHS = [
-  // SITE_PHONE, SITE_ZALO_URL and SITE_ADDRESS.* were removed on purpose once
-  // the centre supplied them. SITE_EMAIL is gone entirely rather than filled —
-  // there is no published address yet, and the centre chose to drop the channel
-  // instead of showing a dead `mailto:`. Only opening hours are still unknown.
-  "SITE_OPENING_HOURS[0]",
+  // SITE_PHONE, SITE_ZALO_URL, SITE_ADDRESS.* and SITE_OPENING_HOURS[0] were
+  // removed on purpose once the centre supplied them. SITE_EMAIL is gone
+  // entirely rather than filled — there is no published address yet, and the
+  // centre chose to drop the channel instead of showing a dead `mailto:`.
+  //
+  // SITE_URL is still not on this list and never was: its default is a real
+  // domain rather than a "[TODO: ...]" string, so nothing here can see it.
 ] as const;
-
-function getPath(obj: unknown, path: string): unknown {
-  const segments = path.match(/[^.[\]]+/g) ?? [];
-  return segments.reduce<unknown>((acc, segment) => {
-    if (acc == null || typeof acc !== "object") return undefined;
-    return (acc as Record<string, unknown>)[segment];
-  }, obj);
-}
 
 function isPlaceholder(value: unknown): boolean {
   return typeof value === "string" && value.startsWith("[TODO:");
 }
 
-describe("placeholder integrity", () => {
-  describe.each(MESSAGE_PLACEHOLDER_PATHS)("messages.%s", (path) => {
-    it("is still a [TODO: ...] placeholder in vi.json", () => {
-      expect(getPath(vi, path)).toMatch(/^\[TODO:/);
-    });
+/** Every dot/bracket path in `value` whose leaf is a "[TODO: ...]" string. */
+function findPlaceholders(value: unknown, prefix = ""): string[] {
+  if (isPlaceholder(value)) return [prefix];
+  if (Array.isArray(value)) {
+    return value.flatMap((item, index) => findPlaceholders(item, `${prefix}[${index}]`));
+  }
+  if (value && typeof value === "object") {
+    return Object.entries(value).flatMap(([key, child]) =>
+      findPlaceholders(child, prefix ? `${prefix}.${key}` : key),
+    );
+  }
+  return [];
+}
 
-    it("is still a [TODO: ...] placeholder in en.json", () => {
-      expect(getPath(en, path)).toMatch(/^\[TODO:/);
-    });
+/**
+ * Both lists are empty today, so the original per-path assertions would be
+ * `describe.each([])` / `it.each([])` — zero tests, silently green. These
+ * assertions replace them and hold in both directions: a placeholder that gets
+ * filled without its entry being deleted fails, and a *new* placeholder added
+ * without being registered fails too. The second half is coverage the old shape
+ * never had.
+ */
+describe("placeholder integrity", () => {
+  it.each([
+    ["vi", vi],
+    ["en", en],
+  ])("%s.json holds exactly the registered placeholders, no more and no fewer", (_locale, cat) => {
+    expect(findPlaceholders(cat).sort()).toEqual([...MESSAGE_PLACEHOLDER_PATHS].sort());
   });
 
-  it.each(SITE_PLACEHOLDER_PATHS)("lib/site.ts %s is still a [TODO: ...] placeholder", (path) => {
-    expect(getPath(site, path)).toMatch(/^\[TODO:/);
+  it("lib/site.ts holds exactly the registered placeholders", () => {
+    // SITE_ADDRESS.country ("VN") is real data, so it is correctly absent here.
+    expect(findPlaceholders(site).sort()).toEqual([...SITE_PLACEHOLDER_PATHS].sort());
   });
 
   it("vi and en agree on which message paths are still placeholders", () => {
-    const viStatus = MESSAGE_PLACEHOLDER_PATHS.map((path) => isPlaceholder(getPath(vi, path)));
-    const enStatus = MESSAGE_PLACEHOLDER_PATHS.map((path) => isPlaceholder(getPath(en, path)));
-    expect(viStatus).toEqual(enStatus);
+    expect(findPlaceholders(vi).sort()).toEqual(findPlaceholders(en).sort());
   });
 });

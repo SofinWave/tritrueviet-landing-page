@@ -2,12 +2,14 @@ import { LocaleSupport } from "@/enums";
 
 /**
  * Canonical site URL. Override per environment with NEXT_PUBLIC_SITE_URL
- * (no trailing slash). The default is a placeholder until the real domain
- * is registered.
+ * (no trailing slash) — a staging deploy must set it, or it will advertise the
+ * production domain as its own canonical and hand search engines duplicate
+ * pages. The default is the real domain, no longer a placeholder.
  */
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://tritueviet.example.com"
-).replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://tritueviet.org").replace(
+  /\/$/,
+  "",
+);
 
 export const SITE_NAME = "Trung tâm Gia sư Trí Tuệ Việt";
 export const SITE_SHORT_NAME = "Trí Tuệ Việt";
@@ -72,8 +74,12 @@ export const SITE_ADDRESS = {
  */
 export const CONSULTATION_FORM_ENABLED = false;
 
-/** schema.org openingHours strings, e.g. "Mo-Fr 08:00-20:00". */
-export const SITE_OPENING_HOURS: string[] = ["[TODO: giờ mở cửa]"];
+/**
+ * schema.org openingHours strings. 08:30–23:00 every day of the week — the
+ * `Mo-Su` span and the 24-hour clock are the format's requirement, not a style
+ * choice, so do not rewrite this as "8h30 - 23h" for readability.
+ */
+export const SITE_OPENING_HOURS: string[] = ["Mo-Su 08:30-23:00"];
 
 /** Social / canonical profiles surfaced in structured data (sameAs). */
 export const SITE_SAME_AS: string[] = [SITE_FACEBOOK_URL];

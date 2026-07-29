@@ -303,14 +303,21 @@ trusting them.
 
 ## Unfilled content
 
-The centre's real data is not in the repo yet. Every unfilled value is the
-literal string `[TODO: ...]`:
+**Nothing is a `[TODO: ...]` placeholder any more** — the centre has supplied
+every value. This section records what each slot became and why, because
+several of those decisions are not recoverable from the code alone.
 
-- `lib/site.ts` — only `SITE_OPENING_HOURS[0]` is still a literal
-  `[TODO: ...]`. `SITE_URL`'s default (`https://tritueviet.example.com`) is also
-  a placeholder domain, though not a literal `[TODO: ...]` string — override it
-  with `NEXT_PUBLIC_SITE_URL` once the real domain exists (see "Commands" above:
-  it must be set at `docker build` time, not just in the runtime `.env`).
+- `lib/site.ts` — `SITE_OPENING_HOURS` is `["Mo-Su 08:30-23:00"]`. The `Mo-Su`
+  span and the 24-hour clock are schema.org's format, not a style choice; do
+  not "tidy" it into `8h30 - 23h`. The hours are currently **only** in JSON-LD —
+  no visitor-facing surface renders them.
+
+  `SITE_URL` now defaults to the real `https://tritueviet.org`, so it is no
+  longer a placeholder — but that makes `NEXT_PUBLIC_SITE_URL` *more* important
+  on any non-production deploy, not less: a staging build that leaves it unset
+  now advertises the production domain as its own canonical, in `sitemap.ts`,
+  `robots.ts`, every `alternates` block and all four JSON-LD nodes. It is baked
+  in at `docker build` time (see "Commands" above), not read at runtime.
 
   The hotline is stored **twice on purpose**: `SITE_PHONE` (`"0965 492 153"`) is
   the display form and `SITE_PHONE_E164` (`"+84965492153"`) is what every
@@ -397,20 +404,25 @@ literal string `[TODO: ...]`:
   `grid-cols-2 md:grid-cols-4`, so a fifth figure leaves one orphaned on its
   own row.
 
-`tests/messages/placeholders.test.ts` enforces the literal `[TODO: ...]`
-cases: it holds an explicit list of every one of the key paths above and
-asserts each still starts with `[TODO:` in both catalogs. **A red result
-there once real data arrives is expected and correct** — the fix is to
-deliberately delete that entry from the list, not to weaken or generalize the
-assertion. Its `MESSAGE_PLACEHOLDER_PATHS` list is now empty (every catalog
-placeholder has been filled) and `SITE_PLACEHOLDER_PATHS` still guards
-`lib/site.ts`; the retirement comments left behind in that file record what each
-slot became and why, so read them before repurposing a slot again. `SITE_URL`
-is not on either list — check it manually before launch.
+`tests/messages/placeholders.test.ts` keeps two registries of `[TODO: ...]`
+paths — one per message catalog, one for `lib/site.ts` — and **both are now
+empty**. Because empty lists would make the original `describe.each` /
+`it.each` shape expand to zero tests and pass silently, the assertions were
+rewritten to walk the catalogs and `lib/site.ts` and compare the *set* of
+surviving placeholders against the registry. That holds in both directions: a
+placeholder filled without its entry being deleted fails, and a **new**
+placeholder added without registering it fails too — coverage the old
+per-path shape never had. **A red result once real data arrives is still
+expected and correct**; the fix is to delete that entry, never to weaken the
+assertion. The retirement comments left in the file record what each slot
+became, so read them before repurposing a slot again. `SITE_URL` is not on
+either list and cannot be — its default is a real domain, not a `[TODO:`
+string.
 
 The `tel:` links (header, hero, footer, contact section) and the Zalo link
-(hero, contact section) all resolve now. What is left before launch is
-`SITE_OPENING_HOURS[0]`, the real `SITE_URL`, and an Open Graph image.
+(hero, contact section) all resolve now. What is left before launch is an Open
+Graph image, and re-enabling the consultation form once submissions have
+somewhere real to go.
 
 Never invent figures for these — they are advertising claims.
 
