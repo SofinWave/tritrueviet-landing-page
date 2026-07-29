@@ -68,6 +68,16 @@ describe("design tokens", () => {
     }
   });
 
+  it("raises the dark-mode highlight to amber-400, not amber-500, for AA contrast", () => {
+    // Cam trên nền ink chỉ đạt 4.06:1 ở dark mode (amber-500) — không đủ AA
+    // (4.5:1) cho chữ thường như eyebrow (12px/600). amber-400 đạt 5.22:1.
+    // :root vẫn dùng amber-500 (76.9% 0.188 70.08) vì trên nền sáng nó đã
+    // đạt 9.4:1 — sự khác biệt giữa hai theme là MỘT YÊU CẦU CONTRAST, không
+    // phải sơ suất; đừng "đồng bộ hoá" hai giá trị lại làm một.
+    const dark = block(".dark {");
+    expect(dark).toContain("--highlight: oklch(82.8% 0.189 84.429);");
+  });
+
   it("keeps the dark page background darker than the dark ink surface", () => {
     // Bất biến của thiết kế: ở dark mode dải ink phải NỔI trên nền, không chìm.
     const dark = block(".dark {");
