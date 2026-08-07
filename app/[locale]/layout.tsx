@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Be_Vietnam_Pro } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Analytics } from "@vercel/analytics/next";
 import { routing } from "@/i18n/routing";
 import { ThemeProvider } from "@/components/theme-provider";
 import {
@@ -133,6 +134,7 @@ export default async function LocaleLayout({
         >
           <NextIntlClientProvider>{children}</NextIntlClientProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
