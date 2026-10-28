@@ -60,6 +60,9 @@ export function absoluteUrl(path: string): string {
  */
 export const SITE_THEME_COLOR = "#bf1516";
 
+/** Google Analytics 4 measurement ID (gtag.js), mounted once in the locale layout. */
+export const SITE_GA_MEASUREMENT_ID = "G-G2XBB6FW2L";
+
 /**
  * Hotline as it is *shown* to a reader — grouped for legibility. Never put this
  * in an `href`: a `tel:` URI may not contain raw spaces (RFC 3966 allows `-`

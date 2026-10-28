@@ -4,10 +4,12 @@ import { Be_Vietnam_Pro } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { routing } from "@/i18n/routing";
 import { ThemeProvider } from "@/components/theme-provider";
 import {
   OG_LOCALE,
+  SITE_GA_MEASUREMENT_ID,
   SITE_KEYWORDS,
   SITE_NAME,
   SITE_OG_IMAGE,
@@ -136,6 +138,7 @@ export default async function LocaleLayout({
         </ThemeProvider>
         <Analytics />
       </body>
+      <GoogleAnalytics gaId={SITE_GA_MEASUREMENT_ID} />
     </html>
   );
 }
