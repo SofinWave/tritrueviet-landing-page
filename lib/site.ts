@@ -60,8 +60,8 @@ export function absoluteUrl(path: string): string {
  */
 export const SITE_THEME_COLOR = "#bf1516";
 
-/** Google Analytics 4 measurement ID (gtag.js), mounted once in the locale layout. */
-export const SITE_GA_MEASUREMENT_ID = "G-G2XBB6FW2L";
+/** Google Tag Manager container ID, mounted once in the locale layout. GA4 is a tag inside it. */
+export const SITE_GTM_ID = "GTM-PPW3Q4FC";
 
 /**
  * Hotline as it is *shown* to a reader — grouped for legibility. Never put this
